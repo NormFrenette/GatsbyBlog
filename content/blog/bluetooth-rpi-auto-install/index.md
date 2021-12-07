@@ -1,7 +1,7 @@
 ---
 title: Install Bluetooth Code on RPi - Automated
 date: "2021-12-06T23:46:37.121Z"
-description: Instructions on how to automatically installfiles /configure RPi for BLE server.
+description: Instructions on how to automatically install files /configure RPi for BLE server.
 ---
 
 #### About
