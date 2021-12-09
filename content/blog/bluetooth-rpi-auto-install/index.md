@@ -26,7 +26,7 @@ cd ~
 ```
 3. Download and run the script - type:
 ```
-wget  https://www.normfrenette.com/btwifiset.sh | sudo bash
+curl  https://normfrenette.com/btwifiset.sh | sudo bash
 ```
 
 That's it. 
