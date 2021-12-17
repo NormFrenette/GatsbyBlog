@@ -20,6 +20,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             fields {
               slug
             }
+            frontmatter {
+              mainTag
+            }
           }
         }
       }
@@ -44,7 +47,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
-
+      //const url = post.fields.slug.replace(/([\w\d-]+\/$)/,post.frontmatter.mainTag+"-$1")
+      //console.log("**************",url)
+      //        path: url,
       createPage({
         path: post.fields.slug,
         component: blogPost,
@@ -62,7 +67,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const value = (node.frontmatter.mainTag != null) ?
+      createFilePath({ node, getNode }).replace(/([\w\d-]+\/$)/,node.frontmatter.mainTag+"-$1") :
+      createFilePath({ node, getNode })
+    
+    console.log("#############",value)
 
     createNodeField({
       name: `slug`,
@@ -106,6 +115,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       title: String
       description: String
       date: Date @dateformat
+      mainTag: String
     }
 
     type Fields {
