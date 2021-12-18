@@ -72,11 +72,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       createFilePath({ node, getNode })
     
     console.log("#############",value)
+    //fetch folder name under blog - this only works because by convention the blog stores any files under at least one folder
+    //which is the main topic folder.
+    const folder = value.split("/")[1]
 
     createNodeField({
       name: `slug`,
       node,
       value,
+    })
+    createNodeField({
+      name: `folder`,
+      node,
+      value: folder,
     })
   }
 }
