@@ -1,7 +1,7 @@
 ---
 title: Install Bluetooth Code on RPi - Manually
 date: "2021-12-05T10:00:00.000Z"
-description: Instructions on how to automatically installfiles /configure RPi for BLE server.
+description: Deatailed step-by step instructions on each terminal command needed to install files /configure RPi for BLE server.
 mainTag: installation
 ---
 #### About

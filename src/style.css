@@ -264,10 +264,13 @@ a:focus {
 .post-list-item {
   margin-bottom: var(--spacing-4);
   margin-top: var(--spacing-4);
+  
 }
 
 .post-list-item p {
   margin-bottom: var(--spacing-0);
+  border-bottom: 1px solid #005b99;
+  font-size: 1rem;
 }
 
 .post-list-item h2 {
@@ -332,4 +335,13 @@ a:focus {
   ol {
     list-style-position: inside;
   }
+}
+
+.is-visible {
+  display: block;
+  margin-top: 12px
+}
+
+.is-not-visible {
+  display: none
 }

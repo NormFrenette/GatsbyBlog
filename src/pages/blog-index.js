@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useCallback, useState } from "react"
 import { Link, graphql } from "gatsby"
 
 //import Bio from "../components/bio"
@@ -18,11 +19,11 @@ function Listing ( {item} ) {
                 itemType="http://schema.org/Article"
                 >
                     <header>
-                        <h2>
+                        <h5 style={{marginTop: 21, marginBottom: 12, color: '#005b99'}}>
                         <Link to={item.fields.slug} itemProp="url">
                             <span itemProp="headline">{item.frontmatter.title}</span>
                         </Link>
-                        </h2>
+                        </h5>
                         <small>{item.frontmatter.date}</small>
                     </header>
                     <section>
@@ -38,14 +39,34 @@ function Listing ( {item} ) {
     )
 }
 
-function Menu( {a} ) {
+function LiToggle ( {id,inserted}) {
+    const [state, setState] = useState(false);
+    
+    return( 
+        <li key={id} style={{marginBottom: 21, fontSize: '1.25rem'}}>
+        <button style={{padding: '0', border: '0'}} onClick={() => setState(!state)}>{state ? '-' : '+'}</button> {id}
+        {<Menu a={inserted} isTop={state}/>}
+        </li>
+    )
+
+}
+/*
+{a.map((post) => (
+            post.group ?<li key={post.fieldValue}>{post.fieldValue} 
+            {<Menu a={post.group} isTop={false}/>}</li> :
+                post.nodes ?<li key={post.fieldValue}>{post.fieldValue} 
+                {<Menu a={post.nodes} isTop={false}/>}</li> :
+                <Listing item={post} />
+        ))}
+        */
+
+function Menu( {a,isTop=true} ) {
+
     return(
-        <ul>
+        <ul style={{listStyleType: "none"}} className={`${isTop ? 'is-visible': 'is-not-visible' }`}>
         {a.map((post) => (
-            post.group ?<li key={post.fieldValue}>{post.fieldValue}
-            {<Menu a={post.group}/>}</li> :
-                post.nodes ?<li key={post.fieldValue}>{post.fieldValue}
-                {<Menu a={post.nodes}/>}</li> :
+            post.group ?<LiToggle id={post.fieldValue} inserted={post.group} /> :
+                post.nodes ?<LiToggle id={post.fieldValue} inserted={post.nodes} />:
                 <Listing item={post} />
         ))}
         </ul>
@@ -96,7 +117,7 @@ export const pageQuery = graphql`
             frontmatter {
                 title
                 description
-                date
+                date(formatString: "MMMM DD, YYYY")
             }
             }
         }
