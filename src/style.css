@@ -10,8 +10,9 @@
   --maxWidth-2xl: 42rem;
   --maxWidth-3xl: 48rem;
   --maxWidth-4xl: 56rem;
+  --maxWidth-5xl: 65rem;
   --maxWidth-full: "100%";
-  --maxWidth-wrapper: var(--maxWidth-2xl);
+  --maxWidth-wrapper: var(--maxWidth-5xl);
   --spacing-px: "1px";
   --spacing-0: 0;
   --spacing-1: 0.25rem;
@@ -271,7 +272,7 @@ a:focus {
 .post-list-item p {
   margin-bottom: var(--spacing-0);
   border-bottom: 1px solid #005b99;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .post-list-item h2 {
@@ -345,4 +346,24 @@ a:focus {
 
 .is-not-visible {
   display: none
+}
+
+.with-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+
+}
+
+.with-sidebar > :first-child {
+  flex-basis: 200px; 
+  flex-grow: 1;
+  border-right: 1px solid #005b99;
+  padding-right:0.5rem
+}
+
+.with-sidebar > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-width: 50%;
 }

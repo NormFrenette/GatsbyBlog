@@ -43,22 +43,13 @@ function LiToggle ( {id,inserted}) {
     const [state, setState] = useState(false);
     
     return( 
-        <li key={id} style={{marginBottom: 21, fontSize: '1.25rem'}}>
+        <li key={id} style={{marginBottom: 21, fontSize: '0.9rem'}}>
         <button style={{padding: '0', border: '0'}} onClick={() => setState(!state)}>{state ? '-' : '+'}</button> {id}
         {<Menu a={inserted} isTop={state}/>}
         </li>
     )
 
 }
-/*
-{a.map((post) => (
-            post.group ?<li key={post.fieldValue}>{post.fieldValue} 
-            {<Menu a={post.group} isTop={false}/>}</li> :
-                post.nodes ?<li key={post.fieldValue}>{post.fieldValue} 
-                {<Menu a={post.nodes} isTop={false}/>}</li> :
-                <Listing item={post} />
-        ))}
-        */
 
 function Menu( {a,isTop=true} ) {
 
@@ -73,13 +64,25 @@ function Menu( {a,isTop=true} ) {
     );
 }
 
+/*
+<div class="with-sidebar">
+  <div><!-- sidebar --></div>
+  <div><!-- non-sidebar --></div>
+</div>
+*/
 
   const theGroup = posts.group
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="All posts" />
         
-      <Menu a={theGroup}/>
+      <div class="with-sidebar">
+      <div><Menu a={theGroup}/></div>
+      <div>Blog content goes here Blog content goes here Blog content goes here 
+      Blog content goes here Blog content goes here Blog content goes here Blog content goes here
+      Blog content goes here Blog content goes here Blog content goes here
+      </div>
+    </div>
       
     </Layout>
   )
