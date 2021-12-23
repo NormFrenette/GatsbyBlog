@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-//import Bio from "../components/bio"
+import BlogIndex from "../components/blogIndex"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -16,6 +16,9 @@ const BlogPostTemplate = ({ data, location }) => {
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
+      <div className="with-sidebar">
+      <div className="in-sidebar"><BlogIndex/></div>
+      <div>
       <article
         className="blog-post"
         itemScope
@@ -60,6 +63,8 @@ const BlogPostTemplate = ({ data, location }) => {
           </li>
         </ul>
       </nav>
+      </div>
+    </div>
     </Layout>
   )
 }

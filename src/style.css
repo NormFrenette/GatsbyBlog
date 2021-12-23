@@ -176,9 +176,10 @@ ol {
   margin-right: var(--spacing-0);
   padding: var(--spacing-0);
   margin-bottom: var(--spacing-4);
-  list-style-position: outside;
+  list-style-position: inside;
   list-style-image: none;
 }
+
 
 ul li,
 ol li {
@@ -353,7 +354,7 @@ a:focus {
   flex-basis: 200px; 
   flex-grow: 1;
   border-right: 1px solid #005b99;
-  padding-right:0.5rem
+  padding-right:0.5rem;
 }
 
 .with-sidebar > :last-child {
