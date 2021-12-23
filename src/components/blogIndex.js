@@ -31,7 +31,7 @@ const BlogIndex = () => {
 
     const posts = data.allMarkdownRemark
 
-    function LiToggle ( {id,inserted,initialState=false}) {
+    function LiToggle ( {id,inserted,initialState}) {
         const [state, setState] = useState(initialState);
         
         return( 
@@ -49,7 +49,7 @@ const BlogIndex = () => {
             <ul style={{listStyleType: "none"}} className={`${isTop ? 'is-visible': 'is-not-visible' }`}>
             {a.map((post) => (
                 post.group ?<LiToggle id={post.fieldValue} inserted={post.group} initialState={true} /> :
-                    post.nodes ?<LiToggle id={post.fieldValue} inserted={post.nodes} />:
+                    post.nodes ?<LiToggle id={post.fieldValue} inserted={post.nodes} initialState={false} />:
                     <Listing item={post} />
             ))}
             </ul>
