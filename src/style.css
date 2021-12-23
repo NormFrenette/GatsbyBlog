@@ -183,20 +183,16 @@ ol {
 ul li,
 ol li {
   padding-left: var(--spacing-0);
-  margin-bottom: calc(var(--spacing-4) / 2);
 }
 
 li > p {
   margin-bottom: calc(var(--spacing-4) / 2);
 }
 
-li *:last-child {
-  margin-bottom: var(--spacing-0);
-}
 
 li > ul {
-  margin-left: var(--spacing-8);
-  margin-top: calc(var(--spacing-4) / 2);
+  margin-left: var(--spacing-4);
+  margin-top: var(--spacing-4);
 }
 
 blockquote {
@@ -266,24 +262,22 @@ a:focus {
 .post-list-item {
   margin-bottom: var(--spacing-4);
   margin-top: var(--spacing-4);
+  margin-left: -12px;
   
 }
 
-.post-list-item p {
-  margin-bottom: var(--spacing-0);
+.post-list-item section p {
+  margin-top: 0.5rem;
+  padding-bottom: 2px;
   border-bottom: 1px solid #005b99;
   font-size: 0.8rem;
 }
 
-.post-list-item h2 {
-  font-size: var(--fontSize-4);
+.post-list-item h6 {
+  font-size: var(--fontSize-1);
   color: var(--color-primary);
-  margin-bottom: var(--spacing-2);
+  margin-bottom: 0;
   margin-top: var(--spacing-0);
-}
-
-.post-list-item header {
-  margin-bottom: var(--spacing-4);
 }
 
 .header-link-home {
@@ -367,3 +361,20 @@ a:focus {
   flex-grow: 999;
   min-width: 50%;
 }
+
+.in-sidebar > ul {
+  padding-left: 0px;
+  font-weight: bold;
+}
+
+.in-sidebar li ul {
+  font-weight: normal;
+}
+
+.blog-date {
+  text-align: right;
+  font-size: 0.75rem;
+  margin:0;
+}
+
+
