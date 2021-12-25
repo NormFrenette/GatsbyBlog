@@ -17,7 +17,7 @@ const BlogPostTemplate = ({ data, location }) => {
         description={post.frontmatter.description || post.excerpt}
       />
       <div className="with-sidebar">
-      <div className="in-sidebar"><BlogIndex/></div>
+      <div className="in-sidebar"><BlogIndex postId={post.id}/></div>
       <div>
       <article
         className="blog-post"

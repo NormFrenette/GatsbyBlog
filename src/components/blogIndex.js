@@ -3,8 +3,8 @@ import { useState } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import Listing from "./listing"
 
-const BlogIndex = () => {
-
+const BlogIndex = (postId="") => {
+    
     const data = useStaticQuery(graphql`
         query {
             allMarkdownRemark {
@@ -38,21 +38,34 @@ const BlogIndex = () => {
         return( 
             <li key={id+catName} style={{fontSize: '0.9rem'}}>      
             <button style={{padding: '0', border: '0'}} onClick={() => setState(!state)}>{state ? '-' : '+'}</button> {catName}
-            {<Menu a={inserted} isTop={state}/>}
+            {<Menu a={inserted} show={state}/>}
             </li>
         )
 
     }
 
-    //key = {a[0].group? "ul-"+a[0].group.fieldValue: "ul-"+a[0].id}
-    function Menu( {a,isTop=true} ) {
+    function checkIfIDInNodes(nodes) {
+        var postExists = false
+        for (var i = 0; i < nodes.length; i++){
+            if (nodes[i].id == postId.postId) {
+                postExists = true
+                break
+            }
+        }
+        return postExists
+    }
 
+    //key = {a[0].group? "ul-"+a[0].group.fieldValue: "ul-"+a[0].id}
+    function Menu( {a,show = true} ) {
         return(
             <ul 
-            style={{listStyleType: "none"}} className={`${isTop ? 'is-visible': 'is-not-visible' }`}>
+            style={{listStyleType: "none"}} className={`${show ? 'is-visible': 'is-not-visible' }`}>
             {a.map((post) => (
-                post.group ?<LiToggle id={post.fieldValue} catName={post.fieldValue} inserted={post.group} initialState={true} /> :
-                    post.nodes ?<LiToggle id={post.distinct[0]} catName={post.fieldValue} inserted={post.nodes} initialState={false} />:
+                post.group ?<LiToggle id={post.fieldValue} catName={post.fieldValue} inserted={post.group} initialState={true}/> :
+                    post.nodes ?
+                        ((checkIfIDInNodes(post.nodes))?
+                        <LiToggle id={post.distinct[0]} catName={post.fieldValue} inserted={post.nodes} initialState={true} />:
+                        <LiToggle id={post.distinct[0]} catName={post.fieldValue} inserted={post.nodes} initialState={false} />):
                     <Listing item={post} />
             ))}
             </ul>
