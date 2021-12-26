@@ -2,7 +2,7 @@
 title: Manually Install Bluetooth Code on RPi
 date: "2021-12-05T10:00:00.000Z"
 description: Step-by-step commands in RPi Terminal to install files & configure for BLE server.
-mainTag: installation
+mainTag: Installation
 ---
 #### About
 Step by Step (manuallly) install on your Raspberry Pi of a bluetooth BLE Server written in Python .  BLE advertises a custom service that communicates with the IOS app to remotely set the wifi on a headless raspberry pi.

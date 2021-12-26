@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useState } from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql} from "gatsby"
 import Listing from "./listing"
 
 const BlogIndex = (postId="") => {
@@ -37,7 +37,8 @@ const BlogIndex = (postId="") => {
         console.log("LiToggle",state,id,catName)
         return( 
             <li key={id+catName} style={{fontSize: '0.9rem'}}>      
-            <button style={{padding: '0', border: '0'}} onClick={() => setState(!state)}>{state ? '-' : '+'}</button> {catName}
+            <button style={{padding: '0', border: '0'}} onClick={() => setState(!state)}>{state ? '-' : '+'}</button> 
+            <span role="menuitem" ariaHidden={true} onClick={() => setState(!state)}>&nbsp;{catName}</span>
             {<Menu a={inserted} show={state}/>}
             </li>
         )
@@ -47,7 +48,7 @@ const BlogIndex = (postId="") => {
     function checkIfIDInNodes(nodes) {
         var postExists = false
         for (var i = 0; i < nodes.length; i++){
-            if (nodes[i].id == postId.postId) {
+            if (nodes[i].id === postId.postId) {
                 postExists = true
                 break
             }
@@ -66,7 +67,7 @@ const BlogIndex = (postId="") => {
                         ((checkIfIDInNodes(post.nodes))?
                         <LiToggle id={post.distinct[0]} catName={post.fieldValue} inserted={post.nodes} initialState={true} />:
                         <LiToggle id={post.distinct[0]} catName={post.fieldValue} inserted={post.nodes} initialState={false} />):
-                    <Listing item={post} />
+                    <Listing item={post} onID={postId.postId} />
             ))}
             </ul>
         );

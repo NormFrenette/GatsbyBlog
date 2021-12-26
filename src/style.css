@@ -44,6 +44,7 @@
   --fontSize-root: 14px;
   --lineHeight-none: 1;
   --lineHeight-tight: 1.1;
+  --lineHeight-li: 1.25;
   --lineHeight-normal: 1.5;
   --lineHeight-relaxed: 1.625;
   /* 1.200 Minor Third Type Scale */
@@ -146,11 +147,9 @@ h6 {
   font-size: var(--fontSize-1);
 }
 
-h1 > a {
-  color: inherit;
-  text-decoration: none;
-}
 
+
+h1> a,
 h2 > a,
 h3 > a,
 h4 > a,
@@ -160,9 +159,18 @@ h6 > a {
   color: inherit;
 }
 
+h1> a:hover,
+h2 > a:hover,
+h3 > a:hover,
+h4 > a:hover,
+h5 > a:hover,
+h6 > a:hover {
+  text-decoration: underline;
+}
+
 /* Prose */
 
-p {
+p{
   line-height: var(--lineHeight-normal);
   --baseline-multiplier: 0.179;
   --x-height-multiplier: 0.35;
@@ -172,19 +180,19 @@ p {
 
 ul,
 ol {
-  margin-left: var(--spacing-0);
+  margin-left: var(--spacing-4);
   margin-right: var(--spacing-0);
   padding: var(--spacing-0);
   margin-bottom: var(--spacing-4);
-  list-style-position: inside;
+  list-style-position: outside;
   list-style-image: none;
 }
 
-
-ul li,
-ol li {
-  padding-left: var(--spacing-0);
+li {
+  line-height: var(--lineHeight-li);
+  padding-bottom: 0.5rem;
 }
+
 
 li > p {
   margin-bottom: calc(var(--spacing-4) / 2);
@@ -213,7 +221,7 @@ blockquote > :last-child {
 
 blockquote > ul,
 blockquote > ol {
-  list-style-position: inside;
+  list-style-position: outside;
 }
 
 table {
@@ -233,12 +241,17 @@ a {
   color: var(--color-primary);
 }
 
+
 /*a:hover,
 a:focus {
   text-decoration: none;
 }*/
 
 /* Custom classes */
+
+.indent-this{
+  margin-left: 3rem;
+}
 
 .global-wrapper {
   margin: var(--spacing-0) auto;
@@ -267,11 +280,20 @@ a:focus {
   
 }
 
+.post-list-item ul{
+  list-style-position: inside;
+  margin-left: var(--spacing-0);
+}
+
 .post-list-item section p {
   margin-top: 0.5rem;
   padding-bottom: 2px;
   border-bottom: 1px solid #005b99;
   font-size: 0.8rem;
+}
+
+.post-selected {
+  background-color: #ffff99;
 }
 
 .post-list-item h6 {
@@ -286,6 +308,10 @@ a:focus {
   font-family: var(--font-heading);
   text-decoration: none;
   font-size: var(--fontSize-2);
+}
+
+.header-link-home:hover {
+  text-decoration: underline;
 }
 
 .bio {
@@ -337,6 +363,19 @@ a:focus {
 .is-visible {
   display: block;
   margin-top: 12px
+}
+.is-visible ul li {
+  padding-left: 0px;
+  line-height: var(--lineHeight-tight);
+
+}
+
+.is-visible>ul {
+  margin-left: 0px;
+}
+
+.is-visible li>ul {
+  margin-left: 1 rem;
 }
 
 .is-not-visible {

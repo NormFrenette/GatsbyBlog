@@ -2,7 +2,7 @@
 title: Automated Install of Bluetooth Code on RPi
 date: "2021-12-06T23:46:37.121Z"
 description: Download and run one bash file to automatically  install python files & configure RPi for BLE.
-mainTag: installation
+mainTag: Installation
 ---
 
 #### About

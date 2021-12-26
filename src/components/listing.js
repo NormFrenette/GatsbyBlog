@@ -2,10 +2,11 @@ import * as React from "react"
 //import { Link } from "gatsby"
 
 //<Link to={item.fields.slug} itemProp="url"><span>{item.frontmatter.title}</span></Link>
-function Listing ( {item} ) {
+function Listing ( {item,onID=""} ) {
+    const classNameIsSelected = (onID===item.id)? "post-list-item post-selected":"post-list-item"
     return(
         <li key={item.fields.slug}>
-                <div className="post-list-item" key={item.id}>
+                <div className={classNameIsSelected} key={item.id} >
                     <header>
                         <h6>
                         <a  href={item.fields.slug}>{item.frontmatter.title}</a>
