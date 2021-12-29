@@ -13,7 +13,7 @@ If you have not done so - read the [Basic Concepts](/Looper/Basic-Concepts-Intro
 
 The raspberry pi comes with a 2 x 20 pin strip called the GPIOs - which stands for General Purpose Input Outputs.  Some of these are pretty sophisticated - but we will only use them in their most simple application: to read the status of switches and to drive light emitting diodes (LED).  The GPIO is how we command the Looper program loaded unto the raspberry pi.
 
-You will need to conect some of the pins to either the switches terminals, to resistors or to LED using a small breadboard to solder everything. I suggest a board that mounts as a "hat" to the RPi so you don't need to buy pin wires. check out the [parts list](/) for details.
+You will need to conect some of the pins to either the switches terminals, to resistors or to LED using a small breadboard to solder everything. I suggest a board that mounts as a "hat" to the RPi so you don't need to buy pin wires. check out the [parts list](/Looper/Electronics-parts-list/) for details.
 
 ##### GPIO naming:
 
@@ -74,13 +74,14 @@ If you have selected to include the buffer circuit, and the associated Mode Swit
 
 - Buffer circuit connects to 9V battery – completely separated from RPi
 - Buffer circuit Ground (GND) is NOT connected to RPi ground.
-- Buffer circuit uses two monon ¼ inch guitar jacks (female) Input & Output – not connected internally to RPi circuit/RPi GND.  
+- Buffer circuit uses two mono ¼ inch guitar jacks (female) Input & Output – not connected internally to RPi circuit/RPi GND.  
     - Connect the connector  that contacts the tip of the jack to IN or OUT.  
     - Connect the connector that contacts the sleeve to the Buffer GND (not raspberry pi ground).
 
-Alternatively – the output jack can use a 3.5mm mono male jack with leads attached.  This 3.5 mm jack will plug in directly to usb sound card mic input. the tip of male jack goes to OUT in cct; sleeve goes to buffer GND.
+> There are various alternatives for the output jack using 3.5mm plugs that can be used here.  See the discussion in the [parts list](/Looper/Electronics-parts-list/) document.
 
 ![Optional Buffer circuit](./buffer.png)
+
 
 
 
