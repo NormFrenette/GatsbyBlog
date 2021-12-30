@@ -2,7 +2,7 @@
 title: Introduction to Rapsberry Pi Looper
 date: "2021-12-21T10:00:00.000Z"
 description: Introduction and key concepts - before you build the Raspberry Pi Looper
-mainTag: Basic-Concepts
+mainTag: How-to-Build-it
 ---
 
 This project started as a way to build a decent sounding looper pedal for my son and I - We play guitar. The original idea was to build something cheaper than the pedals available on the market.  We also wanted a DIY project.   

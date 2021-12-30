@@ -2,18 +2,18 @@
 title: Looper circuit schematics
 date: "2021-12-27T10:00:00.000Z"
 description: schematics showing how to wire the GPIO pins and building a buffer for your instrument
-mainTag: Electronics
+mainTag: How-to-Build-it
 ---
 
 This page shows the circuits that need to be wired to the raspberry pi. You will need a small breadboard to solder everything. I suggest a board that mounts as a "hat" to the RPi so you don't need to buy pin wires.
 
-If you have not done so - read the [Basic Concepts](/Looper/Basic-Concepts-Introduction/) which explains how the Raspberry Pi and the optional buffer electronics is used.
+If you have not done so - read the [Basic Concepts](/Looper/How-to-Build-it-Introduction/) which explains how the Raspberry Pi and the optional buffer electronics is used.
 
 #### Raspberry Pi GPIO
 
 The raspberry pi comes with a 2 x 20 pin strip called the GPIOs - which stands for General Purpose Input Outputs.  Some of these are pretty sophisticated - but we will only use them in their most simple application: to read the status of switches and to drive light emitting diodes (LED).  The GPIO is how we command the Looper program loaded unto the raspberry pi.
 
-You will need to conect some of the pins to either the switches terminals, to resistors or to LED using a small breadboard to solder everything. I suggest a board that mounts as a "hat" to the RPi so you don't need to buy pin wires. check out the [parts list](/Looper/Electronics-parts-list/) for details.
+You will need to conect some of the pins to either the switches terminals, to resistors or to LED using a small breadboard to solder everything. I suggest a board that mounts as a "hat" to the RPi so you don't need to buy pin wires. check out the [parts list](/Looper/How-to-Build-it-parts-list/) for details.
 
 ##### GPIO naming:
 
@@ -24,6 +24,12 @@ Instead - I use the  Broadcom chip-specific pin or "BCM" naming. This is the col
 ![GPIO naming chart](./header_pinout.jpg)
  
  <p style="text-align: center;">Source: <a target="_blank" href=https://learn.sparkfun.com/tutorials/raspberry-gpio/gpio-pinout>Raspberry Pi GPIO details</a></p>
+
+ #### Schematic Symbols definition
+
+ The image below defines each symbol used in the schematics on this page: 
+
+ ![Schematics Symbols](./schematicsSymbols.png)
 
 #### Switches circuits
 
@@ -78,9 +84,10 @@ If you have selected to include the buffer circuit, and the associated Mode Swit
     - Connect the connector  that contacts the tip of the jack to IN or OUT.  
     - Connect the connector that contacts the sleeve to the Buffer GND (not raspberry pi ground).
 
-> There are various alternatives for the output jack using 3.5mm plugs that can be used here.  See the discussion in the [parts list](/Looper/Electronics-parts-list/) document.
+> There are various alternatives for the output jack using 3.5mm plugs that can be used here.  See the discussion in the [parts list](/Looper/How-to-Build-it-parts-list/) document.
 
 ![Optional Buffer circuit](./buffer.png)
+
 
 
 

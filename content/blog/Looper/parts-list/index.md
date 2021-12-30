@@ -2,7 +2,7 @@
 title: Parts List for Raspberry Pi Looper
 date: "2021-12-26T10:00:00.000Z"
 description: List of parts needed to build the Looper
-mainTag: Electronics
+mainTag: How-to-Build-it
 ---
 
 This document the various parts required to build the Raspberry Pi Looper.  
@@ -57,7 +57,7 @@ Additionally - for the buffer option:  buy an extra blue LED.
 
 ![standard LED](./standardLED.png)
 
->note: the short leg of the diode, which is connected to the larger piece of metal (you can see inside the plastic) is the negative lead: connect it to GND (ground) in the [schematics](/Looper/Electronics-circuit-schematics/)
+>note: the short leg of the diode, which is connected to the larger piece of metal (you can see inside the plastic) is the negative lead: connect it to GND (ground) in the [schematics](/Looper/How-to-Build-it-circuit-schematics/)
 
 ##### 7-segment LED
 
@@ -74,15 +74,14 @@ You need one  *common cathode* 7-segment LED. *(You only need one - even though 
 
 | Value (ohms) | (no buffer)Looper Qty | Looper+Buffer Qty |
 |:------------:|:----------------:|:-----------------:|
-|         220  |         2        |           2       |
-|         330  |         1        |           1       |
+|         330  |         3        |           3       |
 |         1K   |         x        |           1       |
 |         10K  |         2        |           4       |
 |         18K  |         x        |           1       |
 |        220K  |         x        |           1       |
 
 ##### Capacitors
-
+ 
 Capacitors are only needed for the Looper + Buffer option
 
 - 10 microFarad electrolytic - qty: 1

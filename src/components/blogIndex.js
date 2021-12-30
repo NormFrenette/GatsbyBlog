@@ -7,7 +7,7 @@ const BlogIndex = (postId="") => {
     
     const data = useStaticQuery(graphql`
         query {
-            allMarkdownRemark {
+            allMarkdownRemark (sort: {fields: [frontmatter___date], order: [ASC]}) {
                 group(field: fields___folder) {
                     fieldValue
                     group(field: frontmatter___mainTag) {
