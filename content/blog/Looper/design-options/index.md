@@ -52,7 +52,7 @@ This option keeps the buffer and Looper Input and Outputs separate.  In this cas
 
 > Also, with the Buffer switch set to off, a 1/4 inch guitar patch cord can be connected to the 1/4" input jack, and the 1/4 inch output jack is connected to the sound card mic input via the 6 inch adapter canle - allowing for a standard pedal to feed the looper.
 
-![Looper separated Option](./optionIntegrated.png)
+![Looper separated Option](./optionSeparate.png)
 
 #### Looper Only (no Buffer)
 
