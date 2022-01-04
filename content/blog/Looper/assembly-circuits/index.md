@@ -54,9 +54,28 @@ For this build I also added information for the reistor color code (in case one 
 ![transistor ready](./partstransistor.png)
 <p style="text-align:center">Transistor</p>
 
->Note: Since I had one left in my box of parts, I decide to use a transistor socket (shown on left of transistor).  It is not necessary, but it makes it easier to solder, without having to worry about getting the transistors leads to hot (which can damage the transistor).  I did not use one in my first prototype and everything was fine.  You don't have to use one. 
+>Note: To the left is shown a transistor holder - which some people like to use. I do not use it in this build because it makes the transistor higher then the LED - and we want the diodes flush with the top of the case.  If you decide to use it - you will have to raise the LEDs and the 7-segment up from the board as you solder - to provide clearance for the top of the transistor.
 
 ---
+
+#### Layout of components
+
+> This layout uses the raspberry pi breadboard hat recomended in the parts list.  If you are using a different breadbaord you will likely have to adjust the layout.
+
+The layout is constructed to scale using a square grid.  A box containing a number is a resistor, and the squares where the box starts and ends represents the holes into which the resistor leads go into.  This is also how non-electrolitic capacitors are shown.
+
+Electrolytics capacitors are shown laid flat on the board - because of clearance issues.  two leads come out of the "box" to indicate the hole where they should be soldered.  Pay attention the the negative lead indicated by three minus signs (- - -) on the box drawing - which corresponds to the negative markings on the electrolytic capacitor can.
+
+Diodes are shown as circle with a + and - sign indicating the holes where leads go into.  The negative (-) coresponds to the shortest lead.  The positive (+) coresponds to the longest lead.
+
+The 7-segment LED should be oriented so that the "dot" is nearest the Red LED
+
+Squares which contain a red letter code indicate that a insulated wire must be connected to that hole - and the other end of the wire connected to a point off the board (typically a switch or an input/output jack) - as labelled in the table accompanying the layout.
+
+![circuit pcb layout](./assemblyLayout.png)
+
+![ pcb layout Table](./layoutTable.png)
+
 
 
 

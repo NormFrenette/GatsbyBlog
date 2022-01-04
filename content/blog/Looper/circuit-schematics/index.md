@@ -44,17 +44,27 @@ Make sure you get a Push-On, normally-Off guitar pedal type stomp switch - and N
 
 ![Play Rec Stop Switch](./push_stomp.png)
 
-##### Mode switch - with Buffer option built into Looper
-Use a On-Off-ON DPDT toggle switch. You also need:
+##### Mode switch : Run/Edit(bypass)
+
+The mode switch also acts as a True Bypass when it is set in Edit mode.
+
+This uses a foot stomp Toggle siwtch: On-ON DPDT (double pole double throw).
+
+![Mode Switch](./modeBypassSw.png)
+
+##### Buffer-ON toggle switch 
+Use this switch if including a buffer in the looper.
+
+This uses a 3PDT (3-pole double throw) toggle switch - with lever control (not stomp).
 - a 9V battery and a 9V connector with lead wires
-- a blue LED (acts as indicator that buffer circuit is On - and using the battery)
+- a 10K resitor and blue LED (acts as indicator that buffer circuit is On - and using the battery)
 
-![Mode Switch for Buffer Option](./dpdt_switch_buffer.png)
+![Buffer-On toggle switch](./bufferOn.png)
 
-##### Mode Switch - If no Buffer is included in Looper
-Use a simple On-Off Toggle switch 
+When the switch is toggled to "buffer ON", the battery is conected to the buffer circuit and the indicator blue LED is lit.  The output of the buffer circuit is fed to the input (sound card mic) of the Raspberry Pi Looper.
 
-![Mode Switch for No Buffer](./switch_no_buffer.png)
+When the switch is in the "Buffer Off" positions, the batterry circuit is interrupted - so no current flows from the battery.  The pedal input jack (1/4 inch female) is fed directly to the input (sound card mic) of the Raspberry Pi Looper.
+
 
 #### LED circuits:
 These circuits describe the circuits for:
@@ -73,7 +83,7 @@ These circuits describe the circuits for:
 ##### LED 7-Segment
 Ensure you use a **"common cathode"** 7-segment LED
 
-![LED circuit and GPIO pin table](./segment_gpio.png)
+![LED circuit and GPIO pin table](./7segment_gpio.png)
 
 #### Optional Buffer circuit
 If you have selected to include the buffer circuit, and the associated Mode Switch (on-off-on DPDT toggle), build the following circuit on the same breadboard as the rest of the switches and LED circuits - making sure that it is separated from the Raspberry pi power and ground (these should **NOT** be connected together on the breadboard).
