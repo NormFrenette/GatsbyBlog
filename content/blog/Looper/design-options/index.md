@@ -24,17 +24,23 @@ But if you want to use the pedal with the instrument directly plugged in to the 
 The buffer circuit is  completely separate from the Looper - except that it is assembled on the same breadboard (see [parts list](/Looper/How-to-Build-it-parts-list/)).
 It uses a separate 9V battery and does not share the Looper power supply.
 
- In this option, the Looper+buffer pedal share the same input and output.  However, it is possible to use the buffer separately (with the Looper turned off - not powered) - inside a pedal chain. 
+ In this option, The usb sound card is internal to the looper.  
+ 
+The Buffer-ON switch turns on the buffer (applies battery voltage), sends the guitar input to the buffer and connects the output of the buffer to the mic input of the Raspberry Pi internally (Looper input).  When this switch is off - the guitar input is connected directly to the mic input of the sound card.
 
-The "Buffer-On" foot stomp switch is provided to direct the guitar IN signal to the buffer - feeding the buffer output internally to the Looper mic input.  If this switch is off, the guitar input signal is fed directly to the looper (choose this if inside a pedal chain).
-
-Similarly, an output toggle switch is provided to select whether the output jack is fed the output of the Looper or only the output of the buffer.  
+The Buffer output is also sent out of the Looper pedal to a 1/4inch female jack.  
 
 > If the Raspbery Pi (Looper) is off or not powered at all, this allows the pedal to be used as a buffer. It could be used as a DI box to feed an iphone or a computer to interface with various music programs such as Garage Band.
 
+The mode switch also acts as a true bypass switch.  When the looper is in run mode, the output of the RPi looper progam is sent to the pedal looper output jack (1.4 inch - female).  When the looper is placed in edit mode, the guitar input is connected directly to the Looper output: this is true bypass (only wires).  This is useful if the Looper is part of a pedal chain.
+
 >Note: This version does not include a separate headphone jack.  An adpater 3.5mm to 1/4" can be use to connect a headphone into the output. (A separate headphone jack could easily be added in parrallel to the 1/4" guitar output jack).  
 
-![Looper Integrated Option](./optionIntegrated.png)
+![Looper Integrated Option](./optionIntegrated2.png)
+
+##### Connections of Switches:
+
+![Looper Integrated Switches Connections](./IntegratedSwitches.png)
 
 #### Looper+Buffer: Separate design
 
@@ -51,6 +57,8 @@ This option keeps the buffer and Looper Input and Outputs separate.  In this cas
 > With this design, if the buffer is required (plugging guitar directly into the looper pedal), a small (6 inches) cable 1/4 inch male plug to 3.5 mm male plug (mono) must be used to connect the Buffer output jack to the sound card mic input jack.
 
 > Also, with the Buffer switch set to off, a 1/4 inch guitar patch cord can be connected to the 1/4" input jack, and the 1/4 inch output jack is connected to the sound card mic input via the 6 inch adapter canle - allowing for a standard pedal to feed the looper.
+
+> This option has True Bypass however, for the buffer only: When the Mode switch is in Edit Mode, the guitar input is connected directly to the buffer output 1/4 inch female jack, effictively bypassing the buffer.
 
 ![Looper separated Option](./optionSeparate.png)
 

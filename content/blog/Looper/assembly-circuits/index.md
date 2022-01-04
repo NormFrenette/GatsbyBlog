@@ -64,18 +64,23 @@ For this build I also added information for the reistor color code (in case one 
 
 The layout is constructed to scale using a square grid.  A box containing a number is a resistor, and the squares where the box starts and ends represents the holes into which the resistor leads go into.  This is also how non-electrolitic capacitors are shown.
 
+> Suqares on the layout generally corresponds to a hole on the circuit board. Orient your board to match the layout.
+
 Electrolytics capacitors are shown laid flat on the board - because of clearance issues.  two leads come out of the "box" to indicate the hole where they should be soldered.  Pay attention the the negative lead indicated by three minus signs (- - -) on the box drawing - which corresponds to the negative markings on the electrolytic capacitor can.
 
 Diodes are shown as circle with a + and - sign indicating the holes where leads go into.  The negative (-) coresponds to the shortest lead.  The positive (+) coresponds to the longest lead.
 
 The 7-segment LED should be oriented so that the "dot" is nearest the Red LED
 
-Squares which contain a red letter code indicate that a insulated wire must be connected to that hole - and the other end of the wire connected to a point off the board (typically a switch or an input/output jack) - as labelled in the table accompanying the layout.
+Squares which contain a red letter code indicate that a insulated wire must be connected to that hole - and the other end of the wire connected to a point off the board (typically a switch or an input/output jack) - as labelled in the table below the layout.
 
-![circuit pcb layout](./assemblyLayout.png)
+![circuit pcb layout](./assemblyLayout2.png)
 
-![ pcb layout Table](./layoutTable.png)
+![ pcb layout Table](./layoutTable2.png)
 
+Or open this image in a separate window to have all data on page:
+
+![ pcb circuit layout  and Table](./layoutAndTable.png)
 
 
 
