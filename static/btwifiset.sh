@@ -121,7 +121,11 @@ echo OK
 echo 
 
 #4 Installing glib and dbus dependencies:
-echo Checking Python module dbus ...
+echo installing dependencies for dbus and GLib...
+echo
+apt-get install -y build-essential libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0 libdbus-glib-1-dev
+echo  
+echo Checking for Python module dbus ...
 dbus=$($pythondir -c 'import dbus' 2>&1 | grep 'ModuleNotFoundError\|ImportError')
 if [ ! -z "$dbus" ]; then
 echo Checking if pip is installed ...
@@ -145,7 +149,6 @@ glib=$($pythondir -c "from gi.repository import GLib" 2>&1| grep  'ModuleNotFoun
 if [ ! -z "$glib" ]; then
 echo installing module GLib ...
 echo 
-apt-get install -y libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0
 echo Checking if pip is installed ...
 pipCheck=$($pythondir -m pip --version 2>&1| grep '\<No module\>')
 # -z is true if length of var /string is zero

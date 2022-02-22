@@ -34,8 +34,8 @@ sudo reboot
 ```
 python3 --version
 ```
-> **If the version returned is less then Python 3.7, you must install a newer version of Python before continuing.**
-4. Check if you have pip installed:
+> **If the version returned is less then Python 3.7, you must install a newer version of Python before continuing.** Here is one way to [install the newest python](/Python/Installation-RaspberryPi-Higher-Version/) 
+4. Check if you have pip installed (if you installed a newer version of python and created an alias (python) - use the alias below instead of python3 in the commands.)
 ```
 python3 -m pip --version
 ```
@@ -74,20 +74,29 @@ The BLE server python script requires the use of two python modules: **dbis** an
 ```
 python3 -c 'import dbus'
 ```
-2. if this command returns: *no module...* - you need to install dbus:
-```
-python3 -m pip install dbus-python
-```
-3. Check if GLib is installed:
+if this command returns: *no module...* - you need to install dbus.
+
+2. Check if GLib is installed:
 ```
 python3 -c 'from gi.repository import GLib'
 ```
-4. if this command returns: *no module... or Import Error ...* - you need to install GLib with the following commands:
+if this command returns: *no module... or Import Error ...* - you need to install GLib.
+
+3. If either dbus or GLib needs to be installed - first run the following command to install needed dependencies:
 ```
-sudo apt install libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0
+sudo apt-get install -y build-essential libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0 libdbus-glib-1-dev
+```
+
+4. Then, if you need to install GLib use pip to install PyGobject:
+```
 python3 -m pip install PyGobject
 ```
-5. test the installs - these command should return nothing if properly installed:
+5. And, if you need to install dbus - install it using pip as well:
+```
+python3 -m pip install dbus-python
+```
+
+6. Test the installs - these command should return nothing if properly installed:
 ```
 python3 -c 'import dbus'
 python3 -c 'from gi.repository import GLib'
