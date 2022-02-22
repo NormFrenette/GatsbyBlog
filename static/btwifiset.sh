@@ -124,6 +124,15 @@ echo
 echo Checking Python module dbus ...
 dbus=$($pythondir -c 'import dbus' 2>&1 | grep 'ModuleNotFoundError\|ImportError')
 if [ ! -z "$dbus" ]; then
+echo Checking if pip is installed ...
+pipCheck=$($pythondir -m pip --version 2>&1| grep '\<No module\>')
+# -z is true if length of var /string is zero
+if [ ! -z "$pipCheck" ]; then
+echo Pip module not found - Installing pip for python3...
+echo
+apt-get install -y python3-pip
+echo
+fi
 echo installing module dbus ...
 echo 
 $pythondir -m pip install dbus-python
@@ -137,6 +146,17 @@ if [ ! -z "$glib" ]; then
 echo installing module GLib ...
 echo 
 apt-get install -y libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0
+echo Checking if pip is installed ...
+pipCheck=$($pythondir -m pip --version 2>&1| grep '\<No module\>')
+# -z is true if length of var /string is zero
+if [ ! -z "$pipCheck" ]; then
+echo Pip module not found - Installing pip for python3...
+echo
+apt-get install -y python3-pip
+echo
+fi
+echo Installing PyGobject via pip...
+echo
 $pythondir -m pip install PyGobject
 else 
 echo module GLib is installed
