@@ -60,7 +60,7 @@ if [ -f "/etc/wpa_supplicant/wpa_supplicant.conf" ]; then
             echo Warning: the file wpa_supplicant.conf is missing your country code.
             echo Warning: you will not be able to connect to wifi properly.
             echo Please enter your country code to continue. 
-            echo If you do not know your country code - please use this link to retreive it:
+            echo If you do not know your contry code - please use this link to retreive it:
             echo "https://www.nationsonline.org/oneworld/country_code_list.htm"
             echo 
             read -p "Enter your country code  - 2 Capital letters only [leave blank to exit]: " countrycode
@@ -136,7 +136,7 @@ glib=$($pythondir -c "from gi.repository import GLib" 2>&1| grep  'ModuleNotFoun
 if [ ! -z "$glib" ]; then
 echo installing module GLib ...
 echo 
-apt install libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0
+apt-get install -y libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0
 $pythondir -m pip install PyGobject
 else 
 echo module GLib is installed
