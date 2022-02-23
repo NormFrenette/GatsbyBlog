@@ -38,13 +38,11 @@ if ((foundcount>1)); then
     for i in ${!pythonlist[@]}; do
     #note if user does not enter a number the expression evaluates to 0 on first pass so 0 is selected
         if [ $choice = $i ] ; then
-        echo $choice $i;
         pythondir=${pythonlist[i]};
         fi
     done
-    echo The Bluettooth Python app will use this Python interpreter: $pythondir
 fi
-echo OK
+echo The Bluettooth Python app will use this Python interpreter: $pythondir
 echo 
 
 #2 Check wpa_supplicant.conf
@@ -121,56 +119,41 @@ echo OK
 echo 
 
 #4 Installing glib and dbus dependencies:
-echo installing dependencies for dbus and GLib...
-echo
-apt-get install -y build-essential libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0 libdbus-glib-1-dev
-echo  
-echo Checking for Python module dbus ...
-dbus=$($pythondir -c 'import dbus' 2>&1 | grep 'ModuleNotFoundError\|ImportError')
-if [ ! -z "$dbus" ]; then
-echo Checking if pip is installed ...
-pipCheck=$($pythondir -m pip --version 2>&1| grep '\<No module\>')
-# -z is true if length of var /string is zero
-if [ ! -z "$pipCheck" ]; then
-echo Pip module not found - Installing pip for python3...
-echo
-apt-get install -y python3-pip
-echo
-fi
-echo installing module dbus ...
+echo Installing dependencies for Python modules as needed...
 echo 
-$pythondir -m pip install dbus-python
-else 
-echo module dbus is installed
-fi
-echo
-echo Checking Python module GLib ...
 glib=$($pythondir -c "from gi.repository import GLib" 2>&1| grep  'ModuleNotFoundError\|ImportError')
 if [ ! -z "$glib" ]; then
 echo installing module GLib ...
+apt-get install -y python3-gi 
+else 
+echo Python module GLib is installed
+fi
 echo 
-echo Checking if pip is installed ...
-pipCheck=$($pythondir -m pip --version 2>&1| grep '\<No module\>')
+dbus=$($pythondir -c 'import dbus' 2>&1 | grep 'ModuleNotFoundError\|ImportError')
+if [ ! -z "$dbus" ]; then
+echo Installing libdbus-glib package...
+apt-get install -y libdbus-glib-1-dev
+echo 
+pipcheck=$($pythondir -m pip --version 2>&1| grep '\<No module\>')
 # -z is true if length of var /string is zero
-if [ ! -z "$pipCheck" ]; then
+if [ ! -z "$pipcheck" ]; then
 echo Pip module not found - Installing pip for python3...
 echo
 apt-get install -y python3-pip
 echo
 fi
-echo Installing PyGobject via pip...
-echo
-$pythondir -m pip install PyGobject
-else 
-echo module GLib is installed
-fi
+echo Installing python module dbus with pip...
 echo 
-
+$pythondir -m pip install dbus-python
+else 
+echo Python module dbus is installed
+fi
+echo
 
 #5 download files from website:
 # first stop service if it is running:
 if [ -f "/etc/systemd/system/btwifiset.service" ]; then
-echo stopping service ...
+echo stopping btwifiset service ...
 sudo systemctl stop btwifiset.service
 fi
 #this creates an empty directory btwifiset (deletes it if it exists)

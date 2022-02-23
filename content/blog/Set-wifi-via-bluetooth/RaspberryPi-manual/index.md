@@ -68,35 +68,35 @@ You now have all the necessary files to run the BLE server on the RPi.  However,
 #### Step 3 - Check for/Install Python modules:
 The BLE server python script requires the use of two python modules: **dbis** and **GLib**
 
-> Note: If you installed a new version of python and created an alias called **python** for it - replace all instances of **python3** in the commands below with the alias (python).
+> Note: If you installed a new version of python and created an alias called **python** for it - replace all instances of **python3** in the commands below with your alias (python).
 
-1. Check if dbus is installed (do not forget the single quotes):
-```
-python3 -c 'import dbus'
-```
-if this command returns: *no module...* - you need to install dbus.
-
-2. Check if GLib is installed:
+1. Check if GLib is installed (*do not forget the single quotes*):
 ```
 python3 -c 'from gi.repository import GLib'
 ```
-if this command returns: *no module... or Import Error ...* - you need to install GLib.
+If this command returns nothing it means GLib is already installed - go to item #2.  
+If it returns: *no module...* or *Import Error ...* - you need to install GLib with this command:
+```
+apt-get install -y python3-gi
+```
 
-3. If either dbus or GLib needs to be installed - first run the following command to install needed dependencies:
+2. Next, check if dbus is installed (*do not forget the single quotes*):
 ```
-sudo apt-get install -y build-essential libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0 libdbus-glib-1-dev
+python3 -c 'import dbus'
 ```
-
-4. Then, if you need to install GLib use pip to install PyGobject:
+If this command returns nothing it means dbus is already installed.  
+If this command returns: *no module...* - you need to install dbus as follows:    
+First install libdbus-glib package:
 ```
-python3 -m pip install PyGobject
+apt-get install -y libdbus-glib-1-dev
 ```
-5. And, if you need to install dbus - install it using pip as well:
+Then install the Python module dbus using pip:  
+(*make sure you installed pip from step 1.5 above*)
 ```
 python3 -m pip install dbus-python
 ```
 
-6. Test the installs - these command should return nothing if properly installed:
+3. Test the installs - these command should return nothing if properly installed:
 ```
 python3 -c 'import dbus'
 python3 -c 'from gi.repository import GLib'
@@ -174,7 +174,7 @@ Save the file and exit the editor.
 2. Create the btwifiset.service file and open it in an editor:
 ```
 sudo  touch /etc/systemd/system/btwifiset.service
-sudo nano /etc/systemd/system/btwifiset.service</span>
+sudo nano /etc/systemd/system/btwifiset.service
 ```
 3. copy the below ans insert in the editor:
 > Note: replace the path-to-python3 and the home directory path to match your system
