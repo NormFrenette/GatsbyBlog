@@ -1,6 +1,6 @@
 ---
 title: Manually Install Bluetooth Code on RPi
-date: "2021-12-05T10:00:00.000Z"
+date: "2021-12-06T10:00:00.000Z"
 description: Step-by-step commands in RPi Terminal to install files & configure for BLE server.
 mainTag: Installation
 ---
@@ -8,7 +8,8 @@ mainTag: Installation
 Step by Step (manuallly) install on your Raspberry Pi of a bluetooth BLE Server written in Python .  BLE advertises a custom service that communicates with the IOS app to remotely set the wifi on a headless raspberry pi.
 
 #### Requirements
-*Python3: version 3.7 or later **must** be instaled on the Raspberry Pi or the install script will exit.*
+*Python3: version 3.7 or later **must** be instaled on the Raspberry Pi.*  
+Here is one way to [install the newest python](/Python/Installation-RaspberryPi-Higher-Version/) 
 
 #### General
 All commands below are to be typed at the prompt in a terminal window on the Raspberry Pi.
@@ -35,7 +36,7 @@ sudo reboot
 python3 --version
 ```
 > **If the version returned is less then Python 3.7, you must install a newer version of Python before continuing.** Here is one way to [install the newest python](/Python/Installation-RaspberryPi-Higher-Version/) 
-4. Check if you have pip installed (if you installed a newer version of python and created an alias (python) - use the alias below instead of python3 in the commands.)
+4. Check if you have **pip** installed (if you installed a newer version of python and created an alias (python) - use the alias below instead of python3 in the commands.)
 ```
 python3 -m pip --version
 ```
@@ -46,35 +47,35 @@ sudo apt install python3-pip
 
 
 #### Step 2: download the python files
-You will create a directory called **btwifiset** under your home directory and dowload the python files into it.
+You will create a directory called **btwifiset** under your home directory and dowload the python files into it:
 1. Navigate to your home directory, create btwifiset, then navigate there:
 ```
 cd ~
 mkdir btwifiset
 cd btwifiset
 ```
-2. Download the compressed file into this directory, then extract the files:
+2. Download the compressed file into this directory, then extract the files. Type these commands:
 ```
-wget https://www.normfrenette.com//btwifiset.tar.gz
+wget https://www.normfrenette.com/btwifiset.tar.gz
 tar -xzvf btwifiset.tar.gz
 ```
-3. Set permissions on some of the files:
+3. Set permissions on two of the files:
 ```
-sudo chmod 777 wifiup.py
-sudo chmod 777 wifidown.py
+sudo chmod 755 wifiup.py
+sudo chmod 755 wifidown.py
 ```
 You now have all the necessary files to run the BLE server on the RPi.  However, you need to install some python modules and modify/create systemd services.
 
 #### Step 3 - Check for/Install Python modules:
-The BLE server python script requires the use of two python modules: **dbis** and **GLib**
+The BLE server python script requires the use of two python modules: **dbus** and **GLib**
 
-> Note: If you installed a new version of python and created an alias called **python** for it - replace all instances of **python3** in the commands below with your alias (python).
+> Note: If you installed a new version of python and created an alias (for example: **python**) - replace all instances of **python3** in the commands below with your alias.
 
 1. Check if GLib is installed (*do not forget the single quotes*):
 ```
 python3 -c 'from gi.repository import GLib'
 ```
-If this command returns nothing it means GLib is already installed - go to item #2.  
+If this command returns nothing it means GLib is already installed - go to bullet #2.  
 If it returns: *no module...* or *Import Error ...* - you need to install GLib with this command:
 ```
 apt-get install -y python3-gi
@@ -109,7 +110,7 @@ The system service for bluetotth needs to be modified to run BLE,  and to stop i
 ```
 sudo nano /lib/systemd/system/bluetooth.service
 ```
-2. Find the line that starts with **ExecStart** and add the following add the end of the line - on the same line, leaving a space before the two hyphens:
+2. Find the line that starts with **ExecStart** and add the following at the end of the line - on the same line, leaving a space before the two hyphens:
 ```
   --experiemntal -P battery
 ```
@@ -122,7 +123,7 @@ sudo reboot
 ```
 
 #### step 5 - Verify that wpa_supplicant.conf exists
-If your pi has ever connected to wifi, you should have a file called wpa_supplicant.conf.  If not we need to create it.  Run this command:
+If your pi has ever connected to wifi, you should have a file named **wpa_supplicant.conf**.  If not, we need to create it.  Run this command to check if you have this file on your Raspberry Pi:
 ```
 sudo cat /etc/wpa_supplicant/wpa_supplicant.conf
 ```
@@ -156,6 +157,8 @@ update_config=1
 Save the file and exit the editor.
 
 #### Step 6 - Create the btwifiset.service file
+This creates a [Systemd service](https://man7.org/linux/man-pages/man1/systemd.1.html) that will automatically starts when your RPi boots up. This is assumed to be the desired behavior for a RPi in headless mode.  (If your RPi is connected to a terminal and keyboard - you don't need to set the wifi using an iphone app and bluetooth...)
+
 1. Find the path to your python interpreter:
     - If you are using the Python Interpreter that came with the OS:
     ```
@@ -176,8 +179,8 @@ Save the file and exit the editor.
 sudo  touch /etc/systemd/system/btwifiset.service
 sudo nano /etc/systemd/system/btwifiset.service
 ```
-3. copy the below ans insert in the editor:
-> Note: replace the path-to-python3 and the home directory path to match your system
+3. copy the below and insert in the editor:
+> Note: replace the text: **/full/path/to/python3** below, by the correct path to the python3 interpreter you plan to use. *(For example: /usr/bin/python3.9)*
 ```
 [Unit]
 Description=Set Wi-Fi over Bluetooth service
@@ -187,7 +190,7 @@ After=multi-user.target
 Type=simple
 User=pi
 Restart=always
-ExecStart=/full/path/to/python /home/pi/btwifiset/btwifi.py
+ExecStart=/full/path/to/python3 /home/pi/btwifiset/btwifi.py
 
 [Install]
 WantedBy=multi-user.target
