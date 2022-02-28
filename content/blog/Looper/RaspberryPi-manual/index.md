@@ -2,7 +2,7 @@
 title: Manually Install Looper Code on RPi
 date: "2022-02-25T10:00:00.000Z"
 description: Step-by-step commands in RPi Terminal to install files needed for the Looper pedal.
-mainTag: Software Installation
+mainTag: Software-Installation
 ---
 #### About
 Step by Step (manuallly) install on your Raspberry Pi the looper code written in Python.
