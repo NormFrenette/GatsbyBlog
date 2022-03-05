@@ -175,8 +175,8 @@ mv $homeDir/segment.service /etc/systemd/system
 chown root: /etc/systemd/system/segment.service
 systemctl enable segment.service
 fi
-if [ -f /etc/systemd/system/segment.service ]; then 
-echo segment.service file - OK
+if [ -f /etc/systemd/system/looper.service ]; then 
+echo looper.service file - OK
 else
 #this modifies the looper-service file in home dir with correct python path
 sed -r -i "s|(ExecStart.*=).*\/.*\b( \/.*\b)|\1$pythondir\2|g" $homeDir/looper.service
