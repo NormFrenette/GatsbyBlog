@@ -131,12 +131,14 @@ loopDir="$homeDir/loop"
 loopFile="$loopDir/looper4.py"
 echo $loopDir
 echo $loopFile
-if [ -d $theDir ] && [ -f $loopFile ]; then 
+if [ -d $loopDir ] && [ -f $loopFile ]; then 
 tmpDir="$homeDir/temp"$(date +"%m%d%y")
 if [ -d $tmpDir ]; then rm -Rf $tmpDir; fi
 sudo -u $SUDO_USER  mkdir $tmpDir
+echo downloading files to temporary directory $tmpDir...
 sudo -u $SUDO_USER  wget -P $tmpDir https://normfrenette.com/looper.tar.gz
 sudo -u $SUDO_USER  tar -xzvf $tmpDir/looper.tar.gz --directory $tmpDir
+echo moving python files...
 mv $tmpDir/loop/looper4.py $loopDir
 mv $tmpDir/loop/bt_svc.py $loopDir
 mv $tmpDir/loop/statemgr.py $loopDir
@@ -164,15 +166,24 @@ sed -i "s/card 1/$usbcard/g" $homeDir/.asoundrc
 fi
 fi
 chown root: $homeDir/.asoundrc
+fi
 #
+if [ -f /etc/systemd/system/segment.service ]; then 
+echo segment.service file - OK
+else
 mv $homeDir/segment.service /etc/systemd/system
 chown root: /etc/systemd/system/segment.service
 systemctl enable segment.service
+fi
+if [ -f /etc/systemd/system/segment.service ]; then 
+echo segment.service file - OK
+else
 #this modifies the looper-service file in home dir with correct python path
 sed -r -i "s|(ExecStart.*=).*\/.*\b( \/.*\b)|\1$pythondir\2|g" $homeDir/looper.service
 mv $homeDir/loop/looper.service /etc/systemd/system
 chown root: /etc/systemd/system/looper.service
 systemctl enable looper.service 
+echo Install complete. Please reboot Raspberry Pi to start looper.
 fi
 
 
