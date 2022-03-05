@@ -180,7 +180,7 @@ echo looper.service file - OK
 else
 #this modifies the looper-service file in home dir with correct python path
 sed -r -i "s|(ExecStart.*=).*\/.*\b( \/.*\b)|\1$pythondir\2|g" $homeDir/looper.service
-mv $homeDir/loop/looper.service /etc/systemd/system
+mv $homeDir/looper.service /etc/systemd/system
 chown root: /etc/systemd/system/looper.service
 systemctl enable looper.service 
 echo Install complete. Please reboot Raspberry Pi to start looper.
