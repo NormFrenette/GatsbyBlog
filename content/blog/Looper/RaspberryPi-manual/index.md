@@ -94,8 +94,9 @@ python3 -m pip install dbus-python
 python3 -c 'import alsaaudio'
 ```
 If this command returns nothing it means alsaaudio is already installed.  
-If this command returns: *no module...* - you need to install alsaaudio as follows:
+If this command returns: *no module...* - you need to install alsaaudio with these commands, one after the other:
 ```
+sudo apt-get install libasound2-dev
 python3 -m pip install pyalsaaudio
 ```
 

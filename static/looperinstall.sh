@@ -79,16 +79,7 @@ apt-get install -y python3-pip
 echo
 fi
 
-echo Checking for Python module alsaaudio...
-echo 
-alsamod=$($pythondir -c 'import alsaaudio' 2>&1 | grep 'ModuleNotFoundError\|ImportError')
-if [ ! -z "$alsamod" ]; then
-echo Installing alsaaudio module...
-echo
-$pythondir -m pip install pyalsaaudio
-else 
-echo OK
-fi
+
 echo 
 echo Checking for Python module GLib...
 echo 
@@ -115,6 +106,17 @@ else
 echo OK
 fi
 echo
+echo Checking for Python module alsaaudio...
+echo 
+alsamod=$($pythondir -c 'import alsaaudio' 2>&1 | grep 'ModuleNotFoundError\|ImportError')
+if [ ! -z "$alsamod" ]; then
+echo Installing alsaaudio module...
+echo
+sudo apt-get install libasound2-dev
+$pythondir -m pip install pyalsaaudio
+else 
+echo OK
+fi
 
 #5 download files from website:
 # first stop service if it is running: (if user is downloading an update)
@@ -161,14 +163,14 @@ echo Fixing .asoundrc file for usb card: $usbcard
 sed -i "s/card 1/$usbcard/g" $homeDir/.asoundrc
 fi
 fi
-sudo chown root: ~/.asoundrc
+chown root: $homeDir/.asoundrc
 #
-mv segment.service /etc/systemd/system
+mv $homeDir/segment.service /etc/systemd/system
 chown root: /etc/systemd/system/segment.service
 systemctl enable segment.service
 #this modifies the looper-service file in home dir with correct python path
 sed -r -i "s|(ExecStart.*=).*\/.*\b( \/.*\b)|\1$pythondir\2|g" $homeDir/looper.service
-mv ~/loop/looper.service /etc/systemd/system
+mv $homeDir/loop/looper.service /etc/systemd/system
 chown root: /etc/systemd/system/looper.service
 systemctl enable looper.service 
 fi
