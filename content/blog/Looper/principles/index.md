@@ -32,33 +32,88 @@ It is possible to record a new track on top of the first track - thus combining 
 3. When you are ready, you hit the record foot switch and now everything you play while hearing the first loop playing , is recorded in a separate second track.
 4. When you stop recording, the loop now has two tracks stored in the looper, and you will hear these two tracks mixed together into the loop.  You can now go back up to step 1, to record a third loop, and so on - until you have built a song!
 
-- It is not necessary to start recording at the beginning of the loop.
-- It is not necessary to record until the end of the loop.  
-- you can hit record anywhere while the loop is playing, and hit stop recording anywhere before or until the end of the loop.  
-- The software keeps track of where you recorded the actual music in the new track and makes sure it plays at the correct time against the rest of the loop.
+> It is not necessary to start recording at the beginning of the loop.  
+> It is not necessary to record until the end of the loop.  
+> You can hit record anywhere while the loop is playing, and hit stop recording anywhere before or until the end of the loop.  
+> The software keeps track of where you recorded the actual music in the new track and makes sure it plays at the correct time against the rest of the loop.
 
 Once you stop recording the overdub, the looper goes back in to Play mode, finishes the loop (if you did not go to the end while recording) - and when it goes back to the beginning of the loop, it plays all recorded tracks (including the new one) - mixing them as they play.  
 
-##### Base Loop
-The Base Loop is simply the first loop you record. It provides the base for all the loops you will overdub over it.  It has a time length (which looper code counts in terms of the number of digital samples) - which is used to align every loop with each other.  If a overdubbed segment is shorter than the base loop (because you hit record after the beggining and/or stop before the end of the base loop), the segment is padded with zeroes before and after the recorded potion, so that the overdub loop is equal to the original Base Loop in length.
+#### Overdubbing and Accuracy 
 
-##### Overdubing longer segments
-If you want to record an overdubbed segment that is longer than the base loop, the looper will keep recording the segment, and simply start playing the base loop (and any previously overdubbed loops) again while you continue playing.  When you finally hit stop recording, the Looper code takes this recorded segment and alignes it with a loop that is exactly twice the length of the base loop: in fact, if you keep playing past the third repetition, this new loop will be three times the length of the base loop - and so on.
->This means that while you are recording a segment, if you go past the length of the base loop, and the base loop starts playing again, you will not hear the begining of you current segment again. Your current segment will form one long loop, while the Base Loop and any previously recorded overdubbed loops will keep looping being what you play.
+##### Base Loop:
+
+The Base loop refers to the first track you record in the loop.  It is an important concept because its length defines the *** base length*** of the loop.  
+
+When you record a second track it has to be equal or less than the base length to make sure that the two tracks are synchronized when playing - and loop back to the beginning at the same time.
+
+##### How to hit exactly the start and end of the loop to record an extra track (overdub)
+
+The usual process for overdubbing is to let the loop play once, and hit "start record" when the loop goes back to the beginning - then play the music being recorded in the next track (while hearing the previous tracks) and hit "stop record" at the end of the loop.  At this point, the loop goes back to the beginning and all the previous tracks plus the newest track are played.
+
+The problem is that it is very difficult to precisely hit the foot switch at the beginning of the loop and to stop it at the end of the loop.  To help with accuracy, the software creates "cheater zones" before and after the loop. The cheater zone is approximately 1 second long.
+- If you hit "start record" anywhere in the cheater zone at the end of the loop - i.e. 1 second or less before the end of the loop, the software will wait until the loop restart before it starts recording what you are playing: this means that the recording will grab the audio you were playing exactly at the beginning of the loop
+- if you hit "stop record" anywhere in the cheater zone at the beginning of the loop i.e. up to 1 second after the loop as "looped back" to the beginning, the software will discard anything that occurred after the end of the loop, making sure that your recording ends exactly when the loop ended.  
+
+Therefore the process to record a new track that aligns perfectly with the existing loop (one or more tracks) is:
+1. Start the looper playing.  It starts at the beginning of the loop.  You can play along on your instrument.
+2. One second or less before the end of the loop - just before it loops back to the beginning, hit "start record".  
+>You should playing or about to play - make sure your play timing right so you hit the beginning when it loops back, don't worry about what you are playing exactly at the moment when you hit the switch - it won't be recorded.
+3. As soon as the loop restarts, everything you are playing is recorded.
+4. Play to the end of the loop.
+5. Right after the loops restarts at the beginning, hit "stop record" - within 1 second of the start of the loop. 
+>The recording ends exactly at the end of the loop. Anything you might have played from time after the loop restarted (looped) and the time you hit the "stop record" is ignored.
+
+##### But how to record a short music segment just at the end of the loop?
+
+The "cheater zone" is only activated when the "start record" is hit within 1 second of the end of the loop.  If you want to record a short track that covers the end of the loop, make sure you hit "start record" more than 1 second before the end of the loop.  Everything you play is recorded all the way to the end of the track.
+
+You can still use the exit cheater zone (hit "stop recording within 1 second of the loop restarting) - to make sure that your recording ends exactly at the end of the loop.
+
+##### But how to record a short music segment just at the beginning of the loop?
+
+Use the start cheater zone by hitting within one second of the end of the loop and play.  The recording will start exactly at the beginning.  Play the short segment, and make sure you hit stop record at least one second after the loop start point (after the loop has looped).  
+
+##### Visual aid on loop position
+
+Sometimes the music phrases are repetitive and it is not easy to know where the beginning and end of the loop are.  The Looper is equipped with a 7-segment diode that counts down from 9 (at the beginning) to 0 (at the end) while the loop is playing. As the count down nears 0 - you can get ready to hit "start record" - within one second of the end of the loop.
+
+#### Extending overdub past the base loop length
+
+Sometimes you might make a short backing track first - which becomes the base loop and the base length.  Then your next track might want to record over multiple repeats of the loop.  
+
+For example, some people will record a drum-type pattern for one bar, (tapping on the guitar string, or even plugging in a drum machine/pads in the looper input). Then a music is recorded in a second track - say, 4 bars long.  
+
+The Looper handles this case by simply extending the track being recorded by one base length - every time the base loop "re-loops" back to the begging.  In the example above, while the second track is recorded, the Looper will have extended the recording 3 times. This results in a track 2 that is 4 times the original base length of the loop.
+
+Internally, the Looper will now consider track 1 as the new base length of the loop.  This means that it will play the entirety of track 2 (4 bars in our example) before looping again.  Meanwhile it will play the original track 1 as many times as needed (4 times in our example) to fill the length of the new base length (= length of track 2).
+
+At this point, you will notice the countdown indicator counts more slowly: Whereas when you only had track 1 - it was counting from 9 to 0 during 1 bar, it now counts from 9 to zero over the entire length of the new track 2 (4 bars in our example).
+
+At this point, you could want to record a third track that is even longer than the second track.  When you past the point in time where the track2 loops back to its begging, if you keep recording, the Looper will extend the track 3 by an entire base length - which means you get to record for 8 bars (or 12, 16, 20 if you keep going).   
+- If you stop recording at bar 6 in our example - that is the middle of the second looping of track 2, the base length of the loop will still be 8 bars, that is the base length of track 2 = 4 bars + one extension of another 4 bars.  
+- The math of this is not important, but what it means to your ears is that your base length for the loop (made of three tracks is 8 bars):
+    - track 1 (your beat track in our example) plays 8 times
+    - track 2 plays twice
+    - track 3 plays once (if you had stop recording at bar 6, then track three plays "silence" until the loop restarts at the beginning).
 
 ##### Storage of loops, deleting and un-deleting
-Each recording, whether the Base Loop, or a number of later overdubs, are stored in the Looper as a separate file - which we call a ***track*** for the purpose of editing.  When the Looper is playing, it loads these individual tracks in memory and mixes them  together to render the total song loop you hear.  
+Each track recorded in the loop is stored in the Looper memory as separate entities.  When the Looper is playing, it takes these individual tracks mixes them  together to create the total loop you hear.  It also takes care of playing the shorter track more times to match the longer tracks - as explained above.
 
-Because each loop/track is separate - it is possible to delete tracks from the song.  A button is provided to delete the latest recorded track.  When a track is deleted in the looper, it is not removed yet. It is simply "marked" deleted.  This means that the track can be un-deleted, with the press of a button.
+Because each track is separate entity - it is possible to delete tracks from the from the loop.  A foot switch is provided on the looper to delete the last recorded track.  Every time you hit this delete button, you remove the last track.  You can actually clear the looper completely by hitting this button has many times as the number of tracks you have recorded.
 
-The delete button  always delete the last track recorded.  The un-delete button always re-instates the last deleted track.  It is therefore possible to re-recorda track in the middle of the pack, while keeping the tracks that follow.  For example:
+When a track is deleted in the looper, it is internally erased yet. The Looper simply marks it has "deleted" - but it keeps the recording available and knows its (previous) track number.  This means that it is possible to un-delete tracks.
 
-1. You record a base loop - this is track 1.
-2. You then overdub 3 times over this, creating track 2,3 and 4, to complete your song.  You now have 4 tracks in your song recorded in the looper.
+The un-delete button always restores (un-deletes) the last deleted track.  
+
+It is therefore possible to re-record a  track in the middle of the pack, while keeping the tracks that follow.  For example:
+
+1. You record track 1 - your base loop.
+2. You then overdub 3 times creating track 2,3 and 4.You loop is now playing 4 tracks in parallel.
 3. You decide that you do not like track 2 - there are small mistakes - but you like track 3 and 4.
-4. You hit the delete button three times:  this deletes track 4, then track 3, and finally track 2.  
-5. When hit Play, you now only hear you base loop (track 1 playing).
-6. You record track 2 again - this time perfectly with no mistakes.  The fact that you re-recorded track 2 means that the old track 2 is now gone from the looper.  (But track 3 and 4 marked as deleted are still there)
-7. You click the undelete button twice: this undeletes track 3, and then track 4.  You looper now has the 4 tracks of you song: the orginal Base Loop (track 1) and the orginal takes of track 3 and 4, as well as the better take of the re-record track 2. Whenyou hit play, you hear the 4 tracks looping together.
+4. You hit the delete button three times:  this deletes track 4, then track 3, and finally track 2. 
+5. When hit Play, you now only hear track 1 playing.
+6. You record track 2 again - this time perfectly with no mistakes.  The fact that you re-recorded track 2 means that the old track 2 is now gone from the looper.  (But track 3 and 4 marked as deleted are still available)
+7. You click the undelete button twice: this restores track 3, and then track 4 to the loop.  You loop has again 4 tracks: the original Base Loop (track 1), the new track 2 you have just recorded,  and the original takes of track 3 and 4.  When you hit play, you hear the 4 tracks looping together.
 
 
