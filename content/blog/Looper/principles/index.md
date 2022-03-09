@@ -90,30 +90,31 @@ Internally, the Looper will now consider track 1 as the new base length of the l
 
 At this point, you will notice the countdown indicator counts more slowly: Whereas when you only had track 1 - it was counting from 9 to 0 during 1 bar, it now counts from 9 to zero over the entire length of the new track 2 (4 bars in our example).
 
-At this point, you could want to record a third track that is even longer than the second track.  When you past the point in time where the track2 loops back to its begging, if you keep recording, the Looper will extend the track 3 by an entire base length - which means you get to record for 8 bars (or 12, 16, 20 if you keep going).   
-- If you stop recording at bar 6 in our example - that is the middle of the second looping of track 2, the base length of the loop will still be 8 bars, that is the base length of track 2 = 4 bars + one extension of another 4 bars.  
-- The math of this is not important, but what it means to your ears is that your base length for the loop (made of three tracks is 8 bars):
+At this point, you could want to record a third track that is even longer than the second track.  When you past the point in time where the track 2 loops back to its beginning, if you keep recording, the Looper will extend the track 3 by an entire base length - which means you get to record for 8 bars (or 12, 16, 20 if you keep going).   
+- If you stop recording at bar 6 in our example - that is the middle of the second looping of track 2, the new base length of the loop will still be 8 bars.  
+- The math of this is not important, but what it means to your ears is that your new loop base length is 8 bars:
     - track 1 (your beat track in our example) plays 8 times
     - track 2 plays twice
-    - track 3 plays once (if you had stop recording at bar 6, then track three plays "silence" until the loop restarts at the beginning).
+    - track 3 plays once (if you had stop recording at bar 6, then track 3 plays "silence" until the loop restarts at the beginning).
 
 ##### Storage of loops, deleting and un-deleting
-Each track recorded in the loop is stored in the Looper memory as separate entities.  When the Looper is playing, it takes these individual tracks mixes them  together to create the total loop you hear.  It also takes care of playing the shorter track more times to match the longer tracks - as explained above.
+Each track recorded in the loop is stored in the Looper's memory as separate entities.  When the Looper is playing, it mixes these tracks together to create the total loop you hear.  The Looper also takes care of playing the shorter tracks as many times as needed to match the longer tracks - as explained above.
 
-Because each track is separate entity - it is possible to delete tracks from the from the loop.  A foot switch is provided on the looper to delete the last recorded track.  Every time you hit this delete button, you remove the last track.  You can actually clear the looper completely by hitting this button has many times as the number of tracks you have recorded.
+Because each track is a separate entity - it is possible to delete tracks from the loop.  A foot switch is provided on the looper to delete the last recorded track.  Every time you hit "delete", you remove the last track.  You can actually clear the looper completely by hitting this button as many times as the number of tracks you have recorded.
+>When the Looper is not playing the loop - it displays the current track count on the 7 segment display: As you delete tracks, you see the track count decrease.
 
-When a track is deleted in the looper, it is internally erased yet. The Looper simply marks it has "deleted" - but it keeps the recording available and knows its (previous) track number.  This means that it is possible to un-delete tracks.
+When a track is deleted in the looper, it is not erased yet. The Looper marks it has "deleted" and will not play it in the loop when you hit "Play".  However, it keeps the recording available and knows its (previous) track number.  This means that it is possible to un-delete tracks.
 
-The un-delete button always restores (un-deletes) the last deleted track.  
+Hitting the  un-delete foot switch always restores (un-deletes) the last deleted track.  This is seen by the track count display increasing.
 
-It is therefore possible to re-record a  track in the middle of the pack, while keeping the tracks that follow.  For example:
+This makes it  possible to re-record a  track in the middle of the set, while keeping the tracks that follow unchanged.  For example:
 
 1. You record track 1 - your base loop.
 2. You then overdub 3 times creating track 2,3 and 4.You loop is now playing 4 tracks in parallel.
 3. You decide that you do not like track 2 - there are small mistakes - but you like track 3 and 4.
 4. You hit the delete button three times:  this deletes track 4, then track 3, and finally track 2. 
-5. When hit Play, you now only hear track 1 playing.
-6. You record track 2 again - this time perfectly with no mistakes.  The fact that you re-recorded track 2 means that the old track 2 is now gone from the looper.  (But track 3 and 4 marked as deleted are still available)
-7. You click the undelete button twice: this restores track 3, and then track 4 to the loop.  You loop has again 4 tracks: the original Base Loop (track 1), the new track 2 you have just recorded,  and the original takes of track 3 and 4.  When you hit play, you hear the 4 tracks looping together.
+5. When you hit "Play", you now only hear track 1 playing.
+6. You hit "record' which creates a new track 2 - this time you play it perfectly.  The fact that you recorded a new track 2 means that the previous track 2 that had been marked  "deleted" is now gone from the looper.  (But track 3 and 4 marked "deleted" are still available.)
+7. You hit the undelete button twice: this restores track 3, and then track 4 to the loop.  Your loop has again 4 tracks: the original Base Loop (track 1), the new track 2 you have just recorded,  and the original takes of track 3 and 4.  When you hit play, you hear the 4 tracks looping together.
 
 
