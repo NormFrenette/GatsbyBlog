@@ -40,7 +40,7 @@ The mode switch also acts as a true bypass switch.  When the looper is in run mo
 
 ##### Connections of Switches:
 
-![Looper Integrated Switches Connections](./IntegratedSwitches.png)
+![Looper Integrated Switches Connections](./IntegratedSwitches_2.png)
 
 #### Looper+Buffer: Separate design
 

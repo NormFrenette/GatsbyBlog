@@ -105,7 +105,7 @@ Because each track is a separate entity - it is possible to delete tracks from t
 
 When a track is deleted in the looper, it is not erased yet. The Looper marks it has "deleted" and will not play it in the loop when you hit "Play".  However, it keeps the recording available and knows its (previous) track number.  This means that it is possible to un-delete tracks.
 
-Hitting the  un-delete foot switch always restores (un-deletes) the last deleted track.  This is seen by the track count display increasing.
+Hitting the  un-delete foot switch always restores (un-deletes) the last deleted track.  You will see the track count display increasing.
 
 This makes it  possible to re-record a  track in the middle of the set, while keeping the tracks that follow unchanged.  For example:
 
