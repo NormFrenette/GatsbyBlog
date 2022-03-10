@@ -7,7 +7,7 @@ mainTag: How-to-Build-it
 
 The Looper can be build in three different options:
 
-1. Looper+Buffer: Integrated input/ouput.
+1. Looper+Buffer: Integrated input/output.
 2. Looper+Buffer: separate design
 3. Looper only (no Buffer)
 
@@ -24,17 +24,16 @@ But if you want to use the pedal with the instrument directly plugged in to the 
 The buffer circuit is  completely separate from the Looper - except that it is assembled on the same breadboard (see [parts list](/Looper/How-to-Build-it-parts-list/)).
 It uses a separate 9V battery and does not share the Looper power supply.
 
- In this option, The usb sound card is internal to the looper.  
+ In this option, The usb sound card is internal to the looper. Its mic and headphone female jacks are not accessible from outside the looper. 
  
-The Buffer-ON switch turns on the buffer (applies battery voltage), sends the guitar input to the buffer and connects the output of the buffer to the mic input of the Raspberry Pi internally (Looper input).  When this switch is off - the guitar input is connected directly to the mic input of the sound card.
+The Buffer-ON 3PDT switch turns on the buffer (applies battery voltage), sends the guitar input to the buffer and connects the output of the buffer to the mic input of the Raspberry Pi internally (Looper input).  When this switch is off - the guitar input is connected directly to the mic input of the sound card (and the buffer/battery are off)
 
-The Buffer output is also sent out of the Looper pedal to a 1/4inch female jack.  
+The Buffer output is made available outside of the Looper pedal to a 1/4inch female jack.  
+> If the Raspberry Pi (Looper) is off or not powered at all, this allows the pedal to be used as a buffer. It could be used as a DI box to feed into an iphone or a computer to interface with various music programs such as Garage Band.
 
-> If the Raspbery Pi (Looper) is off or not powered at all, this allows the pedal to be used as a buffer. It could be used as a DI box to feed an iphone or a computer to interface with various music programs such as Garage Band.
+The mode switch acts as a true bypass switch.  When the looper is in run mode, the output of the RPi Looper is sent to the pedal looper output jack (1.4 inch - female).  When the looper is placed in edit (bypass) mode, the guitar input is connected directly to the Looper output: this is true bypass (only wires).  This is useful if the Looper is part of a pedal chain.
 
-The mode switch also acts as a true bypass switch.  When the looper is in run mode, the output of the RPi looper progam is sent to the pedal looper output jack (1.4 inch - female).  When the looper is placed in edit mode, the guitar input is connected directly to the Looper output: this is true bypass (only wires).  This is useful if the Looper is part of a pedal chain.
-
->Note: This version does not include a separate headphone jack.  An adpater 3.5mm to 1/4" can be use to connect a headphone into the output. (A separate headphone jack could easily be added in parrallel to the 1/4" guitar output jack).  
+>Note: This version does not include a separate headphone jack.  An adapter 3.5mm to 1/4" can be use to connect a headphone into the output. (A separate headphone jack could easily be added in parallel to the 1/4" guitar output jack).  
 
 ![Looper Integrated Option](./optionIntegrated2.png)
 
@@ -44,21 +43,19 @@ The mode switch also acts as a true bypass switch.  When the looper is in run mo
 
 #### Looper+Buffer: Separate design
 
-This option keeps the buffer and Looper Input and Outputs separate.  In this case, the output toggle switch (from the above option) is not used.
+This option keeps the buffer and Looper Input and Outputs separate.  In this case, the Buffer-ON switch is a simple on-off (SPST) switch.
 
 - Buffer:
     - The buffer section has a 1/4" mono input and output female jacks.  
-    - The Buffer ON switch feeds the guitar input to the buffer and buffer output to output jack. When this switch is off, the input jack is passed straight out to output jack (1/4" mono).
-- Looper:
-    - the sound card 3.5 mm female mic input and headphone output are exposed to the side of the case.
-    - Instrument, microphones etc. are connected to the soundcard mic input. You need to provide the correct cable adapters (for a 3.5 mm mono male jack to plug into the mic port).
+    - The Buffer-ON switch feeds the guitar input to the buffer. When this switch is off, nothing goes to the buffer output jack (1/4" mono).
+- Looper (without using the buffer):
+    - the sound card 3.5 mm female mic input and headphone output are opened to the side of the case.
+    - Instrument, microphones etc. are connected to the soundcard mic input. You need to provide the correct cable adapters (for a 3.5 mm mono male jack to plug into the mic port). Instruments should go through a DI box, a buffered pedal, or perhaps a multi-effects processor.
     - Headphones can be connected directly to the headphone output of the sound card, or a 1/4 inch male adapter can be use to connect to an amplifier.
 
-> With this design, if the buffer is required (plugging guitar directly into the looper pedal), a small (6 inches) cable 1/4 inch male plug to 3.5 mm male plug (mono) must be used to connect the Buffer output jack to the sound card mic input jack.
+> To use the buffer as a DI box to condition your guitar signal:  Plug the guitar in the buffer 1/4 inch input jack, turn on the buffer (Buffer-ON switch), and connect a small (6 inches) adapter cable 1/4 inch male plug to 3.5 mm male plug (mono)  to connect the Buffer output jack to the sound card mic input jack.
 
-> Also, with the Buffer switch set to off, a 1/4 inch guitar patch cord can be connected to the 1/4" input jack, and the 1/4 inch output jack is connected to the sound card mic input via the 6 inch adapter canle - allowing for a standard pedal to feed the looper.
-
-> This option has True Bypass however, for the buffer only: When the Mode switch is in Edit Mode, the guitar input is connected directly to the buffer output 1/4 inch female jack, effictively bypassing the buffer.
+> There is no true bypass in this case for the looper.
 
 ![Looper separated Option](./optionSeparate.png)
 
