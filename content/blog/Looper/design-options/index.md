@@ -8,8 +8,8 @@ mainTag: How-to-Build-it
 The Looper can be build in three different options:
 
 1. Looper+Buffer: Integrated input/output.
-2. Looper+Buffer: separate design
-3. Looper only (no Buffer)
+2. Looper+Buffer: separate design.
+3. Looper only (no Buffer).
 
 ### The Buffer - Why?
 
@@ -39,7 +39,7 @@ The mode switch acts as a true bypass switch.  When the looper is in run mode, t
 
 ##### Connections of Switches:
 
-![Looper Integrated Switches Connections](./IntegratedSwitches_3.png)
+![Looper Integrated Switches Connections](./IntegratedSwitches_4.png)
 
 #### Looper+Buffer: Separate design
 
