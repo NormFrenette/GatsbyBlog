@@ -13,6 +13,10 @@ mainTag: Software-Installation
 
 ***In short: Please use a dedicated Raspberry Pi with a fresh OS install to enjoy this looper pedal.***
 
+#### Version updates:
+Since the code is still in beta testing - I am not releasing version updates yet - but I am continuing to make modifications which you may want to download.  You can simply run the automated installer and it will update files.  Until I create full versioning with stable releases, check here to see the date on my last update - and compare it to when you last downloaded (run the installer) - to decide if you need to update.
+> ***Last Update: Friday March 11, 2022 - 6 PM EST***
+
 ##### Automated Install - How To: 
 
 Copy these commands in a terminal window on the Raspberry Pi (or presumably, ssh into the [Headless](/Raspberry-Pi/Principles-What-is-Headless/) Raspberry Pi):
@@ -39,6 +43,7 @@ curl  https://normfrenette.com/looperinstall.sh | sudo bash
 ```
 sudo reboot
 ```
+
 
 ##### What the automated install does:
 
