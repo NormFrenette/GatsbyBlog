@@ -71,7 +71,7 @@ comments:
   # an error will be thrown.
   requiredFields: ["name", "message", "slug"]
 
-  #Askimet information:
+  #Akismet information:
   akismet:
     enabled: true
     author: "name"
