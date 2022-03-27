@@ -417,4 +417,18 @@ a:focus {
   margin:0;
 }
 
-
+button {
+  background-color: #56f42a;
+  border: 1px solid #56f42a;
+  color: #000000;
+  fill: #000000;
+  font-size: 0.85rem;
+  border-radius: 3px;
+  padding: 4px 10px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-weight: 600;
+  height: 34px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
