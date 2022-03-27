@@ -73,7 +73,7 @@ comments:
 
   #Askimet information:
   akismet:
-    enabled: enable
+    enabled: true
     author: "name"
     content: "message"
     type: "comment"
