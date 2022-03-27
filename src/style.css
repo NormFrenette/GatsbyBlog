@@ -417,7 +417,7 @@ a:focus {
   margin:0;
 }
 
-button {
+form button {
   background-color: #56f42a;
   border: 1px solid #56f42a;
   color: #000000;

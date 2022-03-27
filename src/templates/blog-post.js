@@ -68,11 +68,11 @@ const BlogPostTemplate = ({ data, location }) => {
             <form method="POST" 
             action="https://nf-heroku-staticman.herokuapp.com/v3/entry/github/NormFrenette/GatsbyBlog/main/comments">
               <input name="fields[slug]" type="hidden" value={post.fields.slug}/>
-              {/*<input
+              <input
                 name="options[redirect]"
                 type="hidden"
                 value={"https://normfrenette.com" + post.fields.slug}
-                />*/}
+                />
               <p>
               <label htmlFor="fields[message]">Add Your Comment:</label></p>
               <div style={{"width" : "100%"}}>
