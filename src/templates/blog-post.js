@@ -63,7 +63,7 @@ const BlogPostTemplate = ({ data, location }) => {
               </li>
             </ul>
           </nav>
-          <div className="comments">
+          {/*<div className="comments">
             <h3>Comments</h3> 
             <form method="POST" 
             action="https://nf-heroku-staticman.herokuapp.com/v3/entry/github/NormFrenette/GatsbyBlog/main/comments">
@@ -93,7 +93,7 @@ const BlogPostTemplate = ({ data, location }) => {
               <button type="submit">Submit</button></p>
             </form>
             
-          </div>
+                </div>*/}
         </div>
       </div>
     </Layout>
