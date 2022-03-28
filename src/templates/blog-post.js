@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
-
+import CommentsPost from "../components/commentsPost"
 import BlogIndex from "../components/blogIndex"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -9,6 +9,7 @@ const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
+  
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -63,37 +64,7 @@ const BlogPostTemplate = ({ data, location }) => {
               </li>
             </ul>
           </nav>
-          {/*<div className="comments">
-            <h3>Comments</h3> 
-            <form method="POST" 
-            action="https://nf-heroku-staticman.herokuapp.com/v3/entry/github/NormFrenette/GatsbyBlog/main/comments">
-              <input name="fields[slug]" type="hidden" value={post.fields.slug}/>
-              <input
-                name="options[redirect]"
-                type="hidden"
-                value={"https://normfrenette.com" + post.fields.slug}
-                />
-              <p>
-              <label htmlFor="fields[message]">Add Your Comment:</label></p>
-              <div style={{"width" : "100%"}}>
-              <textarea
-                  id="Message"
-                  rows="6"
-                  style={{"width" : "100%"}}
-                  className="form-control"
-                  name="fields[message]"
-                  required
-                  placeholder="enter comment here"
-                ></textarea>
-              </div>
-                
-                <p><label htmlFor="fields[name]" >Name:</label><br />
-              <input id="fields[name]" name="fields[name]" type="text" required/></p>
-              <p>
-              <button type="submit">Submit</button></p>
-            </form>
-            
-                </div>*/}
+          <div><CommentsPost slug={post.fields.slug}/></div>
         </div>
       </div>
     </Layout>
