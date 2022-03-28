@@ -64,7 +64,7 @@ const BlogPostTemplate = ({ data, location }) => {
               </li>
             </ul>
           </nav>
-          <div><CommentsPost slug={post.fields.slug}/></div>
+          {/*<div><CommentsPost slug={post.fields.slug}/></div>*/}
         </div>
       </div>
     </Layout>
