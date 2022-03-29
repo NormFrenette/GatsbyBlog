@@ -34,9 +34,11 @@ const CommentsPost = ({slug,postid}) => {
         var bodyFormData = new URLSearchParams();
         bodyFormData.append('fields[name]', name);
         bodyFormData.append('fields[slug]', slugToSend);
-        bodyFormData.append('fields[postid]', message);
+        bodyFormData.append('fields[postid]', postidToSend);
         bodyFormData.append('fields[message]', message);
-    
+        console.log("SLUGTOSEND=",slugToSend)
+        console.log("POSTIDTOSEND",postidToSend)
+        
         axios({
             method: 'POST',
             url:
