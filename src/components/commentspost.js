@@ -114,14 +114,10 @@ const CommentsPost = ({slug,postid}) => {
             <button className="greenbutton" type="submit" >Submit </button>}</p>
         </form>}
             
-                </div> 
-
-        
+                </div>         
         )
 
 }
-
-
 
 export default CommentsPost
 
