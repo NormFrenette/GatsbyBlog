@@ -417,7 +417,7 @@ a:focus {
   margin:0;
 }
 
-form button {
+.greenbutton {
   background-color: #56f42a;
   border: 1px solid #56f42a;
   color: #000000;
@@ -430,5 +430,28 @@ form button {
   font-weight: 600;
   height: 34px;
   letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.commentsSuccess {
+  background-color: rgb(167, 247, 220);
+  border: 5px double #56f42a;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.commentsSuccess button {
+  cursor: pointer;
+}
+
+.commentsFail {
+  background-color: rgb(245, 63, 60);
+  color: white;
+  border: 5px double red;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.commentsFail button {
   cursor: pointer;
 }

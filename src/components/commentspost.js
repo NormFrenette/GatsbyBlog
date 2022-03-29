@@ -6,10 +6,15 @@ import axios from "axios"
 
 const CommentsPost = ({slug}) => {
 
-        const [name, setName] = useState("");
-        const [message, setMessage] = useState("");
-        const slugToSend = slug
-    
+    const [name, setName] = useState("");
+    const [message, setMessage] = useState("");
+    const [status,setStatus] = useState(0)
+    const slugToSend = slug
+
+    const clearNotify = () => {
+        setStatus(0)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         var bodyFormData = new URLSearchParams();
@@ -25,17 +30,35 @@ const CommentsPost = ({slug}) => {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         })
         .then(function () {
-        console.log('COMMENT: success')
+            setStatus(1)
+            setName("")
+            setMessage("")
+            console.log('COMMENT: success')
+            console.log('Name:', name)
+            console.log('status:', status)
         })
         .catch(function () {
-        console.log('COMMENT: fail')
+            setStatus(-1)
+            console.log('COMMENT: fail')
         });
     }
 
     return(
         <div className="comments">
         <h3>Comments</h3> 
-        <form onSubmit={handleSubmit}>
+        { status>0 && <div className="commentsSuccess">
+            <p>Thanks you for submitting a comment. </p>
+            <p>It should be processed and displayed within a few minutes.<br />
+            You can refresh the page to see it then.</p>
+            <p><button  onClick={clearNotify}>OK</button></p>
+        </div>}
+        { status<0 && <div className="commentsFail">
+            <p><strong>Sorry! Your comment was rejected by the Spam Filter!</strong></p>
+            <p>Please feel free to edit and re-submit.<br />
+            Note that most links cause rejection (if you posted one).</p>
+            <p><button  onClick={clearNotify}>OK</button></p>
+        </div>}
+        { status===0 && <form onSubmit={handleSubmit}>
             {/*<input
             name="options[redirect]"
             type="hidden"
@@ -63,8 +86,8 @@ const CommentsPost = ({slug}) => {
                 required/>
             </p>
             <p>
-            <button type="submit">Submit</button></p>
-        </form>
+            <button className="greenbutton" type="submit">Submit</button></p>
+        </form>}
             
                 </div> 
 
