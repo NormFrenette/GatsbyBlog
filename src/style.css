@@ -466,6 +466,15 @@ a:focus {
   margin-bottom: 1em;
 }
 
+.commentsContainer{
+  border-top: 2px solid rgb(132, 180, 238);
+  margin-top:1em;
+}
+
+.commentsContainer h4 {
+  margin-top: 1em;
+}
+
 .commentMessage {
   padding-left: 2em;
   padding-right: 5px;

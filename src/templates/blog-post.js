@@ -12,8 +12,8 @@ const BlogPostTemplate = ({ data, location }) => {
   
   function Comments ({nodes}) {
     return (
-        <div>
-           <h3>Comments</h3> 
+        <div className="commentsContainer">
+           <h4>Comments</h4> 
         {nodes.map((node) => (
             <div className="singleComment">
                 <span className="commentName">{node.name}</span> - 
@@ -93,6 +93,7 @@ export const pageQuery = graphql`
     $id: String!
     $previousPostId: String
     $nextPostId: String
+    $slug: String!
   ) {
     site {
       siteMetadata {
@@ -101,7 +102,7 @@ export const pageQuery = graphql`
     }
     allCommentsYaml(
       sort: {order: ASC, fields: date}
-       filter: {postid: {eq: $id}}
+       filter: {slug: {eq: $slug}}
        ) 
        {
         nodes {
