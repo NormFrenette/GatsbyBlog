@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useState } from "react"
 import axios from "axios"
-//import { useStaticQuery, graphql} from "gatsby"
+
 
 
 const CommentsPost = ({slug,postid}) => {
