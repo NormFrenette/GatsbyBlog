@@ -23,6 +23,7 @@ const CommentsPost = ({slug,postid}) => {
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
     const [status,setStatus] = useState(0)
+    const [submitted,setSubmitted] = useState(false)
     
 
     const clearNotify = () => {
@@ -31,6 +32,7 @@ const CommentsPost = ({slug,postid}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSubmitted(true)
         var bodyFormData = new URLSearchParams();
         bodyFormData.append('fields[name]', name);
         bodyFormData.append('fields[slug]', slugToSend);
@@ -38,7 +40,7 @@ const CommentsPost = ({slug,postid}) => {
         bodyFormData.append('fields[message]', message);
         console.log("SLUGTOSEND=",slugToSend)
         console.log("POSTIDTOSEND",postidToSend)
-        
+
         axios({
             method: 'POST',
             url:
@@ -50,33 +52,22 @@ const CommentsPost = ({slug,postid}) => {
             setStatus(1)
             setName("")
             setMessage("")
+            setSubmitted(false)
             console.log('COMMENT: success')
             console.log('Name:', name)
             console.log('status:', status)
         })
         .catch(function () {
             setStatus(-1)
+            setSubmitted(false)
             console.log('COMMENT: fail')
         });
     }
 
-   /* function Comments ({nodes}) {
-        return (
-            <div>
-            {nodes.map((node) => (
-                <div>
-                    <p>{node.name} - {node.date}</p>
-                    <p>{node.message}</p>
-                </div>
-            ))}
-            </div>
-        )
-    }*/
+
 
     return(
-        <div className="comments">
-        <h3>Comments</h3> 
-        {/*<Comments a={commentdata.nodes} />*/}
+        <div>
         { status>0 && <div className="commentsSuccess">
             <p>Thanks you for submitting a comment. </p>
             <p>It should be processed and displayed within a few minutes.<br />
@@ -89,14 +80,14 @@ const CommentsPost = ({slug,postid}) => {
             Note that most links cause rejection (if you posted one).</p>
             <p><button  onClick={clearNotify}>OK</button></p>
         </div>}
-        { status===0 && <form onSubmit={handleSubmit}>
+        { status===0 && <form onSubmit={handleSubmit} className="commentForm">
             {/*<input
             name="options[redirect]"
             type="hidden"
             value={"https://normfrenette.com" + post.fields.slug"}
             />*/}
             <p>
-            <label htmlFor="fields[message]">Add Your Comment:</label></p>
+            <label htmlFor="fields[message]"><strong>Add a Comment:</strong></label></p>
             <div style={{"width" : "100%"}}>
                 <textarea
                     rows="6"
@@ -117,7 +108,10 @@ const CommentsPost = ({slug,postid}) => {
                 required/>
             </p>
             <p>
-            <button className="greenbutton" type="submit">Submit</button></p>
+            {submitted ?
+            <span><button  type="submit" disabled>Submit </button>
+            <span className="submitMessage"> ... Please wait - processing your comment ...</span></span> :
+            <button className="greenbutton" type="submit" >Submit </button>}</p>
         </form>}
             
                 </div> 

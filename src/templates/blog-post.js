@@ -10,6 +10,20 @@ const BlogPostTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
   
+  function Comments ({nodes}) {
+    return (
+        <div>
+           <h3>Comments</h3> 
+        {nodes.map((node) => (
+            <div className="singleComment">
+                <span className="commentName">{node.name}</span> - 
+                <small>{new Date(node.date * 1000).toLocaleString()}</small>
+                <p className="commentMessage">{node.message}</p>
+            </div>
+        ))}
+        </div>
+    )
+}
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -64,6 +78,7 @@ const BlogPostTemplate = ({ data, location }) => {
               </li>
             </ul>
           </nav>
+          <Comments nodes={data.allCommentsYaml.nodes} />
           <div><CommentsPost slug={post.fields.slug} postid={post.id}/></div>
         </div>
       </div>
@@ -84,6 +99,17 @@ export const pageQuery = graphql`
         title
       }
     }
+    allCommentsYaml(
+      sort: {order: ASC, fields: date}
+       filter: {postid: {eq: $id}}
+       ) 
+       {
+        nodes {
+          name
+          message
+          date
+        }
+      }
     markdownRemark(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)

@@ -455,3 +455,25 @@ a:focus {
 .commentsFail button {
   cursor: pointer;
 }
+
+.commentName {
+  color: blue;
+  font-weight: bold;
+}
+
+.singleComment {
+  border-bottom: 2px solid rgb(132, 180, 238);
+  margin-bottom: 1em;
+}
+
+.commentMessage {
+  padding-left: 2em;
+  padding-right: 5px;
+  padding-top:1em;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
+}
+
+.submitMessage {
+  color: blue
+}
