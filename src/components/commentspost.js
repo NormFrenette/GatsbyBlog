@@ -4,12 +4,26 @@ import axios from "axios"
 //import { useStaticQuery, graphql} from "gatsby"
 
 
-const CommentsPost = ({slug}) => {
+const CommentsPost = ({slug,postid}) => {
+    const slugToSend = slug
+    const postidToSend = postid
+    /*const commentdata = useStaticQuery(graphql`
+    query {
+        allCommentsYaml(sort: {order: ASC, fields: date}, filter: {slug: {eq: $slugToSend}}) {
+            nodes {
+            message
+            name
+            slug
+            date
+         }
+        }
+    }
+    `)*/
 
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
     const [status,setStatus] = useState(0)
-    const slugToSend = slug
+    
 
     const clearNotify = () => {
         setStatus(0)
@@ -20,6 +34,7 @@ const CommentsPost = ({slug}) => {
         var bodyFormData = new URLSearchParams();
         bodyFormData.append('fields[name]', name);
         bodyFormData.append('fields[slug]', slugToSend);
+        bodyFormData.append('fields[postid]', message);
         bodyFormData.append('fields[message]', message);
     
         axios({
@@ -43,9 +58,23 @@ const CommentsPost = ({slug}) => {
         });
     }
 
+   /* function Comments ({nodes}) {
+        return (
+            <div>
+            {nodes.map((node) => (
+                <div>
+                    <p>{node.name} - {node.date}</p>
+                    <p>{node.message}</p>
+                </div>
+            ))}
+            </div>
+        )
+    }*/
+
     return(
         <div className="comments">
         <h3>Comments</h3> 
+        {/*<Comments a={commentdata.nodes} />*/}
         { status>0 && <div className="commentsSuccess">
             <p>Thanks you for submitting a comment. </p>
             <p>It should be processed and displayed within a few minutes.<br />
