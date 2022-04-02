@@ -4,18 +4,20 @@ date: "2022-03-05T10:00:00.000Z"
 description: Download a bash file that runs all commands to install files/dependencies needed for the Looper pedal.
 mainTag: Software-Installation
 ---
+
+#### Current Version: Beta - April 2nd, 2022
+In the early days of deploying thi software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
+>Note: I am not changing the version  number of the software while in Beta.  
+> To check current version date on your Raspberry Pi:  Open looperLog.log file in the loop directory and look for the line that starts with ********* Starting Looper ** version date ...
+
 #### About
  How to get Raspberry Pi ready and download the bash file that runs all commands to install Python code, module dependencies and create data (songs) directories for the Looper.
 > **Warning:**  
 >The software you are about to install is intended to run on a **dedicated** Raspberry Pi (RPi), inside a Looper Pedal Enclosure.  
->As a result, in some rare cases, this install may **overwrite** some other files, or **break** some other software you have previously installed on the Raspberry Pi (especially if you were using it for audio or video).
-> Furthermore, the Looper runs a very tight loop for sampling audio - and if you use the raspberry pi to run other programs in the background, the Looper audio may skip, have unacceptable delays, and otherwise not be very musically usable.
+>As a result, this install may **overwrite** or **break** some other audio/video programs/config files  you have previously installed on the Raspberry Pi.
+> Furthermore, the Looper runs a very tight loop for sampling audio - and if you use the raspberry pi to run other programs at the same time, the Looper audio may skip, have unacceptable delays, and otherwise not be very musically usable.
 
 ***In short: Please use a dedicated Raspberry Pi with a fresh OS install to enjoy this looper pedal.***
-
-#### Version updates:
-Since the code is still in beta testing - I am not releasing version updates yet - but I am continuing to make modifications which you may want to download.  You can simply run the automated installer and it will update files.  Until I create full versioning with stable releases, check here to see the date on my last update - and compare it to when you last downloaded (run the installer) - to decide if you need to update.
-> ***Last Update: Friday March 11, 2022 - 6 PM EST***
 
 ##### Automated Install - How To: 
 

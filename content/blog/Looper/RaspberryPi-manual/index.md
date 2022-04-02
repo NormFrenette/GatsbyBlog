@@ -4,11 +4,16 @@ date: "2022-03-06T10:00:00.000Z"
 description: Step-by-step commands in RPi Terminal to install files needed for the Looper pedal.
 mainTag: Software-Installation
 ---
+#### Current Version: Beta - April 2nd, 2022
+In the early days of deploying thi software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
+>Note: I am not changing the version  number of the software while in Beta.  
+> To check current version date on your Raspberry Pi:  Open looperLog.log file in the loop directory and look for the line that starts with ********* Starting Looper ** version date ...
+
 #### About
-Step by Step (manuallly) install on your Raspberry Pi the looper code written in Python.
+Step by Step (manually) install on your Raspberry Pi the looper code written in Python.
 > **Warning:**  
 >The software you are about to install is intended to run on a **dedicated** Raspberry Pi (RPi), inside a Looper Pedal Enclosure.  
->As a result, this install may **overwrite** some other programs, or **break** some other software you have previously installed on the Raspberry Pi (especially if you were using it for audio or video).
+>As a result, this install may **overwrite** or **break** some other audio/video programs/config files  you have previously installed on the Raspberry Pi.
 > Furthermore, the Looper runs a very tight loop for sampling audio - and if you use the raspberry pi to run other programs at the same time, the Looper audio may skip, have unacceptable delays, and otherwise not be very musically usable.
 
 ***In short: Please use a dedicated Raspberry Pi with a fresh OS install to enjoy this looper pedal.***
@@ -133,10 +138,10 @@ You will download a compressed file (tar archive) into your home directory - and
 ```
 cd ~
 ```
-2. Download the compressed file into this directory, then extract the files. Type these commands:
+2. Download the compressed file (.tar.gz), then extract the files. Type these commands:
 ```
 wget https://www.normfrenette.com/looper.tar.gz
-tar -xzvf btwifiset.tar.gz
+tar -xzvf looper.tar.gz
 ```
 3. Change the owner of the .asoundrc file:
 ```
