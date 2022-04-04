@@ -4,11 +4,15 @@ date: "2021-12-06T10:00:00.000Z"
 description: Step-by-step commands in RPi Terminal to install files & configure for BLE server.
 mainTag: Installation
 ---
+#### Current Version: Beta - April 4nd, 2022
+In the early days of deploying thi software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
+> To check current version date on your Raspberry Pi:  Open looperLog.log file in the loop directory and look for the line that starts with ******* Staring BTwifiSet - version date: ...
+
 #### About
-Step by Step (manuallly) install on your Raspberry Pi of a bluetooth BLE Server written in Python .  BLE advertises a custom service that communicates with the IOS app to remotely set the wifi on a headless raspberry pi.
+Step by Step (manually) install on your Raspberry Pi of a bluetooth BLE Server written in Python .  BLE advertises a custom service that communicates with the IOS app to remotely set the wifi on a headless raspberry pi.
 
 #### Requirements
-*Python3: version 3.7 or later **must** be instaled on the Raspberry Pi.*  
+*Python3: version 3.7 or later **must** be installed on the Raspberry Pi.*  
 Here is one way to [install the newest python](/Python/Installation-RaspberryPi-Higher-Version/) 
 
 #### General
@@ -47,7 +51,7 @@ sudo apt install python3-pip
 
 
 #### Step 2: download the python files
-You will create a directory called **btwifiset** under your home directory and dowload the python files into it:
+You will create a directory called **btwifiset** under your home directory and download the python files into it:
 1. Navigate to your home directory, create btwifiset, then navigate there:
 ```
 cd ~
@@ -104,15 +108,15 @@ python3 -c 'from gi.repository import GLib'
 ```
 
 #### Step 4 - Modify the BlueZ service that came with Raspbian:
-The system service for bluetotth needs to be modified to run BLE,  and to stop it from constantly requesting the battery status of the iphone/ipad that will connect to it (*default behavior*).
+The system service for bluetooth needs to be modified to run BLE,  and to stop it from constantly requesting the battery status of the iphone/ipad that will connect to it (*default behavior*).
 
-1. Open the configuration file in your prefered editor - here we use nano:
+1. Open the configuration file in your preferred editor - here we use nano:
 ```
 sudo nano /lib/systemd/system/bluetooth.service
 ```
 2. Find the line that starts with **ExecStart** and add the following at the end of the line - on the same line, leaving a space before the two hyphens:
 ```
-  --experiemntal -P battery
+  --experimental -P battery
 ```
 > the line should read something like: 
 >ExecStart=/usr/lib/bluetooth/bluetoothd --experimental -P battery
@@ -130,7 +134,7 @@ sudo cat /etc/wpa_supplicant/wpa_supplicant.conf
 If you get a message with : ***No such file or directory***, The file does not exists and you need to create it (see below:  **If the file does not exists**).  
 
 ##### If the file exists:
-At this point, you are seing the content of the file in the terminal window.  Please check that both of the following lines appear at the top of the file (order is not important) - XX is a country code such as US, GB, CA etc.
+At this point, you are seeing the content of the file in the terminal window.  Please check that both of the following lines appear at the top of the file (order is not important) - XX is a country code such as US, GB, CA etc.
 ```
 country=XX     
 update_config=1
