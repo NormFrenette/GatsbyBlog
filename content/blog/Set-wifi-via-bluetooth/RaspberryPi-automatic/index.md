@@ -4,9 +4,9 @@ date: "2021-12-05T23:46:37.121Z"
 description: Download and run one bash file to automatically  install python files & configure RPi for BLE.
 mainTag: Installation
 ---
-#### Current Version: Beta - April 4nd, 2022
+#### Current Version: Beta - April 14, 2022
 In the early days of deploying thi software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
-> To check current version date on your Raspberry Pi:  Open looperLog.log file in the loop directory and look for the line that starts with ******* Staring BTwifiSet - version date: ...
+> To check current version date on your Raspberry Pi:  Open btwifiset.log file in the btwifiset directory and look for the line that starts with ******* Staring BTwifiSet - version date: ...
 
 #### About
 Automated install on your Raspberry Pi of a bluetooth BLE Server written in Python .  BLE advertises a custom service that communicates with the IOS app to remotely set the wifi on a headless raspberry pi.
@@ -30,7 +30,7 @@ cd ~
 ```
 3. Download and run the script - type:
 ```
-curl  https://normfrenette.com/btwifiset.sh | sudo bash
+curl  https://normfrenette.com/btwifisetInstall.sh | sudo bash
 ```
 
 That's it. 
