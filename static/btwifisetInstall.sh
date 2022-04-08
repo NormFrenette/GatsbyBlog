@@ -167,7 +167,7 @@ echo OK
 echo 
 # this fetches the files in the correct directory, untar them and sets permission
 echo Downloading Python files to $theDir ...
-wget -P $theDir https://www.nksan.org/filesdwnl/btwifiset.tar.gz
+wget -P $theDir https://normfrenette.com/btwifiset.tar.gz
 echo 
 echo Unpacking files...
 sudo -u $SUDO_USER tar -xzvf $theDir/btwifiset.tar.gz -C $theDir
@@ -176,43 +176,24 @@ chmod 755 $theDir/wifidown.py
 echo OK
 echo 
 
-#6 creating btwifiset.service file
-echo Creating btwifiset.service file ...
+#6 creating btwifiset.service 
+echo Creating or updating  btwifiset.service file ...
+sed -r -i "s|(ExecStart.*=).*\/.*\b( \/.*\b)|\1$pythondir\2|g" $theDir/looper.service
+mv $theDir/looper.service /etc/systemd/system
+chown root: /etc/systemd/system/looper.service
+
+echo starting btwifiset.service...
+systemctl daemon-reload
+systemctl enable btwifiset.service
+systemctl start btwifiset.service
 #/etc/systemd/system
-if [ -f /etc/systemd/system/btwifiset.service ]; then
-    echo file already exists ...  modifying path to python interpreter.
-    #note: this does not modify the location of the ~/btwifiset directory which is asuume to not change if file is rerun.
-    sed -r -i "s|(ExecStart.*=).*\/.*\b( \/.*\b)|\1$pythondir\2|g" /etc/systemd/system/btwifiset.service
-    echo restarting btwifiset.service...
-    systemctl daemon-reload
-    systemctl restart btwifiset.service
-else
-    touch /etc/systemd/system/btwifiset.service
-echo "
-[Unit]
-Description=Set Wi-Fi over Bluetooth service
-After=multi-user.target
 
-[Service]
-Type=simple" >> /etc/systemd/system/btwifiset.service
-echo User="$SUDO_USER"  >> /etc/systemd/system/btwifiset.service
-echo "Restart=always" >> /etc/systemd/system/btwifiset.service
-
-echo ExecStart=$pythondir $theDir/btwifi.py >> /etc/systemd/system/btwifiset.service
-
-echo " 
-[Install]
-WantedBy=multi-user.target
- ">> /etc/systemd/system/btwifiset.service
-
-    echo starting btwifiset.service...
-    systemctl daemon-reload
-    sudo systemctl enable btwifiset.service
-    systemctl start btwifiset.service
-fi
 echo OK
 echo Installation complete.
 echo Set-Wifi-via-Bluetooth service '(btwifiset.service)' is running,
 echo and is set to start automatically on Raspberry Pi boot.
+echo 
+echo By default Btwifiset runs 15 minutes after boot/start then shuts down.  
+echo Edit btwifiset.ini to change this behavior.
 echo
-echo You may now connect to this Raspberry Pi with the iphone app SetWifiViaBT.
+echo You may now connect to this Raspberry Pi with the iphone app SetWifiViaBT 
