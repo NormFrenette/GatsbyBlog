@@ -178,9 +178,9 @@ echo
 
 #6 creating btwifiset.service 
 echo Creating or updating  btwifiset.service file ...
-sed -r -i "s|(ExecStart.*=).*\/.*\b( \/.*\b)|\1$pythondir\2|g" $theDir/looper.service
-mv $theDir/looper.service /etc/systemd/system
-chown root: /etc/systemd/system/looper.service
+sed -r -i "s|(ExecStart.*=).*\/.*\b( \/.*\b)|\1$pythondir\2|g" $theDir/btwifiset.service
+mv $theDir/btwifiset.service /etc/systemd/system
+chown root: /etc/systemd/system/btwifiset.service
 
 echo starting btwifiset.service...
 systemctl daemon-reload
