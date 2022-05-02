@@ -13,7 +13,7 @@ If you have not done so - read the [Basic Concepts](/Looper/How-to-Build-it-Intr
 
 The raspberry pi comes with a 2 x 20 pin strip called the GPIOs - which stands for General Purpose Input Outputs.  Some of these are pretty sophisticated - but we will only use them in their most simple application: to read the status of switches and to drive light emitting diodes (LED).  The GPIO is how we command the Looper program loaded unto the raspberry pi.
 
-You will need to conect some of the pins to either the switches terminals, to resistors or to LED using a small breadboard to solder everything. I suggest a board that mounts as a "hat" to the RPi so you don't need to buy pin wires. check out the [parts list](/Looper/How-to-Build-it-parts-list/) for details.
+You will need to connect some of the pins to either the switches terminals, to resistors or to LED using a small breadboard to solder everything. I suggest a board that mounts as a "hat" to the RPi so you don't need to buy pin wires. check out the [parts list](/Looper/How-to-Build-it-parts-list/) for details.
 
 ##### GPIO naming:
 
@@ -56,14 +56,14 @@ This uses a foot stomp Toggle siwtch: On-ON DPDT (double pole double throw).
 Use this switch if including a buffer in the looper.
 
 This uses a 3PDT (3-pole double throw) toggle switch - with lever control (not stomp).
-- a 9V battery and a 9V connector with lead wires
-- a 10K resitor and blue LED (acts as indicator that buffer circuit is On - and using the battery)
+- a 9V battery and a 9V connector with lead wires.
+- a 10K resistor and blue LED (acts as indicator that buffer circuit is On - and using the battery).
 
 ![Buffer-On toggle switch](./bufferOn.png)
 
-When the switch is toggled to "buffer ON", the battery is conected to the buffer circuit and the indicator blue LED is lit.  The output of the buffer circuit is fed to the input (sound card mic) of the Raspberry Pi Looper.
+When the switch is toggled to "buffer ON", the battery is connected to the buffer circuit and the indicator blue LED is lit.  The output of the buffer circuit is fed to the input (sound card mic) of the Raspberry Pi Looper.
 
-When the switch is in the "Buffer Off" positions, the batterry circuit is interrupted - so no current flows from the battery.  The pedal input jack (1/4 inch female) is fed directly to the input (sound card mic) of the Raspberry Pi Looper.
+When the switch is in the "Buffer Off" positions, the battery circuit is interrupted - so no current flows from the battery.  The pedal input jack (1/4 inch female) is fed directly to the input (sound card mic) of the Raspberry Pi Looper.
 
 
 #### LED circuits:
