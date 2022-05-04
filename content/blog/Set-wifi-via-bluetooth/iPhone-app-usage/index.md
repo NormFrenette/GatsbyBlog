@@ -2,7 +2,7 @@
 title: BTBerryWifi iPhone app - User guide with screen shots
 date: "2022-05-02T15:00:00.121Z"
 description: How to use the iPhone app to set wifi of headless Raspberry Pi over Bluetooth.
-mainTag: iPhone App
+mainTag: iPhone-App
 ---
 
 #### About  
