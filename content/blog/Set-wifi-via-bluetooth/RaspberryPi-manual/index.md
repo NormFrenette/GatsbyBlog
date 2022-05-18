@@ -5,8 +5,8 @@ description: Step-by-step commands in RPi Terminal to install files & configure 
 mainTag: Installation
 ---
 #### Current Version: Beta - April 22, 2022
-In the early days of deploying thi software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
-> To check current version date on your Raspberry Pi:  Open btwifiset.log file in the btwifiset directory and look for the line that starts with ******* Staring BTwifiSet - version date: ...
+In the early days of deploying this software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
+> To check current version date on your Raspberry Pi:  Open btwifiset.log file in the btwifiset directory and look for the line that starts with ******* Starting BTwifiSet - version date: ...
 
 #### About
 Step by Step (manually) install on your Raspberry Pi of a bluetooth BLE Server written in Python .  BLE advertises a custom service that communicates with the IOS app to remotely set the wifi on a headless raspberry pi.
@@ -217,16 +217,10 @@ sudo systemctl start btwifiset.service
     sudo systemctl restart btwifiset.service</span>
     ```
 
-> You are ready to use the ios app ***SetWifiViaBT*** with the raspberry pi.  Enjoy!
+> You are ready to use the ios app ***BTBerryWifi*** with the raspberry pi.  Enjoy!
 
-*Note- the ios app is not yet published on the App Store - but it is coming soon!*
+>Note- the ios app is called ***BTBerryWifi*** in the Apple App Store.   Best to search for its name exactly, since I messed up the keywords - but a search for "Raspberry pi wifi bluetooth" should work also. 
 
-#### Extra - Test the bluetooth service:
-It is possible to test the bluetooth service without the SetWifiViaBT IOS app, by downloading a generic bluetooth app from the app store, which can see  and display all bluetooth services available.  
-    
-1. Download a generic bluetooth app such as "LightBlue"  from the ios app store.
-2. This link provides more information: [punchthrough.com](https://punchthrough.com/lightblue-features/)
-3. Launch the app and select the Raspberry Pi in the list (may appear as the name of the RPi if it was changed) 
-4. Click "show" under Advertisement
 
-> End of manual install instructions.
+
+= = = =  End of manual install instructions. = = = = 

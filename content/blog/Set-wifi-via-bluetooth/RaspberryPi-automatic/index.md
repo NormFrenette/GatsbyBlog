@@ -5,8 +5,8 @@ description: Download and run one bash file to automatically  install python fil
 mainTag: Installation
 ---
 #### Current Version: Beta - April 22, 2022
-In the early days of deploying thi software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
-> To check current version date on your Raspberry Pi:  Open btwifiset.log file in the btwifiset directory and look for the line that starts with ******* Staring BTwifiSet - version date: ...
+In the early days of deploying this software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
+> To check current version date on your Raspberry Pi:  Open btwifiset.log file in the btwifiset directory and look for the line that starts with ******* Starting BTwifiSet - version date: ...
 
 #### About
 Automated install on your Raspberry Pi of a bluetooth BLE Server written in Python .  BLE advertises a custom service that communicates with the IOS app to remotely set the wifi on a headless raspberry pi.
@@ -45,9 +45,9 @@ That's it.
 - Modifies the existing bluetoothd.service system file to run the bluetooth BLE service created Python.
 - Creates a new systemd service file: btwifiset.service and starts it (+ auto-start on boot).
 
-The script provides written feedback on install progress in the terminal.  Upon completion, you are ready to use the ios app ***SetWifiViaBT*** with the raspberry pi.  Enjoy!
+The script provides written feedback on install progress in the terminal.  Upon completion, you are ready to use the ios app ***BTBerryWifi*** with the raspberry pi.  Enjoy!
 
-*Note- the ios app is not yet published on the App Store - but it is coming soon!*
+>Note- the ios app is called ***BTBerryWifi*** in the Apple App Store.   Best to search for its name exactly, since I messed up the keywords - but a search for "Raspberry pi wifi bluetooth" should work also.  
 
 
 
