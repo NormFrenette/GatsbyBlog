@@ -83,7 +83,7 @@ These circuits describe the circuits for:
 ##### LED 7-Segment
 Ensure you use a **"common cathode"** 7-segment LED
 
-![LED circuit and GPIO pin table](./7segment_gpio.png)
+![LED circuit and GPIO pin table](./7segment_gpio2.png)
 
 #### Optional Buffer circuit
 If you have selected to include the buffer circuit, and the associated Mode Switch (on-off-on DPDT toggle), build the following circuit on the same breadboard as the rest of the switches and LED circuits - making sure that it is separated from the Raspberry pi power and ground (these should **NOT** be connected together on the breadboard).
