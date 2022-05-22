@@ -1,7 +1,7 @@
 ---
 title: Assembly of Looper Circuit
 date: "2021-12-30T10:00:00.000Z"
-description: instructions, details and picture of the circuit board assenbly
+description: instructions, details and picture of the circuit board assembly
 mainTag: How-to-Build-it
 ---
 
@@ -19,7 +19,7 @@ I recommend getting all the parts laid out, labeled as necessary before starting
 
 ![general parts ready](./partsready.png)
 
-- Top left: Raspberri pi 3b+
+- Top left: Raspberry pi 3b+
 - Row underneath the Raspberry Pi, left to right:
     - red, green, blue LED
     - 7 segment common cathode LED
@@ -39,10 +39,10 @@ I recommend getting all the parts laid out, labeled as necessary before starting
 
 I don't know about you - but my small electronics component do not like my table, and at the first opportunity they jump off and go hide under the couch or the bookcase.  So over the years I have learned that if I take 5 minutes to identify them, and tape them to a white sheet of paper - I save a lot of time later.
 
-For this build I also added information for the reistor color code (in case one does falls of the table anyway: I can figure out which is which). For the capacitors, I wrote down the number/letter code. For the transistor, I wrote the location and name of each pin - to match my schematic
+For this build I also added information for the resistor color code (in case one does falls of the table anyway: I can figure out which is which). For the capacitors, I wrote down the number/letter code. For the transistor, I wrote the location and name of each pin - to match my schematic
 
 ![resistors ready](./partsresistors.png)
-<p style="text-align:center">Resitors</p>
+<p style="text-align:center">Resistors</p>
 
 ---
 
@@ -51,24 +51,26 @@ For this build I also added information for the reistor color code (in case one 
 
 ---
 
-![transistor ready](./partstransistor.png)
+![transistor ready](./partstransistor_correct.png)
 <p style="text-align:center">Transistor</p>
 
 >Note: To the left is shown a transistor holder - which some people like to use. I do not use it in this build because it makes the transistor higher then the LED - and we want the diodes flush with the top of the case.  If you decide to use it - you will have to raise the LEDs and the 7-segment up from the board as you solder - to provide clearance for the top of the transistor.
+
+***WARNING:*** The above pin-out with face up of C-B-E applies to the transistor BC549.   If you are using a transistor that starts with 2N... instead of BC... then the pinout is reversed (flat face left to right would be E-B-C).  I strongly recommend that you download the datasheet of the transistor you are using (if not using BC549) - and check what pin out applies.  It is confusing because all these transistor are offered in the same T0-92 plastic package (with flat-face), yet the pin-out is not consistent between various series...
 
 ---
 
 #### Layout of components
 
-> This layout uses the raspberry pi breadboard hat recomended in the parts list.  If you are using a different breadbaord you will likely have to adjust the layout.
+> This layout uses the raspberry pi breadboard hat recommended in the parts list.  If you are using a different breadboard you will likely have to adjust the layout.
 
-The layout is constructed to scale using a square grid.  A box containing a number is a resistor, and the squares where the box starts and ends represents the holes into which the resistor leads go into.  This is also how non-electrolitic capacitors are shown.
+The layout is constructed to scale using a square grid.  A box containing a number is a resistor, and the squares where the box starts and ends represents the holes into which the resistor leads go into.  This is also how non-electrolytic capacitors are shown.
 
-> Suqares on the layout generally corresponds to a hole on the circuit board. Orient your board to match the layout.
+> Squares on the layout generally corresponds to a hole on the circuit board. Orient your board to match the layout.
 
-Electrolytics capacitors are shown laid flat on the board - because of clearance issues.  two leads come out of the "box" to indicate the hole where they should be soldered.  Pay attention the the negative lead indicated by three minus signs (- - -) on the box drawing - which corresponds to the negative markings on the electrolytic capacitor can.
+Electrolytic capacitors are shown laid flat on the board - because of clearance issues.  two leads come out of the "box" to indicate the hole where they should be soldered.  Pay attention the the negative lead indicated by three minus signs (- - -) on the box drawing - which corresponds to the negative markings on the electrolytic capacitor can.
 
-Diodes are shown as circle with a + and - sign indicating the holes where leads go into.  The negative (-) coresponds to the shortest lead.  The positive (+) coresponds to the longest lead.
+Diodes are shown as circle with a + and - sign indicating the holes where leads go into.  The negative (-) corresponds to the shortest lead.  The positive (+) corresponds to the longest lead.
 
 The 7-segment LED should be oriented so that the "dot" is nearest the Red LED
 
