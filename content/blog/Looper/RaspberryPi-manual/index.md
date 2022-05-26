@@ -4,7 +4,7 @@ date: "2022-03-06T10:00:00.000Z"
 description: Step-by-step commands in RPi Terminal to install files needed for the Looper pedal.
 mainTag: Software-Installation
 ---
-#### Current Version: Beta - April 2nd, 2022
+#### Current Version: Beta - May 25, 2022
 In the early days of deploying thi software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
 >Note: I am not changing the version  number of the software while in Beta.  
 > To check current version date on your Raspberry Pi:  Open looperLog.log file in the loop directory and look for the line that starts with ********* Starting Looper ** version date ...
@@ -115,13 +115,13 @@ python3 -c 'import alsaaudio'
 #### Step 4 - Modify the BlueZ service that came with Raspbian:
 The system service for bluetooth needs to be modified to run BLE,  and to stop it from constantly requesting the battery status of the iphone/ipad that will connect to it (*default behavior*).
 
-1. Open the configuration file in your prefered editor - here we use nano:
+1. Open the configuration file in your preferred editor - here we use nano:
 ```
 sudo nano /lib/systemd/system/bluetooth.service
 ```
 2. Find the line that starts with **ExecStart** and add the following at the end of the line - on the same line, leaving a space before the two hyphens:
 ```
-  --experiemntal -P battery
+  --experimental -P battery
 ```
 > the resulting line should read something like this (*note: the path may be different - leave it as is*): 
 >ExecStart=/usr/lib/bluetooth/bluetoothd --experimental -P battery
@@ -133,7 +133,7 @@ sudo reboot
 
 #### Step 5: download the code 
 You will download a compressed file (tar archive) into your home directory - and unpack it. It will create the necessary sub-directories (loop, data, repo).  
->**Warning:** This will download a file named .asoundrc which is needed to correctly set-up the usb sound card of the looper.  If you have just created a new SD card with RPi OS (recomended) for the looper - the .asoundrc file does not exist - and all will be fine.  If however you have previously created a .soundrc file - **this will overwrite it**.  You should rename your current .asoundrc (to something like .asoundrc_old) before downloading.  You will then need to manually merge the old and new file.  
+>**Warning:** This will download a file named .asoundrc which is needed to correctly set-up the usb sound card of the looper.  If you have just created a new SD card with RPi OS (recommended) for the looper - the .asoundrc file does not exist - and all will be fine.  If however you have previously created a .soundrc file - **this will overwrite it**.  You should rename your current .asoundrc (to something like .asoundrc_old) before downloading.  You will then need to manually merge the old and new file.  
 1. Navigate to your home directory:
 ```
 cd ~
@@ -161,7 +161,7 @@ aplay -l
 ```
 card 1: Device [USB Audio Device], device 0: USB Audio [USB Audio]
 ```
-4. If the USB Audio device you are using for the looper is listed wiht a **different number than card 1**, you must edit the .asoundrc file.  
+4. If the USB Audio device you are using for the looper is listed with a **different number than card 1**, you must edit the .asoundrc file.  
 Open the file in an editor like nano (use sudo since we made the owner: root)
 ```
 sudo nano ~/.asoundrc
@@ -205,7 +205,7 @@ If you need to change the path - open the file in your editor:
 ```
 nano looper.service
 ```
-and change - only the bolded path in the line displayed above - with the path or alias to your python interprter.  
+and change - only the bolded path in the line displayed above - with the path or alias to your python interpreter.  
 > Make sure you do not change the second part of the line (path-to-looper-code) - and leave the space between the path-to-Python-Interpreter.  
 
 5. You now can move the file and change its owner to root:
@@ -220,7 +220,7 @@ sudo systemctl enable segment.service
 
 #### Step 8 -  Reboot the pi and use the Looper Pedal
 Upon reboot - assuming all is fine with the electronics,  you will see:
-- First, the letters L O O P scroll accross the 7 segment diode. (*this can be very short depending how fast your Raspberry pi is*)
+- First, the letters L O O P scroll across the 7 segment diode. (*this can be very short depending how fast your Raspberry pi is*)
 - Second - a short random pattern on the 7-segment diode followed by the number zero (if looper is in edit/bypass mode) or an hyphen (-) if looper is in run mode.
 
 The short random pattern indicates that the looper pedal is ready to use.  The number zero or hyphen indicates there are currently no tracks recorded in the Looper.  Refer to the instructions on how to use the looper.

@@ -5,7 +5,7 @@ description: How to install a higher version of python3 as an alternate to the s
 mainTag: Installation
 ---
 
-These instructions explain how to install an alternate version of python3 - a higher version - on a rasbperry pi.  
+These instructions explain how to install an alternate version of python3 - a higher version - on a Raspberry Pi.  
 These instructions do not install python3 in a separate environment - but it is installed in a different location using the alternate flag during the installation process.
 
 Because the python versions provided with the Raspberry OS and apt tend to lag behind the latest version of python - you will download the latest stable version of python from python.org and compile it on the raspberry pi.

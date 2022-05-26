@@ -8,7 +8,7 @@ mainTag: Installation
 #### About
 This  shows step-by-step details onf how to install the latest (as of Feb 2022) Raspberry Pi Operating System (OS) provided by the Raspberry Pi Foundation - to create a Raspberry Pi in [Headless](/Raspberry-Pi/Principles-What-is-Headless/) mode.  I use a macbook.  If you have a PC, the steps are similar (using the Raspberry Pi Imager is simplest).  I use terminal and linux commands on both mac and Raspberry Pi to set-up. 
 
-> These are very detailled instructions written for somebody who has never seen Raspberry Pi before, and who has never used the terminal on the Mac, nor any Linux commands.  As a result, this post is long. But the actual amount of work is much shorter...
+> These are very detailed instructions written for somebody who has never seen Raspberry Pi before, and who has never used the terminal on the Mac, nor any Linux commands.  As a result, this post is long. But the actual amount of work is much shorter...
 
 #### Requirements:
 - A computer to download the OS and burn it unto an SD card - I use a MacBook
@@ -43,7 +43,7 @@ Simply drag the Raspberry unto the shown folder in the window.  If you do not ge
 ![storage selection](./selectStorage.png)  
 
 > If you have a brand new SD card, you should see something like the name displayed above.  If you have a previously used SD card - you might see the name of the card appear.  Either way, once selected, all data on the SD card will be erased when you click "write" in the next step.
-5. Clicking on the storqage option brings you back to the imager window, where the WRITE option is now availabled (not dimmed as before).  Click on "WRITE", and then click "YES" to confirm that the SD card will be earased (before the RPi OS is copied unto it).
+5. Clicking on the storage option brings you back to the imager window, where the WRITE option is now available (not dimmed as before).  Click on "WRITE", and then click "YES" to confirm that the SD card will be erased (before the RPi OS is copied unto it).
 > The Imager will download the file for the selected Raspberry Pi OS lite unto the mac, then erase your sd card, write the OS to the card, and perform a verification.
 6. You will see a status bar appear: wait for the writing to be complete, and the verification to be complete. (This takes a few minutes).
 7. On my Mac - I am asked for the mac password in order to continue:  enter your mac password if required.
@@ -59,7 +59,7 @@ At this point we will use the terminal - on the macBook - to set a few options o
 >  If you have never opened terminal before - I find the simplest way is to  hold the command key down and press the spacebar.  This brings up Spotlight - which is a search bar: type "terminal" and hit return. A terminal window will open.  It should look like this. 
 ![mac terminal window](./openterminal.png)  
 
-> Note the % at the end of the last line in the terminal.  This is called the prompt. This is where you enter the commands.  Later you will open a terminal window on the Raspberry PI - it will be simillar, but the prompt will be a $ sign.  It's a simple way to find out if you are working on the mac in terminal or on the Raspberry Pi: the prompt is different. 
+> Note the % at the end of the last line in the terminal.  This is called the prompt. This is where you enter the commands.  Later you will open a terminal window on the Raspberry PI - it will be similar, but the prompt will be a $ sign.  It's a simple way to find out if you are working on the mac in terminal or on the Raspberry Pi: the prompt is different. 
 4. At the prompt (%) - type the following to navigate to the SD card:
 ```
 cd /volumes/boot
@@ -85,7 +85,7 @@ country=CA
 }
 
 ```
-8. Using the arrow keys, move to the line: ssid=ssid="Insert-SSID-here".  Erase (using backspace) the words *Insert-SSID-here* and type in the name of the SSID of your router (which you got in the requirments above).  Make sure the double quotes are there.  (do not remove them).
+8. Using the arrow keys, move to the line: ssid="Insert-SSID-here".  Erase (using backspace) the words *Insert-SSID-here* and type in the name of the SSID of your router (which you got in the requirements above).  Make sure the double quotes are there.  (do not remove them).
 > you can't select/highlight words with the mouse in terminal like you do in microsoft word.  You have to move around using the arrow keys, and use backspace to erase and type what you want.
 9. Again using the arrow keys, go to the password line. Erase the words: *Insert-password-here* and type in the password for the wifi SSID you selected (be careful - it is case-sensitive).  Again make sure you keep the double quotes around the password - do not erase the double-quotes.
 10. At this point, your editor should look like this (I show a fake SSID and password as example):
@@ -96,7 +96,7 @@ country=CA
 ```
 ls
 ```
-> ls is the linux command to list files in the current directory (which is /volumes/boot).  You will see a list of files that were placed on the sd card by the Raspbery Pi Imager.  Scroll through the list and you should see a file called ssh (no extension) and a file called wpa_supplicant.conf - which are the two files you created.
+> ls is the linux command to list files in the current directory (which is /volumes/boot).  You will see a list of files that were placed on the sd card by the Raspberry Pi Imager.  Scroll through the list and you should see a file called ssh (no extension) and a file called wpa_supplicant.conf - which are the two files you created.
 
 13. If you want to see the content of the wpa_supplicant.conf file, which you created, type the following command at the prompt:
 ```
@@ -137,7 +137,7 @@ ssh pi@raspberrypi.local
 
 ![ssh terminal window](./sshintopi.png)
 
-8. At this point, update the Raspberry Pi - type each command and then return after each command. wait for a command to be completed before typinf the next one:
+8. At this point, update the Raspberry Pi - type each command and then return after each command. wait for a command to be completed before typing the next one:
 ```
 $ sudo apt update
 $ sudo apt full-upgrade
@@ -159,7 +159,7 @@ Enter Y when prompted.
     5. Back to the main menu - Use the right-arrow to select "**Finish**" - then click return. You will be ask if you want to reboot now. Select "**Yes**".  The Raspberry Pi will now reboot.
     > You will notice that the terminal window on your mac no longer says "raspbery Pi". You are back into your mac - with the % prompt.  We will use this in the next step.
 
-##### Setting up Raspberry Pi with authentification key from the Mac.
+##### Setting up Raspberry Pi with authentication key from the Mac.
 At this point, after the Raspberry Pi has rebooted, you could reconnect using the ssh command above - however using the new name and password (ssh pi@looper64.local).  However, every time you want to connect to the Pi - you would need to enter the password.  There is a simpler way: By connecting using a private-public key pair created on your mac.  
 1. Go to the terminal window you opened in the previous steps.
 2. Check if you have already created a private/public key on your mac.  Type these two commands:
@@ -174,7 +174,7 @@ ls
 ssh-keygen 
 ```
 5. At this point, you have a private/public key on the mac.  We need to transfer it to the Raspberry Pi (which has rebooted and is waiting ). Type these two commands, one after the other:
-> The command uses the name of the rasperry pi which we just created (looper64).  If you used a different name, replace "looper64" in the command below by the name you selected.
+> The command uses the name of the Raspberry Pi which we just created (looper64).  If you used a different name, replace "looper64" in the command below by the name you selected.
 ```
 cd ~/.ssh
 ssh-copy-id pi@looper64.local
@@ -189,11 +189,11 @@ ssh pi@looper64.local
 
 #### That's it. You're done
 
-You have installed the latset version of the Raspberry Pi OS lite on your RPi, and have set up a way to control it in headless mode - directly from your computer - without having to connect a monitor, keyboard and mouse.
+You have installed the latest version of the Raspberry Pi OS lite on your RPi, and have set up a way to control it in headless mode - directly from your computer - without having to connect a monitor, keyboard and mouse.
 
 At this point you can install the software for the [Looper](/Looper/Software-Installation-RaspberryPi-manual/), or for the [Set Wifi via Bluetooth](/Set-wifi-via-bluetooth/Installation-RaspberryPi-automatic/) app, unto your raspberry pi.
 
-Or you can simply start developping your own code for your own project.  Have fun!
+Or you can simply start developing your own code for your own project.  Have fun!
 
 
 

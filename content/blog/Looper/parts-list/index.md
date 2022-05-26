@@ -9,10 +9,10 @@ This document the various parts required to build the Raspberry Pi Looper.
 
 #### Raspberry Pi
 
-I recommend the raspberry pi (RPi) version 3B+ or 4.  The RPi must have wifi and bluetooth (if you want to use the ios app - which is recomended).
+I recommend the raspberry pi (RPi) version 3B+ or 4.  The RPi must have wifi and bluetooth (if you want to use the ios app - which is recommended).
 
 Can you use a pi zero W?  Simply put - I am not sure.  If you have one lying around - please try it and let me know how it works.  
->The original pi zeroW had only one core.  The python program is written to use multi-cores as much as possible but the code will run on one core - meaning it will not crash.  The problem is that the audio sampling and playback could be affected by file operations (like saving to SSD card) - and may create studdering in playback.  At some point I intend to test this - and when I do I will update this.
+>The original pi zeroW had only one core.  The python program is written to use multi-cores as much as possible but the code will run on one core - meaning it will not crash.  The problem is that the audio sampling and playback could be affected by file operations (like saving to SSD card) - and may create stuttering in playback.  At some point I intend to test this - and when I do I will update this.
 
 What about the pi zero 2 W? I have not obtained one yet - but I think it should work just fine as it has 4 cores.  So go for it!
 
@@ -42,9 +42,9 @@ I got mine at [Amazon](https://www.amazon.ca/gp/product/B07MCX54ZD/), but you ca
 
 ![Breadboard](./breadboard.png)
 
-You can use a more traditional breadboard like the one on the left. That is what I used for my first prototype (pics to come).  But in that case you need to get female to male raspberry pi connectors like these - and it's a bit more messy when you try to fit this into a case... 
+You can use a more traditional breadboard like the one on the right. That is what I used for my first prototype (pics to come).  But in that case you need to get female to male raspberry pi connectors like these - and it's a bit more messy when you try to fit this into a case... 
 
-![rapsberry pi conector wires](./rpi-wires.png)
+![Raspberry Pi connector wires](./rpi-wires.png)
 
 >Note: You do not need the wires if you order the item on the left in the above picture (PCB Shield Board Kit for Raspberry Pi)
 
@@ -65,12 +65,12 @@ You need one  *common cathode* 7-segment LED. *(You only need one - even though 
 
 ![7 segment LED](./segmentcc.png)
 
-> The common cathode is important! It means the center pins are grounded.  If you got the other type  you would have to change the cuiruit schematics and the python code to turn on the segments.  I strongly recommend to get the common cathode - unless of course you have no problem modifying the schematics and the code.
+> The common cathode is important! It means the center pins are grounded.  If you get the other type  you would have to change the circuit schematics and the python code to turn on the segments.  I strongly recommend to get the common cathode - unless of course you have no problem modifying the schematics and the code.
 
 ##### Resistors
 
 - Column "(no buffer) Looper indicates the quantities required when optional buffer is not built.
-- Column Looper+Buffer inidcates the total quantities required when optional buffer is included in the build.
+- Column Looper+Buffer indicates the total quantities required when optional buffer is included in the build.
 
 | Value (ohms) | (no buffer)Looper Qty | Looper+Buffer Qty |
 |:------------:|:----------------:|:-----------------:|
@@ -90,9 +90,9 @@ Capacitors are only needed for the Looper + Buffer option
 
 ##### Transistor
 
-The circuit requires one **NPN BC549 transitor**. If you don't already have transistors - buy that one.  
+The circuit requires one **NPN BC549 transistor**. If you don't already have transistors - buy that one.  
 
-Alternate transitor choice:  the BC550 is more or less a direct replacement.  
+Alternate transistor choice:  the BC550 is more or less a direct replacement.  
 
 I use this transistor because it is a low noise transistor - which is useful in audio circuits.  There are many vintage circuit that use the 2n2222 as well. I have not tested that one - but if you have one of those instead, I would try it. 
 
@@ -104,11 +104,11 @@ The switch used to control the Play, Record and Stop of the Looper is a momentar
 
 Search for Momentary Stomp Foot Switch like this one found at (amazon)[https://www.amazon.ca/gp/product/B077P1BFX9/]
 
-Do not use the typical click-on click-off toggle stomp switch found on many guitar dedals.  It will not work with this design.  
+Do not use the typical click-on click-off toggle stomp switch found on many guitar pedals.  It will not work with this design.  
 
 ###### Mode switch
 
-**Looper With Optional Buffer**: Use a **DPDT On-Off-On toggle switch**.  This switch has a center postion where the switch is fully off.  There are 6 connectors underneath the switch.  I like to buy the Mini Miniature Toggle Switch type for this, like [these](https://www.amazon.ca/gp/product/B077P5F516/).
+**Looper With Optional Buffer**: Use a **DPDT On-Off-On toggle switch**.  This switch has a center position where the switch is fully off.  There are 6 connectors underneath the switch.  I like to buy the Mini Miniature Toggle Switch type for this, like [these](https://www.amazon.ca/gp/product/B077P5F516/).
 
 Looper **without** optional buffer:  If you are not including the buffer in the build you can use a simple **On-Off Mini miniature toggle switch** (only 2 connectors below the switch).  The only requirement is that the switch be of the toggle type, not the push type.  
 
@@ -116,25 +116,25 @@ Looper **without** optional buffer:  If you are not including the buffer in the 
 
 Momentary push-On foot stomp switch on the left.  DPDT On-Off-On toggle mini miniature switch on the right.
 
-#### Jacks and miscelanous
+#### Jacks and miscellaneous
 
 ##### Buffer Jacks:
 
 This is only needed if the buffer option is built.
 
-The original design calls for two female 1/4 inch mono guitar jacks: one input, one output.  The idea is that the buffer is indepenet from the looper.  Having these two jacks means the Looper/buffer can be used in a pedal chain as a buffer only.
+The original design calls for two female 1/4 inch mono guitar jacks: one input, one output.  The idea is that the buffer is independent from the looper.  Having these two jacks means the Looper/buffer can be used in a pedal chain as a buffer only.
 
 Feeding the buffer output to the sound card is done externally:  you need to buy - or construct - a small wire which has a 1/4 inch phono male plug at one end and the standard 3.5mm mono mic male plug at the other end - to connect into the sound card mic input.
 
-Alternatively, you can buy a single 3.5mm male plug and wire leads to it.  Then solder the leads directly to the outputof the buffer circuit: you will have a wire hanging out the side of the looper though if you do not use the buffer.
+Alternatively, you can buy a single 3.5mm male plug and wire leads to it.  Then solder the leads directly to the output of the buffer circuit: you will have a wire hanging out the side of the looper though if you do not use the buffer.
 
-Another alternative is to purchase a female 3.5mm mono jack to use as the output of the buffer.  In this case you can use a common [male to male 3.5mm wire](https://www.amazon.ca/gp/product/B071V7VW96/) to connect the output of the buffer to the sound card.  Note: you couls also by this, and cut it to length, and wire the leads per the second alternative...
+Another alternative is to purchase a female 3.5mm mono jack to use as the output of the buffer.  In this case you can use a common [male to male 3.5mm wire](https://www.amazon.ca/gp/product/B071V7VW96/) to connect the output of the buffer to the sound card.  
 
 ##### 9V Battery Connector
 
 This is only needed if the buffer option is built.
 
-You need something to get the 9 V battery connected to the buffer cirsuit.  I find that these battery connectors are the simplest - but you may want to purchase a more complex product that comes with the battery holder as well.
+You need something to get the 9 V battery connected to the buffer circuit.  I find that these battery connectors are the simplest - but you may want to purchase a more complex product that comes with the battery holder as well.
 
 ![Battery connector](./batteryconn.png)
 

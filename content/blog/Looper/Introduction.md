@@ -22,13 +22,13 @@ If you have never used a simple looper - this  YouTube [video](https://www.youtu
 ##### Impedance mismatch
 Sound Cards have low input impedance (2-3K ohms). Passive pickup guitars and bases have high output impedance. Connecting a high impedance output into a low impedance input affects the power transmitted to the input, and does so differently at different frequencies - which affects tone.  
 
-Connecting a guitar directly into a sound card makes its sound thinny - and you loose all the nice tone of your guitar.
+Connecting a guitar directly into a sound card makes its sound thin - and you loose all the nice tone of your guitar.
 
 ##### Solution: A buffer
 
 We need to reduce the impedance of the guitar/base etc.  A buffer does this.
 
-So I designed a very simple buffer - based on circuitry found in vintage guitar pedals (well they weren't vintage when I was young...). Very few parts, one transistors, a few resitors and capacitors.  
+So I designed a very simple buffer - based on circuitry found in vintage guitar pedals (well they weren't vintage when I was young...). Very few parts, one transistor, a few resistors and capacitors.  
 
 The power supply of the Raspberry Pi is very noisy - so I could not use it to power the buffer without constructive complex filtering or reconditioning the power (more $$$).  So I went the simple vintage way: a separate battery dedicated to the buffer only.
 
@@ -39,7 +39,7 @@ You do not need to use the buffer if you have something else to buffer your guit
 - Use a DI box or Apple IRig
 - If you already have various guitar pedals - look for one that is not true bypass - like Boss.  It has a buffer even on the clean path. Put it between the guitar and the looper sound card mic input.
 
-If you have none of the above, construct the buffer on the same small pcb board used for the rest of the Raspberry pi GPIO connections.  The buffer is designed to be independant. It has a separate input and output.  So your Looper can be used as a separate buffer.  To use it with the looper. Connect the output of the buffer to the input of the looper sound card.
+If you have none of the above, construct the buffer on the same small pcb board used for the rest of the Raspberry pi GPIO connections.  The buffer is designed to be independent. It has a separate input and output.  So your Looper can be used as a separate buffer.  To use it with the looper. Connect the output of the buffer to the input of the looper sound card.
 
 ##### One more benefit
 
@@ -53,15 +53,15 @@ So I decided to build an iphone app that extends the functionality of the looper
 
 The app also allows for the saving of tracks into songs by giving them separate song names.   These are stored on the raspberry pi, and can be loaded into the looper portion of the raspberry pi via the app.  This way it becomes possible to create say a blues song, a folks song or a rock song and bring them back separately for practice or further editing. It is also a great way to show your friends or band mates your a new song you created.
 
-> Note: the iphone app is in its final stages of testing - so it is not yet avaiable on the apple App store. I will update this when it is available.
+> Note: the iphone app is in its final stages of testing - so it is not yet available on the apple App store. I will update this when it is available.
 
 #### What is needed to make the Looper:
 
-To build your Looper, you will need a raspbery pi, some electronics parts and switches. You also need the actual program - written in python and bash.
+To build your Looper, you will need a Raspberry Pi, some electronics parts and switches. You also need the actual program - written in python and bash.
 
 The electronics section of this blog lists the parts and the schematic that shows how to physically build the Looper.
 
-The Code section shows how to download the open-source code and install it on the rasperry pi.
+The Code section shows how to download the open-source code and install it on the Raspberry Pi.
 
 Finally - the ios app - when published will have a user guide section.
 
