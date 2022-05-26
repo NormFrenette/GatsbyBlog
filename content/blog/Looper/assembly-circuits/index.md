@@ -76,13 +76,13 @@ The 7-segment LED should be oriented so that the "dot" is nearest the Red LED
 
 Squares which contain a red letter code indicate that a insulated wire must be connected to that hole - and the other end of the wire connected to a point off the board (typically a switch or an input/output jack) - as labelled in the table below the layout.
 
-![circuit pcb layout](./assemblyLayout2.png)
+![circuit pcb layout](./assemblyLayout2B.png)
 
 ![ pcb layout Table](./layoutTable2.png)
 
 Or open this image in a separate window to have all data on page:
 
-![ pcb circuit layout  and Table](./layoutAndTable.png)
+![ pcb circuit layout  and Table](./layoutAndTable2B.png)
 
 
 
