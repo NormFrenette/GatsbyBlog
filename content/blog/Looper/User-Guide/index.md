@@ -2,7 +2,7 @@
 title: User Guide
 date: "2022-03-10T10:00:00.000Z"
 description: Explains the various switches and mode of the looper.
-mainTag: How-To-Use
+mainTag: How-to-Use
 ---
 #### About
 This guide describes the switches and input/outputs of the looper, and how to use them to record tracks, deleted or un-delete tracks, use the buffer and use the True Bypass.
@@ -119,7 +119,7 @@ Looper is ***idle*** -> "Single Tap" -> start playing loop -> "Single Tap" -> st
 
 ##### Play-Rec-Stop switch - Looper in Run Mode:
 
-When the Looper is in edit (bypass) Mode The switch is used to delete or un-delete tracks as explained in details (Looper's Principles)[/Looper/How-To-Use-principles/].
+When the Looper is in edit (bypass) Mode The switch is used to delete or un-delete tracks as explained in details (Looper's Principles)[/Looper/How-to-Use-principles/].
 
 - Single Tap:  Deletes the last recorded track from the loop.
     - Flashing track count display will be reduced by 1.  

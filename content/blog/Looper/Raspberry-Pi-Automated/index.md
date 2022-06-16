@@ -1,11 +1,11 @@
 ---
 title: Automated Install Looper Code on RPi via bash file
-date: "2022-03-05T10:00:00.000Z"
+date: "2022-04-05T10:00:00.000Z"
 description: Download a bash file that runs all commands to install files/dependencies needed for the Looper pedal.
 mainTag: Software-Installation
 ---
 
-#### Current Version: Beta - May 26, 2022
+#### Current Version: Beta - June 15, 2022
 In the early days of deploying thi software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
 >Note: I am not changing the version  number of the software while in Beta.  
 > To check current version date on your Raspberry Pi:  Open looperLog.log file in the loop directory and look for the line that starts with ********* Starting Looper ** version date ...
