@@ -99,17 +99,18 @@ You need one  *common cathode* 7-segment LED. *(You only need one - even though 
 
 ##### Resistors
 
-- Column "(no buffer) Looper indicates the quantities required when optional buffer is not built.
-- Column Looper+Buffer indicates the total quantities required when optional buffer is included in the build.
+- Column Looper indicates the quantities required for the Looper part of the circuit - use this if building Looper Only Option.
+- Column Buffer indicates the quantities required for the buffer circuit.
+- column Total ss the quantities required for Looper and buffer: use this column if building the Looper Pedal option and the Looper+Buffer Separate Option
 
-| Value (ohms) | (no buffer)Looper Qty | Looper+Buffer Qty |
-|:------------:|:----------------:|:-----------------:|
-|         270  |         2        |           2       |
-|         330  |         1        |           1       |
-|         1K   |         x        |           1       |
-|         10K  |         2        |           4       |
-|         18K  |         x        |           1       |
-|        470K  |         x        |           1       |
+| Value | Looper Qty | Buffer Qty | total |
+|:----:|:----:|:----:|:----:|
+|270|2| x | 2 |
+|330|1| x | 1 |
+|1K |x| 1 | 1 |
+|10K|2| 2 | 4 |
+|18K|x| 1 | 1 |
+|470K|x| 1 | 1 |
 
 
 > The 270 ohms resistor are used for the red and  green LEDs. They basically control the brightness. You can use 330 ohms or even 390 ohms if you want them less bright.  
@@ -117,18 +118,24 @@ You need one  *common cathode* 7-segment LED. *(You only need one - even though 
 > Similarly the 330 ohms resistor controls the brightness of the 7-segment LED display.  In my latest implementation, I have used a 390 ohm instead - because I like the display which shows the track count to be a little less bright.  If you play in a very sunny room - you might want to stick with the 330.
 
 ##### Capacitors
- 
-Capacitors are only needed for the Looper + Buffer option
 
-- 10 microFarad electrolytic - qty: 1
-- 22 microFarad electrolytic - qty: 1
-- 0.1 microFarad (100 nano) - qty: 1   / *use ceramic or tantalum or orange drop etc. (not electrolytic)*
+Capacitors are only needed for the Looper + Buffer option
+ 
+| Value/Type | Looper Qty | Buffer Qty | total |
+|:----:|:----:|:----:|:----:|
+|10 microFarad electrolytic|x| 1 | 1 |
+|22 microFarad electrolytic|x| 1 | 1 |
+|0.1 microFarad (100 nanoF) |x| 1 | 1 |
+
+0.1: use ceramic or tantalum or orange drop etc. (not electrolytic)
 
 > The actual value 22 microFarad is not very important and does not affect the tonal response very much.  I have successfully used 33 microFarad (because I ran out of 22) - and the circuit works just fine.  
 
 ##### Transistor
 
-The circuit requires one **NPN BC549 transistor**. If you don't already have transistors - buy that one.  
+The transistor is only needed if you are building the buffer.
+
+The buffer circuit requires one **NPN BC549 transistor**. If you don't already have transistors - buy that one.  
 
 Alternate transistor choice:  the BC550 is more or less a direct replacement.  
 
@@ -136,11 +143,11 @@ I use this transistor because it is a low noise transistor - which is useful in 
 
 There are many vintage circuit that use the 2n2222 or even 2n3904 as well. I have not tested these - but if you have one of those instead, try them to see how they sound.  The circuit is the same. 
 
->Warning the BCxxx transistor series uses Collector (pin 1), Base (pin 2), Emitter (pin 3), whereas the 2N series uses the reverse (1-2-3: E-B-C).  Make sure you download the datasheet of the transistor you select to identify the pinout correctly.
+>WARNING: The BCxxx transistor series uses Collector (pin 1), Base (pin 2), Emitter (pin 3), whereas the 2N series uses the reverse (1-2-3: E-B-C).  Make sure you download the datasheet of the transistor you select to identify the pinout correctly.
 
 ##### Switches:
 
-3 switches are used with the buffer option.  Only the 2 switches on the left are needed if you are building the Looper without the Buffer Option:
+Get these three switches for the Looper Pedal (with Buffer) Option:
 
 ![Switches](./switches.png)
 
@@ -162,10 +169,19 @@ This is an example of the DPDT switch needed:[Amazon: DPDT switch](https://www.a
 
 ###### Buffer On-Off Toggle switch:
 
-You only need this switch if you are building the Looper with Buffer Option.  
-
 This switch has 9 terminals underneath - but uses a toggle lever instead of a foot stomp switch.  The lever is recommended because you can see the position of the lever (On-Off). Although the circuit also has a blue LED when the buffer is on - if the battery is dead, your LED will not light, but the position of the toggle lever indicates it *should* be on.
 >Note that if you have a few 3pdt foot stomp switches lying around and you don;t feel like buying the toggle switch - go ahead and use the foot stomp switch - it will work.  Just make sure it is a latching switch - not a momentary switch.
+
+###### Looper and Buffer Separate Option:
+
+You still need three switches and you can use the switches above - but they are overkill for your need.  To save money:ny switch that stays in the position you switch it (not momentary) will do
+- Buffer Switch: You only need a simple on-off toggle switch (2 pins) - like [this one on Amazon](https://www.amazon.ca/HOUTBY-Miniature-Toggle-Switch-Dashboard/dp/B07FHYZWW1). In fact, any switch that stays in the position you switch it (not momentary) will do.
+- Play/Rec/Stop Momentary foot stomp switch: exactly same as above (no change)
+- Run/Edit - Mode switch: I recommend you use the same switch as above. In reality you only need a 2 pin latching foot switch (that is NOT momentary) - but I find them very difficult to find (they are all momentary) - so best stick with the 6 pin 2PDT latching foot switches that are easy to get.
+
+###### Looper Only Option ( no buffer):
+
+You do not need the Buffer switch.  But you need the same Play/Rec/Stop switch and Run/Edit mode switch that the Separate Option (above) needs.
 
 #### Jacks and miscellaneous
 
@@ -177,18 +193,22 @@ Jacks are needed to connect instruments into the Looper and carry the sound out 
 
 These are 1/4 inch female (guitar) jacks.  You need 3 for the Looper_Buffer option (but only 2 if not building the buffer option).
 
-###### 3.5 mm (male) Jacks:
+- Looper Pedal (with buffer) Option:  needs 3 jacks.
+- Looper and Buffer Separate Option:  needs 2 jacks. However, you need an adapter to go from 1/4 inch buffer out to 3.5mm mono soundcard mic input.
+- Looper Only: needs None.
 
-Internally to the pedal, we need to convert the 1/4 inch input and output jacks to 3.5 mm male jacks that fit the usb sound card (described above).  
+###### 3.5 mm (male) Jacks - Only for Looper Pedal (with buffer) Option.
 
-I have found that the cheapest approach is to buy one male-to male cable like [this one on amazon](https://www.amazon.ca/gp/product/B071V7VW96/).  Cut the wire in half, strip the leads and solder them to the jacks/switches as per schematic.  
+Internally to the pedal, we need to connect the input/buffer signals and the Looper out signal to 3.5 mm male jacks that plug into the usb sound card.  
+
+I have found that the cheapest approach is to buy one male-to male 3.5 mm mono cable like [this one on amazon](https://www.amazon.ca/gp/product/B071V7VW96/).  Cut the wire in half, strip the leads and solder them to the jacks/switches as per schematic.  
 > You could also buy/use purpose-built 3.5mm built jacks - but I have found them for difficult to obtain at a reasonable price.
 
->IMPORTANT: Do NOT buy stereo 3.5mm male jacks.  They do not fit correctly in the sound card input.  The sound card I have recommended accepts only mono mic input.  (Of course, if you bought something different, it might work...)
+>IMPORTANT: Do NOT buy stereo 3.5mm male jacks.  They do not fit correctly in the sound card mic input.  The sound card I have recommended accepts only mono mic input.  (Of course, if you bought something different, it might work...)
 
 ##### 9V Battery Connector
 
-This is only needed if the buffer option is built.
+This is only needed if a buffer option is built.
 
 You need something to get the 9 V battery connected to the buffer circuit.  I find that these battery connectors are the simplest - but you may want to purchase a more complex product that comes with the battery holder as well.
 
@@ -197,13 +217,26 @@ You need something to get the 9 V battery connected to the buffer circuit.  I fi
 
 #### Case:
 
-You will need a case for your looper.  I intend to build a case that can be 3-D printed.  When I do, I will post the step file so you can print yourself a case as well.  
+You will need a case for your looper.  I suggest you assemble the looper and all the switches and then measure what size box you need.  
 
-In the meantime - the only requirement is that the case cannot be made entirely of metal - because we need the wifi and bluetooth signals to get to the raspberry pi.
+>IMPORTANT: The case ***cannot be made entirely of metal*** - because we need the wifi and bluetooth signals to get to the Raspberry Pi. 
+
+> Raspberry Pi cases available on the internet are not very useful here because they are not large enough to fit switches, sound card battery etc.  I suggest you search for plastic electronics projects box instead...
+
+##### 3-D printed case - step file:
+
+I intend to build a case that can be 3-D printed.  When I do, I will post the step file so you can print yourself a case as well. This will only be available for the  Looper Pedal Option that is built with my PCB (contact me to get one).  
+
+- If you use the suggested design for the RPi Hat proto board (or any other design for that matter) - the case will not fit because the LED are in different places and they "poke" through the surface.
+- However - once I post the step file - if you are so inclined, you can use a 3-d program to edit the position of the holes for the 3d printer file...
+
+###### A simple method that worked for my prototype:
 
 I have found that an older iphone box (model 8 or before) is a very good prototype enclosure - because it is solid enough to be "stomped" upon as any guitar pedal, and yet, made of cardboard so wifi/bluetooth gets through.  Here is a pic of what I did:
 
 ![Looper case iphone box](./iphonebox.png)
+
+The only difference for the Looper Pedal option is that you do not need to cut out an opening for the usb sound card, and you fit one more audio jack on the side.
 
 
 
