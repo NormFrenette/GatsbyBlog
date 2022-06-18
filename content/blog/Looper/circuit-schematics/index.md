@@ -17,7 +17,8 @@ If you are using the RPi HAT Proto board - due to physical constraints, the pin 
 
 For those who already know how to read a schematic and don't need all the details that follows - here it is:
 
-![Looper Pedal Schematics](./looperpedalschematic.png)
+![Looper Pedal Schematics](./looperschematicsAs.png)
+![Looper Pedal Schematics](./looperschematicsBs.png)
 
 > If you don't know how much about electronics symbols, and the Raspberry Pi GPIO connector - read on - I go through everything one-by-one in details.
 > If you don't want to learn the electronics just yet - and want to simply assemble the circuit to get going with the Looper, go to [Parts List](/Looper/How-to-Build-it-parts-list/) first, to find out what parts to get, then go to [Assembly Instructions](/Looper/How-to-Build-it-assembly-circuits/) to start soldering stuff.
@@ -121,38 +122,69 @@ How it works:
 
 
 #### LED circuits:
-These circuits describe the circuits for:
+The Looper circuit uses:
 - Play: green LED
 - Rec: red LED
 - Counter/track indicator: 7 segment common cathode LED
 
-(*The blue LED is shown with the Mode switch with Buffer option - and not shown here.*)
+The buffer circuit uses the blue LED - which is shown with the Buffer On Switch circuit above.
+
 
 ##### Green and Red LED (Play/Rec)
-- The Green LED circuit connects to GPIO16 (BCM Naming)
-- The Red LED circuit connects to GPIO12 (BCM naming)
 
-![Red and Green LED circuits](./LED_rec_play.png)
+The Red LED is lit by the Python code when the Looper is recording a track.
+The Green LED is lit by the Python Code when the mode Switch is in Edit (Bypass) mode.
+> Refer to schematics for GPIO pin connection
+
+![Red and Green LED circuits](./LED_rec_play2.png)
+
+How it works:
+
+- The Python Code has the ability to set GPIO pins as outputs.  This is done for the pin that connect to the resistor of each LED.
+- The Python Code then has the ability to set the output of a pin to ***high*** - which is 3.3V, or to ***low*** which is RPi Ground (0V).  Setting the pin to high is like connecting a 3.3V battery to the pin.
+- When the pin is low - at 0V, no current flows through the circuit, and the LED is Off.
+- When the pin is high - current flows through the Resistor and the LED:
+    - Without going into the physics of the LED, it is enough to understand that once an LED starts to conduct current, it will drop approximately 2V across its terminals. (RED: 1.7-2V, GREEN: 2.1-2.2V.
+    - This means that we need a minimum of 2 volts, at the GPIO pin to turn on an LED:  we have 3.3V so - we are OK. So where is the rest of the voltage?  It is "dropped" across the resistor.
+    - The voltage on one side of the resistor (GPIO pin) is 3.3V.  The Voltage on the other side of the resistor (entry to LED) is 2V.  So we are dropping 1.3V across the resistor - and using again Ohm's law current (I) = Voltage(V) / Resistance (R). With a resistor of 270 Ohm per our schematic, we see that 4.8 mA (milliAmperes) flows across our resistor.  
+    - By increasing the resistance value we lower the current - which makes the LED dimmer.  Conversely, decreasing the resistance increases current making the LED brighter.  
+
+    > I recommend you wire up a diode circuit to test if you like the brightness of the LED.  Also, even though the schematic uses the same resistor (270) for both LED - you can experiment and choose two different resistor to get the brightness you like for each diode.
 
 ##### LED 7-Segment
 Ensure you use a **"common cathode"** 7-segment LED
 
-![LED circuit and GPIO pin table](./7segment_gpio2.png)
+![LED circuit and GPIO pin table](./7segment_gpio3.png)
+
+How it works:
+
+- each segment is a separate diode.  Current enters a given diode at the pin corresponding to the (letter) segment, and flows out pin 3 or 8 (does not matter since 3 and * are the common cathode and connected together internally).  
+- The cathode is always the "exit"point of the current out of the LED (see symbol definition above).  This means that we must set the voltage at the control pins higher then the voltage at pin 3/8.  We do this by connecting the control pins to a GPIO pin, and the pin3/8 connect through ground (0v) through a current limiting resistor - similar to what was explained above for red/green LED.  
+- It does not matter if the resistor is before or after the diode, but if we put it after - we only need one.
+> Be advise that I am cheating here.  The recommended practice is to put one resistor on each pin and connect 3/8 directly to ground. This is recommended to make sure that each diode get the same current whether one or more segment are lit - to ensure equal brightness.  
+> In our case, remember that the current is decided by the resistor - which here is 390 ohm. If we use a voltage drop of 1.7V for the red led segment we find current = (3.3 - 1.7) Volt / 390 ohms = 4.1 mA.  However if two segments on, they have to share this current among them - so if we had two exactly the same segment - they would each get about 2mA.  Then when all 8 segments are on, they get about 0.5 mAmp each - which is dim.
+> However, LED are not linear like resistors, so when they are turning on - which is the region we are operating in - a small increase of current does not necessarily means a bit change in brightness.  You should test it - but for our application the change in brightness between displaying number 1 vs number 8 is not that noticeable - or foes not affect the purpose for which it is use (counting down position in a track).   
+> If you ever build a project where you have multiple 7-segment displays next to each other, then you should not use only one resistors - because a #1 next to a #8 will be different enough to look bad. (But here we only have one - so it does not really matter).
+
 
 #### Optional Buffer circuit
 If you have selected to include the buffer circuit, and the associated Mode Switch (on-off-on DPDT toggle), build the following circuit on the same breadboard as the rest of the switches and LED circuits - making sure that it is separated from the Raspberry pi power and ground (these should **NOT** be connected together on the breadboard).
 
-- Buffer circuit connects to 9V battery – completely separated from RPi
-- Buffer circuit Ground (GND) is NOT connected to RPi ground.
-- Buffer circuit uses two mono ¼ inch guitar jacks (female) Input & Output – not connected internally to RPi circuit/RPi GND.  
-    - Connect the connector  that contacts the tip of the jack to IN or OUT.  
-    - Connect the connector that contacts the sleeve to the Buffer GND (not raspberry pi ground).
+- Buffer circuit connects to Switched 9V  (power from battery through Buffer On switch) – completely separated from RPi.
+- Buffer circuit Ground (GND) is the negative of the battery NOT connected to RPi ground (GNDREF on schematic).
 
 > There are various alternatives for the output jack using 3.5mm plugs that can be used here.  See the discussion in the [parts list](/Looper/How-to-Build-it-parts-list/) document.
 
-![Optional Buffer circuit](./buffer.png)
+![Optional Buffer circuit](./buffer2.png)
 
+A discussion of how it works is too long for this page. I will eventually post something separately.
 
+> The 470K ohm resistor plays a key role to increase the input impedance of the buffer - which we want has high as possible ro match the output impedance of the guitar (It has to be high enough to not reflect too much power, but low enough to provide enough current to the transistor).  
+> The higher the resistance, the better the power transfer and the purest the tone (of your guitar).  
+> However, if your guitar puts out two much voltage (hot pickups, or you play really hard with a puck) - the higher resistance means more power transferred, and you may overdrive the transistor - creating distortion.  In this case you may want to lower the resistor. Listen for the tone you get to decide what is good for you.  
+> If you like the distortion sound (very vintage with one transistor) - you can keep the resistor but turn down the volume for clean parts.  
+
+As always I recommend building the circuit on a bread board and trying it out to see what you get before soldering everything.  But the values that are there should work - if you just want to go ahead.
 
 
 
