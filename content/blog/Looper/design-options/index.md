@@ -5,11 +5,27 @@ description: Details on design options for the Looper
 mainTag: How-to-Build-it
 ---
 
-The Looper can be build in three different options
+The Looper can be built in three different options.
 
-1. Looper Pedal Option: Looper+Buffer with Integrated input/output. - This is the looper pedal fully documented here.
-2. Looper+Buffer Separate Option: A separate buffer in/out that you can plug in Looper sound card - all in the same box
-3. Looper Only Option: no Buffer circuitry - only what is needed for the Looper
+1. Looper Pedal (with Buffer) Option: 
+    - Looper+Buffer with guitar jacks (1/4") as inputs and outputs - Like a standard guitar pedal.
+    - A switch controls if looper input is from buffer or direct guitar in.
+    - This option is fully documented here with pictures of assembly etc.
+    - I will be offering a 3-d step file for 3-d printing a case that fits this build. (you can print the case with 3-D printer)
+2. Looper+Buffer Separate Option: 
+    - Same PCB/electronics as Looper pedal option - you can follow along that part of the documentation
+    - Looper and buffer are completely separate:
+        - Looper input and output is the USB sound card plugged into the Raspberry Pi (must be exposed to outside case). - Uses 3.5mm jacks
+        - Buffer input and output is guitar jacks (1/4 inch). 
+        - an external short patch cord must be use to connect buffer output to looper output (no internal switching like in the Looper Pedal option).
+    - The 3-D printable case design will not fit. You should build your own or use an electronics project box. (Or you can modify the step file ...)
+    - Switches and wiring are slightly different then Looper pedal option - not pictures - but instructions are provided on how to assemble.
+3. Looper Only Option: no Buffer circuitry 
+    - Only what is needed for the Looper - You can use the electronics schematic here as a guide since looper circuit is clearly identified and separate but no specific layout and assembly pictures are provided in the assembly portion.  (It should not be too hard as there are only a few LED and resistors and two switches.)
+    - Looper input and output is the USB sound card plugged into the Raspberry Pi (must be exposed to outside case). - Uses 3.5mm jacks.
+    - No buffer provided: you must provided a buffered instrument, or a mic (see next section).
+    - The 3-D case will not fit. You should build your own or use an electronics project box.
+    - This would be a great option if you just want to test the looper with a microphone, and play with the software before building a full Looper pedal ...
 
 ### The Buffer - Why?
 

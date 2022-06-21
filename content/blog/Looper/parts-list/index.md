@@ -11,7 +11,7 @@ This document the various parts required to build the Raspberry Pi Looper.
 
 I recommend the raspberry pi (RPi) version 3B+ or 4.  The RPi must have wifi and bluetooth (if you want to use the ios app - which is recommended).
 
-Can you use a pi zero W?  Simply put - I am not sure.  If you have one lying around - please try it and let me know how it works.  
+Can you use a pi zero W?  Simply put - I am not sure.  If you have one lying around - please try it and let me know how it works. Leave a comment below so others can share your experience. 
 >The original pi zeroW had only one core.  The python program is written to use multi-cores as much as possible but the code will run on one core - meaning it will not crash.  The problem is that the audio sampling and playback could be affected by file operations (like saving to SSD card) - and may create stuttering in playback.  At some point I intend to test this - and when I do I will update this.
 
 What about the pi zero 2 W? I have not obtained one yet - but I think it should work just fine as it has 4 cores.  So go for it!
@@ -101,7 +101,7 @@ You need one  *common cathode* 7-segment LED. *(You only need one - even though 
 
 - Column Looper indicates the quantities required for the Looper part of the circuit - use this if building Looper Only Option.
 - Column Buffer indicates the quantities required for the buffer circuit.
-- column Total ss the quantities required for Looper and buffer: use this column if building the Looper Pedal option and the Looper+Buffer Separate Option
+- column Total shows the quantities required for Looper and buffer together: use this column if building the Looper Pedal option and the Looper+Buffer Separate Option.
 
 | Value | Looper Qty | Buffer Qty | total |
 |:----:|:----:|:----:|:----:|
@@ -174,7 +174,7 @@ This switch has 9 terminals underneath - but uses a toggle lever instead of a fo
 
 ###### Looper and Buffer Separate Option:
 
-You still need three switches and you can use the switches above - but they are overkill for your need.  To save money:ny switch that stays in the position you switch it (not momentary) will do
+You still need three switches and you can use the switches above - but they are overkill for your need.  To save money, any switch that stays in the position you switch it (not momentary) will do
 - Buffer Switch: You only need a simple on-off toggle switch (2 pins) - like [this one on Amazon](https://www.amazon.ca/HOUTBY-Miniature-Toggle-Switch-Dashboard/dp/B07FHYZWW1). In fact, any switch that stays in the position you switch it (not momentary) will do.
 - Play/Rec/Stop Momentary foot stomp switch: exactly same as above (no change)
 - Run/Edit - Mode switch: I recommend you use the same switch as above. In reality you only need a 2 pin latching foot switch (that is NOT momentary) - but I find them very difficult to find (they are all momentary) - so best stick with the 6 pin 2PDT latching foot switches that are easy to get.
@@ -202,7 +202,7 @@ These are 1/4 inch female (guitar) jacks.  You need 3 for the Looper_Buffer opti
 Internally to the pedal, we need to connect the input/buffer signals and the Looper out signal to 3.5 mm male jacks that plug into the usb sound card.  
 
 I have found that the cheapest approach is to buy one male-to male 3.5 mm mono cable like [this one on amazon](https://www.amazon.ca/gp/product/B071V7VW96/).  Cut the wire in half, strip the leads and solder them to the jacks/switches as per schematic.  
-> You could also buy/use purpose-built 3.5mm built jacks - but I have found them for difficult to obtain at a reasonable price.
+> You could also buy/use purpose-built 3.5mm built jacks - but I have found them difficult to obtain at a reasonable price.
 
 >IMPORTANT: Do NOT buy stereo 3.5mm male jacks.  They do not fit correctly in the sound card mic input.  The sound card I have recommended accepts only mono mic input.  (Of course, if you bought something different, it might work...)
 

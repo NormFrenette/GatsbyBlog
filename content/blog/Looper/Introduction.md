@@ -27,11 +27,11 @@ You are a teenager playing guitar or base or a synth - and you are curious about
 Or you are the parents/grand-parents of this teenager.  Maybe, you want to buy all the needed pieces on line, and give that teenager 
 a ready-to-build kit - and all the instructions are here.  
 
-Hey! You don't have to be a teenager:  You can be a person with more years under your belt - looking to get into a new hobby.  May be your're not even the musician - but you know one...
+Hey! You don't have to be a teenager:  You can be a person with more years under your belt - looking to get into a new hobby.  May be you're not even the musician - but you know one...
 
 ###### What I hope may result from this:
 
-When I was 10 or 11, my dad bought me a generic Heathkit board - you could build like 40 projects with it.  I built an AM transistor radio - and got in trouble for running up a tree with a 100 foot antenna wire.  But it worked!!! I was hooked. What was nice with Heathkit, was the manual. It actually explained how transistors, resistors, capacitors and inductors worked. It explained how and why the circuit worked.
+When I was 10 or 11, my dad bought me a generic Heathkit board - you could build like 40 projects with it.  I built an AM transistor radio - and got in trouble for running up a tree with a 100 foot antenna wire.  But it worked!!! I was hooked. What was nice with Heathkit was the manual. It actually explained how transistors, resistors, capacitors and inductors worked. It explained how and why the circuit worked.
 
 Unsurprisingly, I became an electrical engineer, got a Ph.D., taught at a University - before going into Industry.  I am more or less retired now. I am taking the time to document how the Looper works, and why. I hope to provide those who build the Looper starting without much knowledge, an opportunity to learn while having fun building it and using it.  Just like Heathkit did for me...
 
@@ -62,7 +62,7 @@ We need to reduce the output impedance of the guitar/base before feeding it to t
 
 I designed a very simple buffer - based on circuitry found in vintage guitar pedals (well, they weren't vintage when I was young...). The buffer circuit fits on the same circuit board as the rest of the Raspberry Pi Looper circuits.  
 
-The power supply of the Raspberry Pi is electrically noisy - and this gets pickup by the buffer - resulting in buzzing /hums etc. I could not use it to power the buffer without adding complex filtering or reconditioning the power (more $$$).  So I went the simple vintage way: a separate 9V battery dedicated to the buffer only. 
+The power supply of the Raspberry Pi is electrically noisy - and this gets picked up by the buffer - resulting in buzzing /hums etc. I could not use it to power the buffer without adding complex filtering or reconditioning the power (more $$$).  So I went the simple vintage way: a separate 9V battery dedicated to the buffer only. 
 
 ##### Buffer is optional
 
@@ -86,7 +86,7 @@ Basic Loopers (i.e inexpensive) have one issue: it is hard to manage  volume whe
 
 Another complaint is that the Looper contains only one song - the one you are currently recording with the looper. There is no way to store these songs unless the Looper comes with a usb port (more $$$).
 
-I am building an iphone app that will extends the functionality of the Looper.  By adding a bluetooth server to the Python code on the Raspberry Pi,The iPhone app can connect to the Looper pedal over bluetooth.   The app then displays a mixer interface where each track volume can be controlled in real time in the Looper.
+I am building an iphone app that will extends the functionality of the Looper.  By adding a bluetooth server to the Python code on the Raspberry Pi, the iPhone app can connect to the Looper pedal over bluetooth.   The app then displays a mixer interface where each track volume can be controlled in real time in the Looper.
 
 With the app, you can also save recorded tracks into songs by giving them separate song names.   These songs are stored on the Looper's Raspberry Pi SD card. From the iPhone app, you can select which song should be loaded in the Looper.  This way it becomes possible to create say a blues song, a folks song or a rock song and bring them back separately for practice or further editing. It is also a great way to show your friends or band mates a new song you created.
 

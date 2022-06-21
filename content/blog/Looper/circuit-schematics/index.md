@@ -17,8 +17,8 @@ If you are using the RPi HAT Proto board - due to physical constraints, the pin 
 
 For those who already know how to read a schematic and don't need all the details that follows - here it is:
 
-![Looper Pedal Schematics](./looperschematicsAs.png)
-![Looper Pedal Schematics](./looperschematicsBs.png)
+![Looper Pedal Schematics](./schemLooper.png)
+![Looper Pedal Schematics](./schemBuffer.png)
 
 > If you don't know how much about electronics symbols, and the Raspberry Pi GPIO connector - read on - I go through everything one-by-one in details.
 > If you don't want to learn the electronics just yet - and want to simply assemble the circuit to get going with the Looper, go to [Parts List](/Looper/How-to-Build-it-parts-list/) first, to find out what parts to get, then go to [Assembly Instructions](/Looper/How-to-Build-it-assembly-circuits/) to start soldering stuff.
