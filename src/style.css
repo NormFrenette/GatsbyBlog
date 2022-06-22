@@ -487,8 +487,29 @@ a:focus {
   color: blue
 }
 
-form span {
+.contactform {
+  font-size: var(--fontSize-0);
+  padding-left: 2em;
+  padding-top: 2em;
+
+}
+
+.contactform span {
   color: red;
   font-size: 10px;
 
+}
+
+.topAndBottom {
+  border-top: 2px solid #666666;
+  border-bottom:  2px solid #666666;
+  margin-bottom: 1rem;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
 }

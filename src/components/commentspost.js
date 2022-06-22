@@ -68,7 +68,7 @@ const CommentsPost = ({slug,postid}) => {
 
     return(
         <div>
-        { status>0 && <div className="commentsSuccess">
+        { status>0 && <div className="commentsSuccess"> 
             <p>Thanks you for submitting a comment. </p>
             <p>It should be processed and displayed within a few minutes.<br />
             You can refresh the page to see it then.</p>

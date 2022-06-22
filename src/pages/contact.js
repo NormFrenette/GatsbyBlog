@@ -1,7 +1,5 @@
 import * as React from "react"
-
-
-//import Bio from "../components/bio"
+import { useState } from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BlogIndex from "../components/blogIndex"
@@ -9,12 +7,35 @@ import { useForm } from "react-hook-form"
 
 export default function ContactPage(location){
   const siteTitle = `Norm's Blog`
-  const { register, handleSubmit, formState: {errors}, } = useForm()
+  const { register, handleSubmit, formState: {errors}, reset, } = useForm()
+  const [submitted,setSubmitted] = useState(false)
+  const [wrongTest,setWrongTest] = useState(false)
+  const [wasSent,setWasSent] = useState('')
 
-  const handlePost = (formData) => {
-    console.log("handling submit")
-    console.log(formData)
-  }
+  const handlePost = (data) => {
+    setSubmitted(false)
+    setWrongTest(false)
+    fetch(`/api/form`, {
+        method: `POST`,
+        body: JSON.stringify(data),
+        headers: {
+          "content-type": `application/json`,
+        },
+      })
+        .then(res => res.json())
+        .then(body => {
+            console.log(`response from API:`, body)
+            if (body === "ok") {
+                console.log(`response from API - OK:`, body)
+                reset()
+                setWasSent(data)
+                setSubmitted(true)
+            }
+            else if (body === "invalid") {
+                setWrongTest(true)
+            }
+        })
+    }
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -23,12 +44,25 @@ export default function ContactPage(location){
       <div className="with-sidebar">
       <div className="in-sidebar"><BlogIndex/></div>
         <div>
-            <p>Use this form to contact me, especially to request a pcb or ask specific questions etc.
+            <h3>Contact Form</h3>
+            {submitted &&<div className="topAndBottom" ><p className = "blue">Thank you for reaching out!</p>
+            <p  className = "blue">The following message was sent to Norm:</p>
+            <p>From: {wasSent["name"]}<br />
+            Email: {wasSent["email"]}<br />
+            Message:<br />{wasSent["message"]}</p>
+            <p  className = "blue">You should get an email from him shortly.</p></div>}
+
+            {wrongTest && <div className="topAndBottom red" ><p>Sorry!!!</p>
+                <p>Please check the answer to Homo Sapiens Test and retry.</p></div>}
+
+
+            <p>Send me a message, especially if you are requesting a pcb or 
+                have specific questions you would like me to address.<br />
             I will respond by email - and we can take it from there.
             </p>
 
-            <form onSubmit={handleSubmit(handlePost)}>
-            <p><label htmlFor="yourname">Name: </label>
+            <form className="contactform" onSubmit={handleSubmit(handlePost)}>
+            <p><label htmlFor="yourname">Your Name: </label>
             <input 
                 id="yourname"
                 {...register('name',{ required: true })} 
@@ -40,7 +74,7 @@ export default function ContactPage(location){
             )}
             </p>
             <p>
-            <label htmlFor="youremail">email: </label>
+            <label htmlFor="youremail">Your email: </label>
             <input 
                 id="youremail"
                 {...register('email',{ required: true,
@@ -63,11 +97,12 @@ export default function ContactPage(location){
             />
             
             </p>
-            <p>
+
             <label htmlFor="livetest">
-                <p> Homo Sapiens test:<br />
-                Which of these has these four has the most fur: snake, banana, fox, beer? </p>
+                <p> Homo Sapiens test:</p>
+                Which of these has these four has the most fur: snake, banana, fox, beer?<br />
             </label>
+            <p>
             <input
                 id="livetest"
                 placeholder="enter your answer here"
@@ -82,8 +117,10 @@ export default function ContactPage(location){
                 </span>
             )}  
             </p>
+
             <div>
-                <button type="submit">Submit</button>
+                <p>
+                <button type="submit">Submit</button></p>
             </div>
             </form>
         </div>

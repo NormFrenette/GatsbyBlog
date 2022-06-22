@@ -8,6 +8,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "axios": "^0.26.1",
     "gatsby": "^4.3.0",
     "gatsby-plugin-feed": "^4.3.0",
