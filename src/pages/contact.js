@@ -57,7 +57,7 @@ export default function ContactPage(location){
 
 
             <p>Send me a message, especially if you are requesting a pcb or 
-                have specific questions you would like me to address.<br />
+                have specific questions you would like me to address.  
             I will respond by email - and we can take it from there.
             </p>
 
@@ -65,6 +65,7 @@ export default function ContactPage(location){
             <p><label htmlFor="yourname">Your Name: </label>
             <input 
                 id="yourname"
+                size="40"
                 {...register('name',{ required: true })} 
             />
             {errors.name && (
@@ -77,6 +78,7 @@ export default function ContactPage(location){
             <label htmlFor="youremail">Your email: </label>
             <input 
                 id="youremail"
+                size="40"
                 {...register('email',{ required: true,
                     pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
                 })} 
@@ -99,16 +101,17 @@ export default function ContactPage(location){
             </p>
 
             <label htmlFor="livetest">
-                <p> Homo Sapiens test:</p>
-                Which of these has these four has the most fur: snake, banana, fox, beer?<br />
+                <p style={{"marginBottom" : "4px"}}> Homo Sapiens test:</p>
+                <p className="indent-this" style={{"marginBottom" : "7px"}}>
+                    Which of the following has the most fur:  snake, banana, lion, beer ?</p>
             </label>
             <p>
-            <input
+            <input className="indent-this"
                 id="livetest"
                 placeholder="enter your answer here"
                 {...register('test',{
                     required: true,
-                    pattern: /[ ]*(snake|banana|fox|beer)[ ]*/,
+                    pattern: /(snake|banana|lion|beer)/i,
                 })}
                 />
                 {errors.test && (
@@ -119,8 +122,8 @@ export default function ContactPage(location){
             </p>
 
             <div>
-                <p>
-                <button type="submit">Submit</button></p>
+                <p >
+                <button  style={{"marginTop" : "14px"}}type="submit">Submit</button></p>
             </div>
             </form>
         </div>

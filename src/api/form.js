@@ -10,7 +10,7 @@ const message = {
 
 const contactFormHandler = (req, res) => {
 
-    const test = req.body["test"]
+    const test = req.body["test"].trim().toLowerCase()
     const msgToSend = `Message fom Contact Form:
 from: ${req.body["name"]}
 email: ${req.body["email"]}
@@ -18,7 +18,7 @@ message:
 ${req.body["message"]}
 `   
 
-    if (test == "fox") {
+    if (test == "lion") {
         message.subject="Message from Blog"
         message.text = msgToSend
         return sendgrid.send(message).then( 
