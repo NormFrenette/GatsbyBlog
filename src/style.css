@@ -486,3 +486,9 @@ a:focus {
 .submitMessage {
   color: blue
 }
+
+form span {
+  color: red;
+  font-size: 10px;
+
+}
