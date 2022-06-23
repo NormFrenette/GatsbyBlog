@@ -413,10 +413,7 @@ a:focus {
   font-weight: normal;
 }
 
-.in-sidebar {
-  position: sticky;
-  top: 0;
-}
+
 
 
 .blog-date {
