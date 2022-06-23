@@ -10,7 +10,7 @@ const IndexPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout copyrightdate="2021" location={location} title={siteTitle}>
       <Seo title="All posts" />
         
       <div className="with-sidebar">

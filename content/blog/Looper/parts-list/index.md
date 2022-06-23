@@ -225,7 +225,7 @@ You will need a case for your looper.  I suggest you assemble the looper and all
 
 ##### 3-D printed case - step file:
 
-I intend to build a case that can be 3-D printed.  When I do, I will post the step file so you can print yourself a case as well. This will only be available for the  Looper Pedal Option that is built with my PCB (contact me to get one).  
+I intend to build a case that can be 3-D printed.  When I do, I will post the step file so you can print yourself a case as well. This will only be available for the  Looper Pedal Option that is built with my PCB ([contact me](/contact#sectionTop) to get one).  
 
 - If you use the suggested design for the RPi Hat proto board (or any other design for that matter) - the case will not fit because the LED are in different places and they "poke" through the surface.
 - However - once I post the step file - if you are so inclined, you can use a 3-d program to edit the position of the holes for the 3d printer file...

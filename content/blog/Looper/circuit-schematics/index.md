@@ -7,7 +7,7 @@ mainTag: How-to-Build-it
 
 This page shows the circuits that need to be wired to the raspberry pi.  If you have not done so - read the [Basic Concepts](/Looper/How-to-Build-it-Introduction/#sectionTop) which explains how the Raspberry Pi and the optional buffer electronics are used.
 
-Per [Parts List](/Looper/How-to-Build-it-parts-list/#sectionTop) you can contact me to get the Printed Circuit Board which corresponds to the schematic below.
+Per [Parts List](/Looper/How-to-Build-it-parts-list/#sectionTop) you can [contact me](/contact#sectionTop) to get the Printed Circuit Board which corresponds to the schematic below.
 
 If you are using the RPi HAT Proto board - due to physical constraints, the pin connections between Raspberry Pi GPIO connector and LED/switches are different.  A table on the schematic gives those value that should be used instead.
 

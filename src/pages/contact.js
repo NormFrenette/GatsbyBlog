@@ -38,7 +38,7 @@ export default function ContactPage(location){
     }
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout copyrightdate="2021" location={"contact"} title={siteTitle}>
       <Seo title="Contact form" />
         
       <div className="with-sidebar">

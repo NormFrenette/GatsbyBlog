@@ -26,7 +26,7 @@ const BlogPostTemplate = ({ data, location }) => {
 }
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout copyrightdate={post.frontmatter.date.split(" ").pop()} location={location} title={siteTitle}>
       <Seo
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
