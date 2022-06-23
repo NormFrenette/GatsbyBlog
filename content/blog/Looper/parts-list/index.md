@@ -87,7 +87,7 @@ Additionally - for the buffer option:  buy an extra blue LED.
 
 ![standard LED](./standardLED.png)
 
->note: the short leg of the diode, which is connected to the larger piece of metal (you can see inside the plastic) is the negative lead: connect it to GND (ground) in the [schematics](/Looper/How-to-Build-it-circuit-schematics/)
+>note: the short leg of the diode, which is connected to the larger piece of metal (you can see inside the plastic) is the negative lead: connect it to GND (ground) in the [schematics](/Looper/How-to-Build-it-circuit-schematics/#sectionTop)
 
 ##### 7-segment LED
 

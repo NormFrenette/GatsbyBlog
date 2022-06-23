@@ -29,7 +29,7 @@ The Looper can be built in three different options.
 
 ### The Buffer - Why?
 
-As explained in the  [Introduction](/Looper/How-to-Build-it-Introduction/), it is necessary to modify the impedance of the guitar/base signal before feeding it to the sound card of the Raspberry Pi - otherwise the tone of the instrument on input is affected negatively.  
+As explained in the  [Introduction](/Looper/How-to-Build-it-Introduction/#sectionTop), it is necessary to modify the impedance of the guitar/base signal before feeding it to the sound card of the Raspberry Pi - otherwise the tone of the instrument on input is affected negatively.  
 
 If you always plan to use a separate buffer or pedal in front of the looper - you can use the simpler third option : Looper only (no Buffer).
 
@@ -39,7 +39,7 @@ But if you want to use the pedal with the instrument directly plugged in to the 
 
 This is the option that is fully documented here - and for which I will make a case design (3-D printing) available when ready.
 
-The buffer circuitry is assembled on the same breadboard as the Looper electronics.(see [parts list](/Looper/How-to-Build-it-parts-list/)).  It uses a separate 9V battery and does not share the Looper power supply.
+The buffer circuitry is assembled on the same breadboard as the Looper electronics.(see [parts list](/Looper/How-to-Build-it-parts-list/#sectionTop)).  It uses a separate 9V battery and does not share the Looper power supply.
 
 ![Looper Integrated Option](../User-Guide/loopermodel2.png)
 
@@ -53,7 +53,7 @@ There are three control switches:
 - Play/Rec/Stop foot switch
 - Mode Switch (Run/Edit(bypass))
 
-How it works: (see [user guide](/Looper/How-to-Use-User-Guide/) for details)
+How it works: (see [user guide](/Looper/How-to-Use-User-Guide/#sectionTop) for details)
 
 - ***Buffer switch is ON***: The Blue LED is lit and the ***Instrument Input*** signal is sent to the buffer circuit. The Buffer output signal is internally sent to the Looper sound card input (which is plugged into the Raspberry Pi). 
 - ***Buffer switch is OFF***: The ***Instrument Input*** signal is fed directly to the internal Looper sound card (for times when you don't need to use the buffer). 
@@ -77,9 +77,9 @@ This option keeps the buffer and Looper Input and Outputs separate. The sound ca
 
 - In all use cases, the headphone out (green terminal) of the sound card must be connected to an amp/speakers or headphone.  the connection uses a 3.5mm male jack (mono or stereo will work - if stereo plug is used, sound will be on left channel only).
 - To use the looper with the buffer, turn the buffer ON with the buffer toggle switch, plug the guitar in the guitar IN jack, and connect the buffer OUT jack to the soundcard mic input (pink terminal) - with a short patch cord. Note: the Guitar IN jack ***only*** goes to the buffer.
-- To use the looper without the buffer, plug the guitar into something that will buffer it - and plug the output of that device into the sound card mic input (pink terminal).  (See [Introduction](/Looper/How-to-Build-it-Introduction/) for list of devices that buffer a guitar).
+- To use the looper without the buffer, plug the guitar into something that will buffer it - and plug the output of that device into the sound card mic input (pink terminal).  (See [Introduction](/Looper/How-to-Build-it-Introduction/#sectionTop) for list of devices that buffer a guitar).
 - Patch Cable:  Since most guitars use a 1/4 inch mono patch cord, and since the buffer Out is also a 1/4 inch jack, in both cases (buffer or direct guitar) -  you will need to buy a 1/4 inch to  3.5 mm mono adapter like this [one on Amazon](https://www.amazon.ca/CGTime-Golden-Plated-Converter-Adapter/dp/B01M6CQYUK/). Or you can construct a specific cable (which is what I did).  
->Be careful - if you use the sound card listed in the [Parts list](/Looper/How-to-Build-it-parts-list/)- your adapter or patch cable ***must be mono*** male 3.5mm plug - it will not work with stereo plug.
+>Be careful - if you use the sound card listed in the [Parts list](/Looper/How-to-Build-it-parts-list/#sectionTop)- your adapter or patch cable ***must be mono*** male 3.5mm plug - it will not work with stereo plug.
 
 The switches have the same basic function as the Looper pedal option described above, except that the Mode Switch (run/edit) is no longer a True Bypass - since you need to physically connect either the guitar or the buffer out to the sound card mic input.
 
@@ -97,7 +97,7 @@ The design is similar to the iphone box prototype shown above except:
 - You don't need the Buffer On toggle switch
 - You don't need the buffer circuit.
 
-Your guitar should be connected to something that buffers the signal as explained in the [Introduction](/Looper/How-to-Build-it-Introduction/). The output of this "something" connects to the sound card mic input (pink terminal) - using a 3.5 mm mono plug.
+Your guitar should be connected to something that buffers the signal as explained in the [Introduction](/Looper/How-to-Build-it-Introduction/#sectionTop). The output of this "something" connects to the sound card mic input (pink terminal) - using a 3.5 mm mono plug.
 
 If you connect the guitar directly in the sound card - it will still work but the sound will be poor (loss of tone - "thinny sound").
 

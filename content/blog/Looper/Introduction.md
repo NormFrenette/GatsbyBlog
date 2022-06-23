@@ -76,7 +76,7 @@ If you have none of the above, I strongly suggest that you build the buffer.  It
 
 ##### Buffer: One more benefit
 
-Since the buffer is essentially a separate pedal integrated in the Looper, there is a buffer output as well as a Looper output (see [this picture](/Looper/How-to-Use-User-Guide/)).  Having the buffer output available coming out of the pedal, means that the pedal can be used as a buffer (without powering up the Raspberry Pi).  
+Since the buffer is essentially a separate pedal integrated in the Looper, there is a buffer output as well as a Looper output (see [this picture](/Looper/How-to-Use-User-Guide/#sectionTop)).  Having the buffer output available coming out of the pedal, means that the pedal can be used as a buffer (without powering up the Raspberry Pi).  
 
 Effectively, the buffer part of your Looper becomes a D.I. box (like an iRig) - that you could connect to laptop or desktop sound card (Mac or PC). You then can use all of the apps available for these devices to make more music.
 
@@ -98,14 +98,14 @@ To build your Looper, you will need a Raspberry Pi, some electronics parts and s
 
 >You do not need to know Python or any programming to load the Looper code unto the Raspberry Pi.
 
-The [How-to-Build-it](/Looper/How-to-Build-it-circuit-schematics/) section (menu on left) of this blog lists the parts, the schematics, and how to physically build the Looper pedal.
+The [How-to-Build-it](/Looper/How-to-Build-it-circuit-schematics/#sectionTop) section (menu on left) of this blog lists the parts, the schematics, and how to physically build the Looper pedal.
 
-The [Software-Installation](/Looper/Software-Installation-Raspberry-Pi-Automated/) section shows how to download the open-source Python code and how to install it on the Raspberry Pi, as well as install various modules needed for sound and bluetooth to work.  
+The [Software-Installation](/Looper/Software-Installation-Raspberry-Pi-Automated/#sectionTop) section shows how to download the open-source Python code and how to install it on the Raspberry Pi, as well as install various modules needed for sound and bluetooth to work.  
 
-The [How-to-Use](/Looper/How-to-Use-User-Guide/) section provides a user guide for the Looper pedal.
+The [How-to-Use](/Looper/How-to-Use-User-Guide/#sectionTop) section provides a user guide for the Looper pedal.
 > When the iphone app is published - a user guide for the iphone app will also be included here. 
 
-If you have never used a Raspberry Pi before - look under the [Raspberry Pi](/Raspberry-Pi/Installation-RPi-OS-Lite-Headless/) section for tips on installation and basic principles.  
+If you have never used a Raspberry Pi before - look under the [Raspberry Pi](/Raspberry-Pi/Installation-RPi-OS-Lite-Headless/#sectionTop) section for tips on installation and basic principles.  
 
 
 

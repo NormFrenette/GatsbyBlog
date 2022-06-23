@@ -6,7 +6,7 @@ mainTag: Installation
 ---
 
 #### About
-This  shows step-by-step details onf how to install the latest (as of Feb 2022) Raspberry Pi Operating System (OS) provided by the Raspberry Pi Foundation - to create a Raspberry Pi in [Headless](/Raspberry-Pi/Principles-What-is-Headless/) mode.  I use a macbook.  If you have a PC, the steps are similar (using the Raspberry Pi Imager is simplest).  I use terminal and linux commands on both mac and Raspberry Pi to set-up. 
+This  shows step-by-step details onf how to install the latest (as of Feb 2022) Raspberry Pi Operating System (OS) provided by the Raspberry Pi Foundation - to create a Raspberry Pi in [Headless](/Raspberry-Pi/Principles-What-is-Headless/#sectionTop) mode.  I use a macbook.  If you have a PC, the steps are similar (using the Raspberry Pi Imager is simplest).  I use terminal and linux commands on both mac and Raspberry Pi to set-up. 
 
 > These are very detailed instructions written for somebody who has never seen Raspberry Pi before, and who has never used the terminal on the Mac, nor any Linux commands.  As a result, this post is long. But the actual amount of work is much shorter...
 
@@ -191,7 +191,7 @@ ssh pi@looper64.local
 
 You have installed the latest version of the Raspberry Pi OS lite on your RPi, and have set up a way to control it in headless mode - directly from your computer - without having to connect a monitor, keyboard and mouse.
 
-At this point you can install the software for the [Looper](/Looper/Software-Installation-RaspberryPi-manual/), or for the [Set Wifi via Bluetooth](/Set-wifi-via-bluetooth/Installation-RaspberryPi-automatic/) app, unto your raspberry pi.
+At this point you can install the software for the [Looper](/Looper/Software-Installation-RaspberryPi-manual/#sectionTop), or for the [Set Wifi via Bluetooth](/Set-wifi-via-bluetooth/Installation-RaspberryPi-automatic/#sectionTop) app, unto your raspberry pi.
 
 Or you can simply start developing your own code for your own project.  Have fun!
 

@@ -4,7 +4,7 @@ date: "2022-04-06T10:00:00.000Z"
 description: Step-by-step commands in RPi Terminal to install files needed for the Looper pedal.
 mainTag: Software-Installation
 ---
-#### Current Version: Beta - May 26, 2022
+#### Current Version: Beta - June 15, 2022
 In the early days of deploying thi software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
 >Note: I am not changing the version  number of the software while in Beta.  
 > To check current version date on your Raspberry Pi:  Open looperLog.log file in the loop directory and look for the line that starts with ********* Starting Looper ** version date ...
@@ -20,11 +20,11 @@ Step by Step (manually) install on your Raspberry Pi the looper code written in 
 
 #### Requirements
 1. Operating System (OS):
-The Raspberry Pi Operating System must be already installed (typically on an SD card), it boots, and you have the ability to control it via terminal (either SSH from another computer for headless Pi or with attached keybaord/mouse/monitor for desktop version).
+The Raspberry Pi Operating System must be already installed (typically on an SD card), it boots, and you have the ability to control it via terminal (either SSH from another computer for headless Pi or with attached keyboard/mouse/monitor for desktop version).
 
 2. Python3: 
-Version 3.7 or later **must** be instaled on the Raspberry Pi.  *(see below how to check this)*  
-Here is one way to [install the newest python version](/Python/Installation-RaspberryPi-Higher-Version/) 
+Version 3.7 or later **must** be installed on the Raspberry Pi.  *(see below how to check this)*  
+Here is one way to [install the newest python version](/Python/Installation-RaspberryPi-Higher-Version/#sectionTop) 
 
 #### General
 All commands below are to be typed at the prompt in a terminal window on the Raspberry Pi.
@@ -52,7 +52,7 @@ sudo reboot
 ```
 python3 --version
 ```
-> **If the version returned is less then Python 3.7, you must install a newer version of Python before continuing.** Here is one way to [install the newest python](/Python/Installation-RaspberryPi-Higher-Version/) 
+> **If the version returned is less then Python 3.7, you must install a newer version of Python before continuing.** Here is one way to [install the newest python](/Python/Installation-RaspberryPi-Higher-Version/#sectionTop) 
 
 These instructions assumes you installed the latest version of the RPi OS - which comes with Python version 3.9. The instructions make use of this system python.  
 > If you have installed a different (newer) version of python and created an alias, or if you are installing python in a separate environment,  - replace all instances of **python3** in the commands below with your alias/environment.

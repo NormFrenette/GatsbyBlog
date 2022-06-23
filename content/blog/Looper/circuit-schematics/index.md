@@ -5,9 +5,9 @@ description: schematics showing how to wire the GPIO pins and building a buffer 
 mainTag: How-to-Build-it
 ---
 
-This page shows the circuits that need to be wired to the raspberry pi.  If you have not done so - read the [Basic Concepts](/Looper/How-to-Build-it-Introduction/) which explains how the Raspberry Pi and the optional buffer electronics are used.
+This page shows the circuits that need to be wired to the raspberry pi.  If you have not done so - read the [Basic Concepts](/Looper/How-to-Build-it-Introduction/#sectionTop) which explains how the Raspberry Pi and the optional buffer electronics are used.
 
-Per [Parts List](/Looper/How-to-Build-it-parts-list/) you can contact me to get the Printed Circuit Board which corresponds to the schematic below.
+Per [Parts List](/Looper/How-to-Build-it-parts-list/#sectionTop) you can contact me to get the Printed Circuit Board which corresponds to the schematic below.
 
 If you are using the RPi HAT Proto board - due to physical constraints, the pin connections between Raspberry Pi GPIO connector and LED/switches are different.  A table on the schematic gives those value that should be used instead.
 
@@ -21,7 +21,7 @@ For those who already know how to read a schematic and don't need all the detail
 ![Looper Pedal Schematics](./schemBuffer.png)
 
 > If you don't know how much about electronics symbols, and the Raspberry Pi GPIO connector - read on - I go through everything one-by-one in details.
-> If you don't want to learn the electronics just yet - and want to simply assemble the circuit to get going with the Looper, go to [Parts List](/Looper/How-to-Build-it-parts-list/) first, to find out what parts to get, then go to [Assembly Instructions](/Looper/How-to-Build-it-assembly-circuits/) to start soldering stuff.
+> If you don't want to learn the electronics just yet - and want to simply assemble the circuit to get going with the Looper, go to [Parts List](/Looper/How-to-Build-it-parts-list/#sectionTop) first, to find out what parts to get, then go to [Assembly Instructions](/Looper/How-to-Build-it-assembly-circuits/#sectionTop) to start soldering stuff.
 
 #### Raspberry Pi GPIO
 
@@ -173,7 +173,7 @@ If you have selected to include the buffer circuit, and the associated Mode Swit
 - Buffer circuit connects to Switched 9V  (power from battery through Buffer On switch) – completely separated from RPi.
 - Buffer circuit Ground (GND) is the negative of the battery NOT connected to RPi ground (GNDREF on schematic).
 
-> There are various alternatives for the output jack using 3.5mm plugs that can be used here.  See the discussion in the [parts list](/Looper/How-to-Build-it-parts-list/) document.
+> There are various alternatives for the output jack using 3.5mm plugs that can be used here.  See the discussion in the [parts list](/Looper/How-to-Build-it-parts-list/#sectionTop) document.
 
 ![Optional Buffer circuit](./buffer2.png)
 

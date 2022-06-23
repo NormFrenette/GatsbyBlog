@@ -16,7 +16,7 @@ const IndexPage = ({ data, location }) => {
       <div className="with-sidebar">
       <div className="in-sidebar"><BlogIndex/></div>
         <div>
-          <h4>Welcome to my blog</h4>
+          <h4 id="sectionTop">Welcome to my blog</h4>
           <p>I'm publishing notes about what I learned - in case it can help others. I try to write them 
             as comprehensively as possible, for people who are just starting.</p>
           <p> I publish instruction on how to build my projects - electronics, or code, or both. 

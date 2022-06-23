@@ -58,7 +58,7 @@ Here's is an example on the mac, where I opened a terminal window, I connected t
 #### So how do we do this?
 
 Basically, I install the headless version of the Raspberry Pi Operating system (called OS lite) on the Raspberry Pi SD card, and set it up to speak to the Wi-Fi router.  Then I use SSH and some authentication stuff to connect to the Raspberry Pi from the mac.  
-> See the detailed step by step [OS lite installation and SSH instructions](/Raspberry-Pi/Installation-RPi-OS-Lite-Headless/) on how to do to this.
+> See the detailed step by step [OS lite installation and SSH instructions](/Raspberry-Pi/Installation-RPi-OS-Lite-Headless/#sectionTop) on how to do to this.
 
 #### What about programming in the Raspberry Pi?
 

@@ -411,6 +411,12 @@ a:focus {
   font-weight: normal;
 }
 
+.in-sidebar {
+  position: sticky;
+  top: 0;
+}
+
+
 .blog-date {
   text-align: right;
   font-size: 0.75rem;
@@ -489,8 +495,11 @@ a:focus {
 
 .contactform {
   font-size: var(--fontSize-0);
-  padding-left: 2em;
-  padding-top: 2em;
+  padding: 2em;
+  border-radius: 25px;
+  border: 2px solid rgb(132, 180, 238);
+  background-color: #ffffff;
+
 
 }
 
@@ -513,3 +522,4 @@ a:focus {
 .blue {
   color: blue;
 }
+

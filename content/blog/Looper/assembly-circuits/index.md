@@ -7,13 +7,13 @@ mainTag: How-to-Build-it
 
 This might be a long page - I assemble the circuits and take lots of pictures.  Hope it is useful...
 
-I am showing how to assemble the Looper Pedal (with buffer) Option.  There are other [options](/Looper/How-to-Build-it-design-options/),
+I am showing how to assemble the Looper Pedal (with buffer) Option.  There are other [options](/Looper/How-to-Build-it-design-options/#sectionTop),
 but they are simpler so you should be able to remove what you don;t need from this page and still build your selected option.
 
 This pages covers two different assemblies:
 1. Looper PCB: I designed and had made a PCB for the Looper Pedal (with buffer) Option. 
     - I can mail this to you for a small fee (cover my costs) - leave a message below if you are interested.
-2. RPI HAT Proto board - shown in [Parts List](/Looper/How-to-Build-it-parts-list/) 
+2. RPI HAT Proto board - shown in [Parts List](/Looper/How-to-Build-it-parts-list/#sectionTop) 
     - This was my second implementation - and works fine - just a bit longer and finicky to assemble
 
 > Do not worry if you see slightly different resistor and capacitor values used in the picture as compared to the current state of the schematics.  I have built a few prototypes and have modified the values sometimes from when I took the pictures.  Also - sometimes I run  out of something and I will use the nearest value available - and in most cases it does not affect performance very much.
@@ -66,7 +66,7 @@ Note: Assemble all components on the board first - before soldering wires that g
 
 ##### For Looper PCB
 
-Everything is laid out on the board - and numbered.  The numbering - such as R1, C1, D1 etc. corresponds to the [schematic](/Looper/How-to-Build-it-circuit-schematics/) - so you can refer to it in order to figure out which part does where.  
+Everything is laid out on the board - and numbered.  The numbering - such as R1, C1, D1 etc. corresponds to the [schematic](/Looper/How-to-Build-it-circuit-schematics/#sectionTop) - so you can refer to it in order to figure out which part does where.  
 
 All you have to do is bend the leads of the parts that need it - drop them in the holes of their location - turn the board over and solder them.
 > Hint - start with the thinnest parts (like resistors) so when you turn the board over they stay put as they rest on the table.  Then move on to thicker part - in order of thickness.  You should finish with the LED and 7 segments.
@@ -91,7 +91,7 @@ LED are shown as circle of the color that match the LED.  Pay attention to the +
 
 > The grid does not show the 40 pin connector.  The last grid column (right)  shows the labelled GPIO holes to solder to.  
 
-> Note that you do not solder any wires to the connector.  The RPI HAT proto board has PCB copper traces that connects the labelled row of GPIO to their actual pin on the connector. You solder your wires to the row (column?) of GPIO labeled holes.  Note also that this particular board labels the pins sometimes with their BCM naming number - sometimes with their BCM Pin role. For example BCM15 (GPIO15) which we need for the 7-Segment is labeled RXD.  I have used the RPI HAT Proto board pin labeling on the grid layout.  (refer to the GPIO naming section of the [schematic](/Looper/How-to-Build-it-circuit-schematics/) to see BCM pin numbers and pin roles).  
+> Note that you do not solder any wires to the connector.  The RPI HAT proto board has PCB copper traces that connects the labelled row of GPIO to their actual pin on the connector. You solder your wires to the row (column?) of GPIO labeled holes.  Note also that this particular board labels the pins sometimes with their BCM naming number - sometimes with their BCM Pin role. For example BCM15 (GPIO15) which we need for the 7-Segment is labeled RXD.  I have used the RPI HAT Proto board pin labeling on the grid layout.  (refer to the GPIO naming section of the [schematic](/Looper/How-to-Build-it-circuit-schematics/#sectionTop) to see BCM pin numbers and pin roles).  
 
 Electrolytic capacitors are shown laid flat on the board - because of clearance issues.  Two leads come out of the "box" to indicate the hole where they should be soldered.  Pay attention the the negative lead indicated by three minus signs (- - -) on the box drawing - which corresponds to the negative markings on the electrolytic capacitor can.
 

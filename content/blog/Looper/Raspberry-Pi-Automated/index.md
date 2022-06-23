@@ -21,7 +21,7 @@ In the early days of deploying thi software, I am making changes often based on 
 
 ##### Automated Install - How To: 
 
-Copy these commands in a terminal window on the Raspberry Pi (or presumably, ssh into the [Headless](/Raspberry-Pi/Principles-What-is-Headless/) Raspberry Pi):
+Copy these commands in a terminal window on the Raspberry Pi (or presumably, ssh into the [Headless](/Raspberry-Pi/Principles-What-is-Headless/#sectionTop) Raspberry Pi):
 
 1. Make sure your Raspberry Pi is up to date - type (in sequence, hit "return" key after each line):
 ```
@@ -37,7 +37,7 @@ cd ~
 
 3. Download and run the script and run it:
 
-The following command downloads a bash file from my website, and runs it.  It will run all install commands (same command as with the [manual](/Looper/Software-Installation-RaspberryPi-manual/) install instructions) - without further input.
+The following command downloads a bash file from my website, and runs it.  It will run all install commands (same command as with the [manual](/Looper/Software-Installation-RaspberryPi-manual/#sectionTop) install instructions) - without further input.
 ```
 curl  https://normfrenette.com/looperinstall.sh | sudo bash
 ```

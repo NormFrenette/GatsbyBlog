@@ -44,7 +44,7 @@ export default function ContactPage(location){
       <div className="with-sidebar">
       <div className="in-sidebar"><BlogIndex/></div>
         <div>
-            <h3>Contact Form</h3>
+            <h3 id="sectionTop">Contact me</h3>
             {submitted &&<div className="topAndBottom" ><p className = "blue">Thank you for reaching out!</p>
             <p  className = "blue">The following message was sent to Norm:</p>
             <p>From: {wasSent["name"]}<br />
@@ -103,7 +103,7 @@ export default function ContactPage(location){
             <label htmlFor="livetest">
                 <p style={{"marginBottom" : "4px"}}> Homo Sapiens test:</p>
                 <p className="indent-this" style={{"marginBottom" : "7px"}}>
-                    Which of the following has the most fur:  snake, banana, lion, beer ?</p>
+                    <strong>Which of the following has the most fur:</strong>  snake, banana, lion, beer ?</p>
             </label>
             <p>
             <input className="indent-this"
@@ -123,7 +123,7 @@ export default function ContactPage(location){
 
             <div>
                 <p >
-                <button  style={{"marginTop" : "14px"}}type="submit">Submit</button></p>
+                <button className="greenbutton" style={{"marginTop" : "14px"}}type="submit">Submit</button></p>
             </div>
             </form>
         </div>

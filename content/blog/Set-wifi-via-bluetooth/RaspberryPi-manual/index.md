@@ -13,7 +13,7 @@ Step by Step (manually) install on your Raspberry Pi of a bluetooth BLE Server w
 
 #### Requirements
 *Python3: version 3.7 or later **must** be installed on the Raspberry Pi.*  
-Here is one way to [install the newest python](/Python/Installation-RaspberryPi-Higher-Version/) 
+Here is one way to [install the newest python](/Python/Installation-RaspberryPi-Higher-Version/#sectionTop) 
 
 #### General
 All commands below are to be typed at the prompt in a terminal window on the Raspberry Pi.
@@ -39,7 +39,7 @@ sudo reboot
 ```
 python3 --version
 ```
-> **If the version returned is less then Python 3.7, you must install a newer version of Python before continuing.** Here is one way to [install the newest python](/Python/Installation-RaspberryPi-Higher-Version/) 
+> **If the version returned is less then Python 3.7, you must install a newer version of Python before continuing.** Here is one way to [install the newest python](/Python/Installation-RaspberryPi-Higher-Version/#sectionTop) 
 4. Check if you have **pip** installed (if you installed a newer version of python and created an alias (python) - use the alias below instead of python3 in the commands.)
 ```
 python3 -m pip --version

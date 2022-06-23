@@ -8,7 +8,7 @@ mainTag: How-to-Use
 This guide describes the switches and input/outputs of the looper, and how to use them to record tracks, deleted or un-delete tracks, use the buffer and use the True Bypass.
 
 #### Looper box model
-Although the final design will vary slightly, or your enclosure may be different, this image is a good representation of the Looper with Buffer [Integrated version](/Looper/How-to-Build-it-design-options/).
+Although the final design will vary slightly, or your enclosure may be different, this image is a good representation of the Looper with Buffer [Integrated version](/Looper/How-to-Build-it-design-options/#sectionTop).
 
 ![Looper Case Model](./loopermodel2.png)
 
@@ -37,7 +37,7 @@ It is possible to use this pedal only as a buffer pedal - to act as a Direct Inp
 
 ##### Type of Inputs - Can I plug my guitar directly in?
 
-The looper tuns a Raspberry Pi which uses a sound card "mic" input to get the music you want to record.  Just like your computer - as explained in the [introduction](/Looper/How-to-Build-it-Introduction/) - if you plug in the guitar directly - the result is poor tone. 
+The looper tuns a Raspberry Pi which uses a sound card "mic" input to get the music you want to record.  Just like your computer - as explained in the [introduction](/Looper/How-to-Build-it-Introduction/#sectionTop) - if you plug in the guitar directly - the result is poor tone. 
 
 But since a buffer is included - you can plug the guitar directly in the input of the Looper, and turn on the buffer (with the Buffer-On switch).  
 

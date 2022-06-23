@@ -6,7 +6,7 @@ mainTag: iPhone-App
 ---
 
 #### About  
-Set the wifi on your [Headless](/Raspberry-Pi/Principles-What-is-Headless/)Raspberry Pi via the iphone app.  The app connect to the RPi over Bluetooth (i.e. the RPi is not connected to wifi).
+Set the wifi on your [Headless](/Raspberry-Pi/Principles-What-is-Headless/#sectionTop)Raspberry Pi via the iphone app.  The app connect to the RPi over Bluetooth (i.e. the RPi is not connected to wifi).
  
 The typical use cases are:
 1. You have a headless Raspberry Pi working at home - and you take it to a friends house or a public place where you need to connect it to a yet unknown wifi network available there.  
@@ -15,7 +15,7 @@ In all cases, you do not have the ability to connect a monitor/mouse/keyboard to
 
 #### Requirements - what you need:
 1. A Raspberry Pi with integrated wifi and bluetooth.
-2. Installed Python Bluetooth Program on the Raspberry Pi.  You can use the simple [automated](/Set-wifi-via-bluetooth/Installation-RaspberryPi-automatic/) installation procedure, or you can install the code and it's dependencies [manually](/Set-wifi-via-bluetooth/Installation-RaspberryPi-manual/).
+2. Installed Python Bluetooth Program on the Raspberry Pi.  You can use the simple [automated](/Set-wifi-via-bluetooth/Installation-RaspberryPi-automatic/#sectionTop) installation procedure, or you can install the code and it's dependencies [manually](/Set-wifi-via-bluetooth/Installation-RaspberryPi-manual/#sectionTop).
 >*This code **must be installed** on the Raspberry Pi before you attempt to connect to it with the iPhone app.  This code "speaks" via bluetooth to the iPhone app and manages the process of connecting the Raspberry Pi to the wifi network selected via iPhone app.*
 
 #### Basic Principles: Everything happens on the Pi
