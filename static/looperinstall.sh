@@ -143,6 +143,8 @@ mv $tmpDir/loop/looper4.py $loopDir
 mv $tmpDir/loop/bt_svc.py $loopDir
 mv $tmpDir/loop/looperui.py $loopDir
 mv $tmpDir/loop/segment.sh $loopDir
+#add the location of the loper.ini file to segment
+sed -i "s|^ini_file=|&$homeDir/loop/looper.ini|" $homeDir/loop/segment.sh
 rm -Rf $tmpDir
 echo 
 echo Python files were updated.
@@ -150,6 +152,10 @@ echo
 else
 sudo -u $SUDO_USER  wget -P $homeDir https://normfrenette.com/looper.tar.gz
 sudo -u $SUDO_USER  tar -xzvf $homeDir/looper.tar.gz --directory $homeDir
+#add the location of the loper.ini file to segment
+sed -i "s|^ini_file=|&'"$homeDir/loop/looper.ini"'|" $homeDir/loop/segment.sh
+chown root: $homeDir/.asoundrc
+chmod 666 $homeDir/.asoundrc
 # checking .asoundrc for correct usb card number (set to 1 in downloaded files)
 usbcard=$(aplay -l | grep 'USB' | grep -Po 'card\s\d')
 if [ -z "$usbcard" ]; then
@@ -160,13 +166,13 @@ echo Relauch installation after usb card is plugged in to raspberry pi looper.
 echo Note: If you are not using a usb sound card - you cannot use this automated install file.
 exit 1
 fi
-chown root: $homeDir/.asoundrc
-chmod 666 $homeDir/.asoundrc
 fi
 #
 if [ -f /etc/systemd/system/segment.service ]; then 
 echo segment.service file - OK
 else
+#this adds segment.sh location to file then moves it
+sed -i "s|^ExecStart=|&$homeDir/loop/segment.sh|" $homeDir/segment.service
 mv $homeDir/segment.service /etc/systemd/system
 chown root: /etc/systemd/system/segment.service
 systemctl enable segment.service
@@ -174,8 +180,8 @@ fi
 if [ -f /etc/systemd/system/looper.service ]; then 
 echo looper.service file - OK
 else
-#this modifies the looper-service file in home dir with correct python path
-sed -r -i "s|(ExecStart.*=).*\/.*\b( \/.*\b)|\1$pythondir\2|g" $homeDir/looper.service
+#this adds python interpreter location and looper4.py location to file then moves it
+sed -i "s|^ExecStart=|&$pythondir $homeDir/loop/looper4.py|" $homeDir/looper.service
 mv $homeDir/looper.service /etc/systemd/system
 chown root: /etc/systemd/system/looper.service
 systemctl enable looper.service 
