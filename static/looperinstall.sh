@@ -141,8 +141,8 @@ sudo -u $SUDO_USER  tar -xzvf $tmpDir/looper.tar.gz --directory $tmpDir
 echo moving python files...
 mv $tmpDir/loop/looper4.py $loopDir
 mv $tmpDir/loop/bt_svc.py $loopDir
-mv $tmpDir/loop/statemgr.py $loopDir
-mv $tmpDir/loop/rgb_segment.py $loopDir
+mv $tmpDir/loop/looperui.py $loopDir
+mv $tmpDir/loop/segment.sh $loopDir
 rm -Rf $tmpDir
 echo 
 echo Python files were updated.
@@ -152,7 +152,6 @@ sudo -u $SUDO_USER  wget -P $homeDir https://normfrenette.com/looper.tar.gz
 sudo -u $SUDO_USER  tar -xzvf $homeDir/looper.tar.gz --directory $homeDir
 # checking .asoundrc for correct usb card number (set to 1 in downloaded files)
 usbcard=$(aplay -l | grep 'USB' | grep -Po 'card\s\d')
-if [ "$usbcard" != "card 1" ]; then
 if [ -z "$usbcard" ]; then
 echo ERROR: No usb sound card found! 
 echo Please check looper and ensure usb sound card is connected.
@@ -160,12 +159,9 @@ echo Installation will now stop.
 echo Relauch installation after usb card is plugged in to raspberry pi looper.
 echo Note: If you are not using a usb sound card - you cannot use this automated install file.
 exit 1
-else
-echo Fixing .asoundrc file for usb card: $usbcard
-sed -i "s/card 1/$usbcard/g" $homeDir/.asoundrc
-fi
 fi
 chown root: $homeDir/.asoundrc
+chmod 666 $homeDir/.asoundrc
 fi
 #
 if [ -f /etc/systemd/system/segment.service ]; then 
