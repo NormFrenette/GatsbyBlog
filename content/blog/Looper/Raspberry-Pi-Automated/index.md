@@ -35,11 +35,13 @@ sudo reboot
 cd ~
 ```
 
-3. Download and run the script and run it:
+3. Download and run the script automatically:
 
-The following command downloads a bash file from my website, and runs it.  It will run all install commands (same command as with the [manual](/Looper/Software-Installation-RaspberryPi-manual/#sectionTop) install instructions) - without further input.
+>Note: if you prefer to install everything manually, a step by step description is  [here](/Looper/Software-Installation-RaspberryPi-manual/#sectionTop).  If you want to go quick - I have written a bash script that performs every install action in sequence so you only need to enter one command:
+
+The following command downloads a bash file from my website, runs it, then deletes it. It install all the files and dependencies needed to run the looper. Just copy this line and paste it in terminal.
 ```
-curl  https://normfrenette.com/looperinstall.sh | sudo bash
+wget https://normfrenette.com/looperinstall.sh && sudo bash looperinstall.sh && rm looperinstall*
 ```
 4. When the install is complete you will be asked to reboot.  You can do so with the command: 
 ```
