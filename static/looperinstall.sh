@@ -9,7 +9,7 @@ echo "
 
 #check if fresh install - by checking for .ini file
 homeDir=$(eval echo ~$SUDO_USER)
-iniFile="$homeDir/loop/looper.ini2"
+iniFile="$homeDir/loop/looper.ini"
 
 if [ -f $iniFile ]; then
 echo Looper.ini file - OK
@@ -234,6 +234,7 @@ echo Relauch installation after usb card is plugged in to raspberry pi looper.
 echo Note: If you are not using a usb sound card - you cannot use this automated install file.
 exit 1
 fi
+rm $homeDir/looper.tar.gz
 fi
 #
 if [ -f /etc/systemd/system/segment.service ]; then 
@@ -259,18 +260,19 @@ echo
 echo Please reboot Raspberry Pi to start looper. 
 echo "at the prompt - type: sudo reboot "
 echo
+if (( chosenBuild>0 )); then
 echo "************** WARNING ************** WARNING **************"
+fi
 case "$chosenBuild" in
     "1")
     echo "
-    looper.ini file uses GPIO pin assignment from 
+    The looper.ini file uses GPIO pin assignment from 
     Raspberry Pi HAT Proto board instructions at normfrenette.com.
     If you made changes to pin assignment (different from website instructions),
     you must edit looper.ini file BEFORE starting the Looper (before reboot)
     to prevent dammage to your Raspberry Pi."
     ;;
     "2")
-    echo "use .ini file for PCB"
     echo "
     looper.ini file uses GPIO pin assignment from Looper PCB version 1.0
     obtained from  normfrenette.com.
@@ -290,12 +292,13 @@ case "$chosenBuild" in
     ;;
 esac
 echo 
-echo" Note - how to edit the looper.ini file:
+if (( chosenBuild>0 )); then
+echo " Note - how to edit the looper.ini file:
 1) at the prompt type: nano ${loopDir}/looper.ini
 2) using arrows, scroll down to bottm and enter GPIO BCM pin number in list
    to match the LED, switches and segment LED pins
 3) do: ctrl-o and hit return to save your changes (hold ctrl and o keys together)
 4) do: ctrl-x to exit editor.  File is now ready to use
-5) reboot looper:  type:  sudo reboot
-
+5) reboot looper:  type:  sudo reboot"
+fi
 
