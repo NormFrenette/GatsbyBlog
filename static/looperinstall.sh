@@ -1,5 +1,54 @@
 #run this file with sudo
 
+echo "
+*******************************************************
+****                                               ****
+**** Installation of  Looper files on Raspberry Pi ****
+****                                               ****
+*******************************************************"
+
+#check if fresh install - by checking for .ini file
+homeDir=$(eval echo ~$SUDO_USER)
+iniFile="$homeDir/loop/looper.ini2"
+
+if [ -f $iniFile ]; then
+echo Looper.ini file - OK
+chosenBuild=0
+else
+echo "
+First, We need to to know which Physical Build you used 
+to assemble the looper,so we can set the GPIO pin numbers 
+correctly in the software."
+echo
+echo "
+Enter 1 or 2 only if you followed the wiring instruction 
+from the website normfrenette.com. Otherwise enter 3."
+echo
+echo "Please select your build (enter 1, 2 or 3):"
+
+select built in "Raspberry Pi HAT Proto Board wired per website instructions" \
+"Looper PCB version 1.0 - obtained from normfrenette.com" \
+"Any other build (you wired your own GPIO pins numbers)" 
+do
+    if [[ ! -z "$built" ]]; then 
+        echo You have chosen $REPLY: 
+        echo " ===> $built"
+        read -p "**** Please confirm [y/n]: " confirmchoice
+        confirmchoice=${confirmchoice:-'y'}
+        if [[ "$confirmchoice" == "Y" || "$confirmchoice" == "y" ]] ; then
+            break
+        else 
+        echo Please re-enter your choice: 1,2 or 3:
+        fi
+    else
+    echo Please enter selection 1, 2, or 3
+    fi
+done
+chosenBuild=$REPLY
+
+fi
+
+
 #1) check python interpreter and get its location:
 echo Checking Python version ...
 pythonlist=()
@@ -143,7 +192,7 @@ mv $tmpDir/loop/looper4.py $loopDir
 mv $tmpDir/loop/bt_svc.py $loopDir
 mv $tmpDir/loop/looperui.py $loopDir
 mv $tmpDir/loop/segment.sh $loopDir
-#add the location of the loper.ini file to segment
+#add the location of the looper.ini file to segment
 sed -i "s|^ini_file=|&$homeDir/loop/looper.ini|" $homeDir/loop/segment.sh
 rm -Rf $tmpDir
 echo 
@@ -152,6 +201,25 @@ echo
 else
 sudo -u $SUDO_USER  wget -P $homeDir https://normfrenette.com/looper.tar.gz
 sudo -u $SUDO_USER  tar -xzvf $homeDir/looper.tar.gz --directory $homeDir
+# copy the correct looper.ini file - delete others
+case "$chosenBuild" in
+    "1")
+    mv $loopDir/looperHAT $loopDir/looper.ini
+    rm $loopDir/looperBLANK
+    rm $loopDir/looperPCB
+    ;;
+    "2")
+    mv $loopDir/looperPCB $loopDir/looper.ini
+    rm $loopDir/looperBLANK
+    rm $loopDir/looperHAT 
+    ;;
+    "3")
+    mv $loopDir/looperBLANK $loopDir/looper.ini
+    rm $loopDir/looperHAT
+    rm $loopDir/looperPCB
+    ;;
+esac
+
 #add the location of the loper.ini file to segment
 sed -i "s|^ini_file=|&'"$homeDir/loop/looper.ini"'|" $homeDir/loop/segment.sh
 chown root: $homeDir/.asoundrc
@@ -185,7 +253,49 @@ sed -i "s|^ExecStart=|&$pythondir $homeDir/loop/looper4.py|" $homeDir/looper.ser
 mv $homeDir/looper.service /etc/systemd/system
 chown root: /etc/systemd/system/looper.service
 systemctl enable looper.service 
-echo Install complete. Please reboot Raspberry Pi to start looper.
 fi
+echo "********* Install complete. ****************"
+echo 
+echo Please reboot Raspberry Pi to start looper. 
+echo "at the prompt - type: sudo reboot "
+echo
+echo "************** WARNING ************** WARNING **************"
+case "$chosenBuild" in
+    "1")
+    echo "
+    looper.ini file uses GPIO pin assignment from 
+    Raspberry Pi HAT Proto board instructions at normfrenette.com.
+    If you made changes to pin assignment (different from website instructions),
+    you must edit looper.ini file BEFORE starting the Looper (before reboot)
+    to prevent dammage to your Raspberry Pi."
+    ;;
+    "2")
+    echo "use .ini file for PCB"
+    echo "
+    looper.ini file uses GPIO pin assignment from Looper PCB version 1.0
+    obtained from  normfrenette.com.
+    If you used an older version of the PCB (or did not use the PCB)
+    you must edit looper.ini file BEFORE starting the Looper (before reboot)
+    to prevent dammage to your Raspberry Pi."
+    ;;
+    "3")
+    echo "
+    The looper.ini file MUST BE EDITED before you 
+    reboot to startthe Looper.
+    You must enter the GPIO pin assignment you used
+    to connect to LED and switches during your build.
+    The looper will fail to start if you do not edit the file
+    to protect potential dammage to the Raspberry Pi.
+    "
+    ;;
+esac
+echo 
+echo" Note - how to edit the looper.ini file:
+1) at the prompt type: nano ${loopDir}/looper.ini
+2) using arrows, scroll down to bottm and enter GPIO BCM pin number in list
+   to match the LED, switches and segment LED pins
+3) do: ctrl-o and hit return to save your changes (hold ctrl and o keys together)
+4) do: ctrl-x to exit editor.  File is now ready to use
+5) reboot looper:  type:  sudo reboot
 
 
