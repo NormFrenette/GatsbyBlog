@@ -30,7 +30,7 @@ const Layout = ({ copyrightdate,location, title, children }) => {
         </span>
 
         <span style={{"float" :"left"}}>
-        {(location != "contact") && <a href="/contact#sectionTop">Contact Norm</a>}
+        {(location !== "contact") && <a href="/contact#sectionTop">Contact Norm</a>}
         </span>
         <p style={{"textAlign" :"center"}}>© {copyrightdate} NormFrenette.com </p>
         
