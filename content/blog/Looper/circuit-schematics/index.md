@@ -7,18 +7,25 @@ mainTag: How-to-Build-it
 
 This page shows the circuits that need to be wired to the raspberry pi.  If you have not done so - read the [Basic Concepts](/Looper/How-to-Build-it-Introduction/#sectionTop) which explains how the Raspberry Pi and the optional buffer electronics are used.
 
-Per [Parts List](/Looper/How-to-Build-it-parts-list/#sectionTop) you can [contact me](/contact#sectionTop) to get the Printed Circuit Board which corresponds to the schematic below.
+Per [Parts List](/Looper/How-to-Build-it-parts-list/#sectionTop) you can [contact me](/contact#sectionTop) to get the Printed Circuit Board (v2) which corresponds to the schematic below labelled Looper PCB V2.
 
-If you are using the RPi HAT Proto board - due to physical constraints, the pin connections between Raspberry Pi GPIO connector and LED/switches are different.  A table on the schematic gives those value that should be used instead.
+If you are using the RPi HAT Proto board - due to physical constraints, the pin connections between Raspberry Pi GPIO connector and LED/switches are different.  The circuits are the same - only the RPi connections changed.  use the schematics labelled RPi HAT
 
->If you plan to use RPi HAT Proto Board, and the assembly instructions I provide, you won't have to worry about the schematics as I have laid out every part and its connection.  However, if you want to learn the details of the circuit - you will need to decide which implementation you use.
+>If you plan to use RPi HAT Proto Board, refer to the [Assembly Instructions](/Looper/How-to-Build-it-assembly-circuits/#sectionTop) where I provide a grid with the layout and connections to each components - using the RPi HAT connections pins.
 
 #### Schematics for Looper Pedal (with buffer) Option:
 
 For those who already know how to read a schematic and don't need all the details that follows - here it is:
 
-![Looper Pedal Schematics](./schemLooper.png)
-![Looper Pedal Schematics](./schemBuffer.png)
+| ![Looper Pedal Schematics V2](./schemLooperV2.png) Schematics for Looper PCB V2 |
+|:--:| 
+
+
+| ![Looper Pedal Schematics Rpi HAT](./schemLooperPiHAT.png) Schematics for Looper build with Pi HAT |
+|:--:| 
+
+| ![Looper Pedal Schematics](./schemBuffer.png) Schematics for buffer circuit |
+|:--:| 
 
 > If you don't know how much about electronics symbols, and the Raspberry Pi GPIO connector - read on - I go through everything one-by-one in details.
 > If you don't want to learn the electronics just yet - and want to simply assemble the circuit to get going with the Looper, go to [Parts List](/Looper/How-to-Build-it-parts-list/#sectionTop) first, to find out what parts to get, then go to [Assembly Instructions](/Looper/How-to-Build-it-assembly-circuits/#sectionTop) to start soldering stuff.
@@ -82,9 +89,13 @@ How it works:
 
 ##### Mode switch : Run/Edit(bypass)
 
-The mode switch Python code whether it is in mode Run (o volt = logic low) or in edit mode (logic high). It also acts as a True Bypass when it is set in Edit mode.
+The mode switch Python code checks whether it is in mode Run (o volt = logic low) or in edit mode (logic high). Independently of the code though, the switch is also wired to act as True Bypass when it is set in Edit mode.
 
-This uses a foot stomp Toggle switch: Latching On-ON DPDT. because it is latching, the switch stays in the last "stomp" position until is is pressed agin.  
+> ***True Bypass***  means that the input signal is wired directly to the output signal without any electronics involved - meaning the exact sound is passed on without any tonal change.
+
+This uses a foot stomp Toggle switch: Latching On-ON DPDT.   
+
+> How the switch works:  When pressed it connects the middle pin to the top pin - leaving the bottom pin disconnected. When pressed again it connects the middle pin to the bottom pin leaving  the top pin disconnected.  Because it is a ***latching*** switch - it stays in its position until pressed again (i.e. not momentary).  There are two columns which acts together: both connect to top or bottom at the same time - but the two columns are totally isolated from each other: it's like having 2 switches where the actuator (button) operates both at the same time.
 
 ![Mode Switch](./modeBypassSw.png)
 
@@ -181,7 +192,7 @@ A discussion of how it works is too long for this page. I will eventually post s
 
 > The 470K ohm resistor plays a key role to increase the input impedance of the buffer - which we want has high as possible ro match the output impedance of the guitar (It has to be high enough to not reflect too much power, but low enough to provide enough current to the transistor).  
 > The higher the resistance, the better the power transfer and the purest the tone (of your guitar).  
-> However, if your guitar puts out two much voltage (hot pickups, or you play really hard with a puck) - the higher resistance means more power transferred, and you may overdrive the transistor - creating distortion.  In this case you may want to lower the resistor. Listen for the tone you get to decide what is good for you.  
+> However, if your guitar puts out two much voltage (hot pickups, or you play really hard with a pick) - the higher resistance means more power transferred, and you may overdrive the transistor - creating distortion.  In this case you may want to lower the resistor. Listen for the tone you get to decide what is good for you.  
 > If you like the distortion sound (very vintage with one transistor) - you can keep the resistor but turn down the volume for clean parts.  
 
 As always I recommend building the circuit on a bread board and trying it out to see what you get before soldering everything.  But the values that are there should work - if you just want to go ahead.
