@@ -1,0 +1,9 @@
+_id: 7333dac0-380a-11ed-b29c-1734f226b1f1
+name: Peter Ransom
+slug: /Set-wifi-via-bluetooth/Installation-RaspberryPi-manual/
+postid: c0fe3631-623a-574e-8b0e-632037c13d25
+message: >-
+  Hi this was just what I needed however the service refuses to autostart, I
+  think if it tries before pi user is running it fails. I have it being
+  restarted by the nodered program I'm running.
+date: 1663585305
