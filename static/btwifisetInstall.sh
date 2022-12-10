@@ -1,199 +1,155 @@
-#run this file with sudo
+#!/bin/bash
 
-#1) check python interpreter and get its location:
-echo Checking Python version ...
-pythonlist=()
-#find all pythons on system / check if file or directory / if file check versions
-for w in $(whereis python | grep -Po '[^\s]+?/python3\.\d\s'); do 
-if [ -f $w ]; then
-    vPython=$($w --version | grep -Po '\d+\.\K\d+')
-    if ((vPython>=7)); then
-        pythonlist+=( $w );
+function errexit() {
+    echo -e "$1"
+    exit 1
+}
+
+function askyn() {
+    # Prompt in $1
+    local ans
+    echo -n "$1" '[y/N]? ' ; read ans
+    case "$ans" in
+        y*|Y*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+function askdefault () {
+    # $1=prompt, $2=return variable $3=default-for-prompt-plus-default
+    # Defines the variable named in $2 with the user's response as its value
+    local pmpt=$1 dfl="$3" tmp=""
+    echo -n "$pmpt [$dfl]: " ; read tmp
+    [ "$tmp" == "" ] && tmp="$dfl"
+    eval "${2}=\"${tmp}\""     # Defines a variable with the return value
+}
+
+function getcountrycode() {
+    # Get and validate country code, define variable "country" with that code
+    echo $"
+The wpa_supplicant.conf file must have a known country code set
+A list of known country codes can be found in /usr/share/zoneinfo/iso3166.tab
+"
+    while [ 0 ]
+    do
+	askdefault "Enter your country code" country "US"
+	country=${country:0:2}
+	country=${country^^}
+	if ! grep ^$country /usr/share/zoneinfo/iso3166.tab
+	then
+	    echo "? '$country' is not a recognized country in /usr/share/zoneinfo/iso3166.tab"
+	else
+	    break
+	fi
+    done
+}
+#
+# Main code
+#
+[ $EUID -eq 0 ] && sudo="" || sudo="sudo"
+srcurl="https://raw.githubusercontent.com/nksan/Rpi-SetWiFi-viaBluetooth/main"
+echo $"
+Install btwifiset: Configure WiFi via Bluetooth
+"
+askdefault "btwifiset install directory" btwifidir "/usr/local/btwifiset"
+[ "$btwifidir" == "" ] && btwifidir="/usr/local/btwifiset"
+$sudo mkdir -p $btwifidir
+echo "Download btwifiset to $btwifidir"
+for f in btwifiset.py
+do
+    #Could also use curl: $sudo curl --fail --silent --show-error -L $srcurl/$f -o $btwifidir/$f
+    $sudo wget $srcurl/$f --output-document=$btwifidir/$f
+    wsts=$?
+    if [ ! $wsts ]
+    then
+	echo "? Unable to download btwifiset from $srcurl (Error $wsts)"
+	errexit "? btwifiset cannot be installed"
     fi
-fi
 done
-#pythonlist has location of python interpreters that atch version 3.7 or above
-foundcount=${#pythonlist[@]}
 
-#if no correct version of python is found - script exits wihout doing anything / warn user to install python 3.7+
-if ((foundcount==0)); then
-    echo Warning: No python3 interpreter found of version 3.7 or above!
-    echo This install script will exit.  
-    echo Please install a version of Python at least 3.7 or above, then run this script again.
-    echo 
-    exit 1
-fi
-#defaults to first python found
-pythondir=${pythonlist[0]};
-#if more than one python of correct version is found - give user choice
-if ((foundcount>1)); then
-    echo More than one python interpreter meets the requirements.
-    echo Please select the version/location you want to use:
-    for i in ${!pythonlist[@]}; do
-        printf "\tenter %s for: %s\n" $i ${pythonlist[$i]}
-    done
-    echo 
-    read -p "Enter your choice [default = 0]: " choice
-    choice=${choice:-0}
-    for i in ${!pythonlist[@]}; do
-    #note if user does not enter a number the expression evaluates to 0 on first pass so 0 is selected
-        if [ $choice = $i ] ; then
-        pythondir=${pythonlist[i]};
-        fi
-    done
-fi
-echo The Bluettooth Python app will use this Python interpreter: $pythondir
-echo 
-
-#2 Check wpa_supplicant.conf
-echo Checking /etc/wpa_supplicant/wpa_supplicant.conf ...
-if [ -f "/etc/wpa_supplicant/wpa_supplicant.conf" ]; then 
-    check=$(sed -n /update_config=1/p /etc/wpa_supplicant/wpa_supplicant.conf)
-        if [ -z "$check" ]; then
-        #add the needed line after the first line:
-        sed -i '1 a update_config=1' /etc/wpa_supplicant/wpa_supplicant.conf
-        fi
-    country=$(sed -n /country=/p /etc/wpa_supplicant/wpa_supplicant.conf)
-        if [ -z "$country" ]; then
-            echo Warning: the file wpa_supplicant.conf is missing your country code.
-            echo Warning: you will not be able to connect to wifi properly.
-            echo Please enter your country code to continue. 
-            echo If you do not know your contry code - please use this link to retreive it:
-            echo "https://www.nationsonline.org/oneworld/country_code_list.htm"
-            echo 
-            read -p "Enter your country code  - 2 Capital letters only [leave blank to exit]: " countrycode
-            cutcode=${countrycode:0:2}
-            if [ -z "$cutcode" ]; then
-                echo Exiting Install script...
-                echo Please find your country code and run the script again to finish the installation.
-                exit 1
-            fi
-            echo $cutcode will be added to "/etc/wpa_supplicant/wpa_supplicant.conf"
-            echo If the country code is not valid - you will need to edit the file yourself after installation
-            #add the needed line after the first line:
-            sed -i "1 a country=$cutcode" /etc/wpa_supplicant/wpa_supplicant.conf
-        fi
+# Handle wpa_supplicant.conf before installing python bits b/c potential user bail
+wpa="/etc/wpa_supplicant/wpa_supplicant.conf"
+if [ -f $wpa ]
+then
+    if ! grep -q "update_config=1" $wpa > /dev/null 2>&1
+    then
+	echo "Add 'update=1' to $wpa"
+	$sudo sed -i "1 a update_config=1" $wpa
+    fi
+    if ! grep -q "country=" $wpa > /dev/null 2>&1
+    then
+	getcountrycode
+	echo "Add 'country=$country' to $wpa"
+	$sudo sed -i "1 a country=$country" $wpa
+    fi
 else
-    echo You are missing the wpa_supplicant.conf file.
-    read -p "Do you want to create one automatically (enter y or n)? [y]" createconf
-    createconf=${createconf:-y}
-    if [ $createconf = "y" ] || [ $createconf = "Y" ]; then
-    echo creating file ...
-        touch /etc/wpa_supplicant/wpa_supplicant.conf
-        echo "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-country=US
+    if askyn "File $wpa not found; Create"
+    then
+	getcountrycode
+	$sudo cat > $wpa <<EOF
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+country=$country
 update_config=1
-
-" >> /etc/wpa_supplicant/wpa_supplicant.conf
-        wpa_cli -i wlan0 reconfigure
-        echo the file "/etc/wpa_supplicant/wpa_supplicant.conf" was created with country "code=US"
-        echo please edit the file if you are from another country "(and reboot)"
+EOF
     else
-    echo Please create a wpa_supplicant.conf file in directory /etc/wpa_supplicant/
-    echo using these directions: https://raspberryexpert.com/raspberry-pi-wifi-setup/
-    echo "Then," run the script again to complete installation
-    exit 1
+	echo "? wpa supplicant config file $wpa is required for btwifiset"
+	errexit "? Aborting installation"
     fi
 fi
-echo OK
-echo
 
-#3 Modify the bluetooth service file that came with the system
-echo Modifying system bluetoothd.service as needed ...
-x=0
-if ! sed -n '/^ExecStart/p' /lib/systemd/system/bluetooth.service | grep -q '\-\-experimental'; then 
-sed -i 's/^ExecStart.*bluetoothd\b/& --experimental/' /lib/systemd/system/bluetooth.service; 
-let x+=1;
-fi
-if ! sed -n '/ExecStart/p' /lib/systemd/system/bluetooth.service | grep -q '\-P battery'; then 
-sed -i 's/^ExecStart.*experimental\b/& -P battery/' /lib/systemd/system/bluetooth.service;  
-let x+=1;
-fi
-#If mods where made: Run systemctl daemon-reload and systemctl restart bluetooth
-if ((x>0)); then
-echo restarting bluetooth service ...
-systemctl daemon-reload;
-systemctl restart bluetooth;
-fi
-echo OK
-echo 
+# V Assumes Python versions in the form of nn.nn.nn (which they all seem to be)
+pyver=$((python3 --version) | (read p version junk ; echo ${version%.*}))
+echo "Install required Python components: python3-gi libdbus-glib-1-dev python3-pip libpython${pyver}-dev"
+$sudo apt install python3-gi libdbus-glib-1-dev python3-pip libpython${pyver}-dev --yes
+sts=$?
+[ ! $sts ] && errexit "? Error returned from apt install ($sts)"
+echo "Install Python dbus module"
+$sudo pip install dbus-python 
+sts=$?
+[ ! $sts ] && errexit "? Error returned from 'pip install dbus-python' ($sts)"
 
-#4 Installing glib and dbus dependencies:
-echo Installing dependencies for Python modules as needed...
-echo 
-glib=$($pythondir -c "from gi.repository import GLib" 2>&1| grep  'ModuleNotFoundError\|ImportError')
-if [ ! -z "$glib" ]; then
-echo installing module GLib ...
-apt-get install -y python3-gi 
-else 
-echo Python module GLib is installed
+# Modify bluetooth service. Copy it to /etc/systemd/system, which will be used before the one in /lib/systemd/system
+# Leaving the one in /lib/systemd/system as delivered. Good practice!
+echo "Update systemd configuration for bluetooth, hciuart, and btwifiset services"
+if ! sed -n '/^ExecStart/p' /lib/systemd/system/bluetooth.service | grep -q '\-\-experimental'
+then
+    # Append --experimental to end of command line
+    $sudo sed 's/^ExecStart.*bluetoothd\b/& --experimental/' /lib/systemd/system/bluetooth.service > /etc/systemd/system/bluetooth.service
+else
+    $sudo cp /lib/systemd/system/bluetooth.service /etc/systemd/system
 fi
-echo 
-dbus=$($pythondir -c 'import dbus' 2>&1 | grep 'ModuleNotFoundError\|ImportError')
-if [ ! -z "$dbus" ]; then
-echo Installing libdbus-glib package...
-apt-get install -y libdbus-glib-1-dev
-echo 
-pipcheck=$($pythondir -m pip --version 2>&1| grep '\<No module\>')
-# -z is true if length of var /string is zero
-if [ ! -z "$pipcheck" ]; then
-echo Pip module not found - Installing pip for python3...
-echo
-apt-get install -y python3-pip
-echo
+if ! sed -n '/ExecStart/p' /etc/systemd/system/bluetooth.service | grep -q '\-P battery'
+then
+    # Append -P battery to end of command line
+    $sudo sed -i 's/^ExecStart.*experimental\b/& -P battery/' /etc/systemd/system/bluetooth.service
 fi
-echo Installing python module dbus with pip...
-echo 
-$pythondir -m pip install dbus-python
-else 
-echo Python module dbus is installed
+
+# Create btwifiset service
+$sudo rm -f /etc/systemd/system/btwifiset.service
+$sudo cat > /etc/systemd/system/btwifiset.service <<EOF
+[Unit]
+Description=btwifiset Wi-Fi Configuration over Bluetooth
+After=hciuart.service bluetooth.target
+
+[Service]
+Type=simple
+ExecStart=/bin/python3 $btwifidir/btwifiset.py --syslog
+
+[Install]
+WantedBy=multi-user.target
+EOF
+#
+# Link bluetooth.target.wants to the copy of bluetooth.service we made in /etc/systemd/system
+#
+if [ -f /etc/systemd/system/bluetooth.target.wants/bluetooth.service ]
+then
+    $sudo rm -f /etc/systemd/system/bluetooth.target.wants/bluetooth.service
+    $sudo ln -s /etc/systemd/system/bluetooth.service /etc/systemd/system/bluetooth.target.wants/bluetooth.service
 fi
-echo
 
-#5 download files from website:
-# first stop service if it is running:
-if [ -f "/etc/systemd/system/btwifiset.service" ]; then
-echo stopping btwifiset service ...
-sudo systemctl stop btwifiset.service
-fi
-#this creates an empty directory btwifiset (deletes it if it exists)
-homeDir=$(eval echo ~$SUDO_USER)
-theDir="$homeDir/btwifiset"
-echo $theDir
-echo Creating Directory: btwifiset in home directory \($homeDir\) ...
-if [ -d $theDir ]; then rm -Rf $theDir; fi
-sudo -u $SUDO_USER mkdir $theDir
-echo OK
-echo 
-# this fetches the files in the correct directory, untar them and sets permission
-echo Downloading Python files to $theDir ...
-wget -P $theDir https://normfrenette.com/btwifiset.tar.gz
-echo 
-echo Unpacking files...
-sudo -u $SUDO_USER tar -xzvf $theDir/btwifiset.tar.gz -C $theDir
-chmod 755 $theDir/wifiup.py
-chmod 755 $theDir/wifidown.py
-echo OK
-echo 
-
-#6 creating btwifiset.service 
-echo Creating or updating  btwifiset.service file ...
-sed -r -i "s|(ExecStart.*=).*\/.*\b( \/.*\b)|\1$pythondir\2|g" $theDir/btwifiset.service
-mv $theDir/btwifiset.service /etc/systemd/system
-chown root: /etc/systemd/system/btwifiset.service
-
-echo starting btwifiset.service...
-systemctl daemon-reload
-systemctl enable btwifiset.service
-systemctl start btwifiset.service
-#/etc/systemd/system
-
-echo OK
-echo Installation complete.
-echo Set-Wifi-via-Bluetooth service '(btwifiset.service)' is running,
-echo and is set to start automatically on Raspberry Pi boot.
-echo 
-echo By default Btwifiset runs 15 minutes after boot/start then shuts down.  
-echo Edit btwifiset.ini to change this behavior.
-echo
-echo You may now connect to this Raspberry Pi with the iphone app SetWifiViaBT 
+echo "Waiting for services to start..."
+$sudo systemctl daemon-reload
+$sudo systemctl enable hciuart btwifiset
+$sudo systemctl start hciuart
+sleep 5
+$sudo systemctl start btwifiset
