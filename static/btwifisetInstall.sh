@@ -51,8 +51,7 @@ srcurl="https://raw.githubusercontent.com/nksan/Rpi-SetWiFi-viaBluetooth/main"
 echo $"
 Install btwifiset: Configure WiFi via Bluetooth
 "
-askdefault "btwifiset install directory" btwifidir "/usr/local/btwifiset"
-[ "$btwifidir" == "" ] && btwifidir="/usr/local/btwifiset"
+[ -t 0 ] && askdefault "btwifiset install directory" btwifidir "/usr/local/btwifiset" || btwifidir="/usr/local/btwifiset"
 $sudo mkdir -p $btwifidir
 echo "Download btwifiset to $btwifidir"
 for f in btwifiset.py
