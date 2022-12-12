@@ -35,7 +35,7 @@ A list of known country codes can be found in /usr/share/zoneinfo/iso3166.tab
 	askdefault "Enter your country code" country "US"
 	country=${country:0:2}
 	country=${country^^}
-	if ! grep ^$country /usr/share/zoneinfo/iso3166.tab
+	if ! $sudo grep ^$country /usr/share/zoneinfo/iso3166.tab
 	then
 	    echo "? '$country' is not a recognized country in /usr/share/zoneinfo/iso3166.tab"
 	else
@@ -70,18 +70,18 @@ done
 wpa="/etc/wpa_supplicant/wpa_supplicant.conf"
 if [ -f $wpa ]
 then
-    if ! grep -q "update_config=1" $wpa > /dev/null 2>&1
+    if ! $sudo grep -q "update_config=1" $wpa > /dev/null 2>&1
     then
 	echo "Add 'update=1' to $wpa"
 	$sudo sed -i "1 a update_config=1" $wpa
     fi
-    if ! grep -q "country=" $wpa > /dev/null 2>&1
+    if ! $sudo grep -q "country=" $wpa > /dev/null 2>&1
     then
 	getcountrycode
 	echo "Add 'country=$country' to $wpa"
 	$sudo sed -i "1 a country=$country" $wpa
     else
-	country=$(grep "country=" $wpa | (IFS="=" ; read a ctry ; echo $ctry))
+	country=$($sudo grep "country=" $wpa | (IFS="=" ; read a ctry ; echo $ctry))
 	echo $"Country '$country' found in $wpa
 "
     fi
@@ -89,11 +89,12 @@ else
     if askyn "File $wpa not found; Create"
     then
 	getcountrycode
-	$sudo cat > $wpa <<EOF
+	(cat <<EOF
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 country=$country
 update_config=1
 EOF
+) | $sudo bash -c "cat > $wpa"
     else
 	echo "? wpa supplicant config file $wpa is required for btwifiset"
 	errexit "? Aborting installation"
@@ -114,12 +115,11 @@ sts=$?
 # Modify bluetooth service. Copy it to /etc/systemd/system, which will be used before the one in /lib/systemd/system
 # Leaving the one in /lib/systemd/system as delivered. Good practice!
 echo "Update systemd configuration for bluetooth, hciuart, and btwifiset services"
-if ! sed -n '/^ExecStart/p' /lib/systemd/system/bluetooth.service | grep -q '\-\-experimental'
+$sudo cp /lib/systemd/system/bluetooth.service /etc/systemd/system
+if ! sed -n '/^ExecStart/p' /etc/systemd/system/bluetooth.service | grep -q '\-\-experimental'
 then
     # Append --experimental to end of command line
-    $sudo sed 's/^ExecStart.*bluetoothd\b/& --experimental/' /lib/systemd/system/bluetooth.service > /etc/systemd/system/bluetooth.service
-else
-    $sudo cp /lib/systemd/system/bluetooth.service /etc/systemd/system
+    $sudo sed -i 's/^ExecStart.*bluetoothd\b/& --experimental/' /etc/systemd/system/bluetooth.service
 fi
 if ! sed -n '/ExecStart/p' /etc/systemd/system/bluetooth.service | grep -q '\-P battery'
 then
@@ -129,7 +129,7 @@ fi
 
 # Create btwifiset service
 $sudo rm -f /etc/systemd/system/btwifiset.service
-$sudo cat > /etc/systemd/system/btwifiset.service <<EOF
+(cat <<EOF
 [Unit]
 Description=btwifiset Wi-Fi Configuration over Bluetooth
 After=hciuart.service bluetooth.target
@@ -141,6 +141,7 @@ ExecStart=/bin/python3 $btwifidir/btwifiset.py --syslog
 [Install]
 WantedBy=multi-user.target
 EOF
+) | $sudo bash -c "cat > /etc/systemd/system/btwifiset.service"
 #
 # Link bluetooth.target.wants to the copy of bluetooth.service we made in /etc/systemd/system
 #
@@ -150,9 +151,17 @@ then
     $sudo ln -s /etc/systemd/system/bluetooth.service /etc/systemd/system/bluetooth.target.wants/bluetooth.service
 fi
 
-echo "Waiting for services to start..."
-$sudo systemctl daemon-reload
 $sudo systemctl enable hciuart btwifiset
-$sudo systemctl start hciuart
-sleep 5
-$sudo systemctl start btwifiset
+
+echo "The system must be restarted before btwifiset will work"
+if askyn "Reboot now"
+then
+    $sudo reboot
+fi
+exit
+#This sometimes fails so disabled for now
+#echo "Waiting for services to start..."
+#$sudo systemctl daemon-reload
+#$sudo systemctl start hciuart
+#sleep 5
+#$sudo systemctl start btwifiset
