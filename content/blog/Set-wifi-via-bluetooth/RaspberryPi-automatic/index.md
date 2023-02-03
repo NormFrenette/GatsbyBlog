@@ -15,6 +15,11 @@ Automated install on your Raspberry Pi of a bluetooth BLE Server written in Pyth
 *Python3: version 3.7 or later **must** be installed on the Raspberry Pi or the install script will exit.*
 
 #### Automated Install - How To: 
+
+Notes:
+> The bash script, which you download below, installs all the necessary dependencies for the bluetooth BLE Python code.  The python file (btwifiset.py) is installed in the sub-directory created at: /usr/local/btwifiset.  Log entries are written to syslog.  It is possible to write log entries to a file that you choose instead.  To do so, see the manual instructions. You can run the automatic install first and then  you can edit the service file that is created, which is located at: /etc/systemd/system/btwifiset.service.  The manual instructions explain the various options switches to add to the command line.
+
+
 On your Raspberry Pi: Open a terminal window and Run the following commands at the prompt:
 
 1. Make sure your Raspberry Pi is up to date - type:
@@ -30,7 +35,7 @@ cd ~
 ```
 3. Download and run the script - type:
 ```
-curl  https://normfrenette.com/btwifisetInstall.sh | sudo bash
+curl  https://raw.githubusercontent.com/nksan/Rpi-SetWiFi-viaBluetooth/main/btwifisetInstall.sh | sudo bash
 ```
 
 That's it. 
@@ -40,7 +45,7 @@ That's it.
 #### What the Install script does:
 
 - Checks the python version and allows for selection if more than one Python3 interpreter is installed .
-- Creates the directory: **btwifiset** under your home directory, and downloads the BLE server python files there.
+- Creates the directory: **btwifiset** under /usr/local, and downloads the  python file btwifiset.py there.
 - Install dbus and GLib (pyCairo) python modules only if they are not already installed.
 - Modifies the existing bluetoothd.service system file to run the bluetooth BLE service created Python.
 - Creates a new systemd service file: btwifiset.service and starts it (+ auto-start on boot).

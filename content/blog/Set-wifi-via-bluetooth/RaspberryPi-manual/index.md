@@ -4,6 +4,14 @@ date: "2021-12-06T10:00:00.000Z"
 description: Step-by-step commands in RPi Terminal to install files & configure for BLE server.
 mainTag: Installation
 ---
+
+#### WARNING - This is currently Obsolete.
+
+These instructions are not current and may not work correctly.  I am in the process of updating these instructions - and will remove this warning when the instructions are updated.
+
+You can however use the instructions under the heading "automatic Install"  those are up to date and they work.
+
+
 #### Current Version: Beta - April 22, 2022
 In the early days of deploying this software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
 > To check current version date on your Raspberry Pi:  Open btwifiset.log file in the btwifiset directory and look for the line that starts with ******* Starting BTwifiSet - version date: ...
