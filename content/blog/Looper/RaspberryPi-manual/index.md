@@ -277,7 +277,7 @@ sudo chown root: /etc/systemd/system/looper.service
 ```
 6. Enable the service to start automatically at start-up:
 ```
-sudo systemctl enable segment.service
+sudo systemctl enable looper.service
 ```
 
 #### Step 8 -  Reboot the pi and use the Looper Pedal

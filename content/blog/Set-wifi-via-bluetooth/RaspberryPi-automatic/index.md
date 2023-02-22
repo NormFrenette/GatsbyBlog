@@ -35,7 +35,7 @@ cd ~
 ```
 3. Download and run the script - type:
 ```
-curl  https://raw.githubusercontent.com/nksan/Rpi-SetWiFi-viaBluetooth/main/btwifisetInstall.sh | sudo bash
+curl  https://raw.githubusercontent.com/nksan/Rpi-SetWiFi-viaBluetooth/main/btwifisetInstall.sh | bash
 ```
 
 That's it. 
