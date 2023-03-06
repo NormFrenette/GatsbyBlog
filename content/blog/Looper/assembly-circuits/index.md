@@ -200,19 +200,21 @@ There are other connections to be made - but they are between switches/jacks etc
 
 These are all the wire connections required.
 
-![wire connections](./harness.png)
+![wire connections](./harness_u.png)
 
 Special Case for sound card: 
 
 You will recall in the parts list, two male 3.5 mm mono jacks are needed to connect to the sound card - ans I suggested you buy one male to male cable and cut it in two.
 
-- Now cut the cable to length 5-6 inches is needed, so you have two male jacks.  
+- Now cut the cable to length (5-6 inches is needed), so you have two male jacks.  
 - Then cut out the stress relief around the jack (to shorten it - Be careful not to cut the very small wire...) See picture on above wire harness of the result.  
-- with an ohmMeter, identify which wire connects to the sleeve and which wire connects to the tip.  In this example white = tip and red = sleeve - but yours could very well be different.
-- The sleeve wires correspond to the ground of the jacks and need to be connected as shown to the grounds (sleeve) of buffer output jack.
+- With an ohmMeter, identify which wire connects to the sleeve and which wire connects to the tip.  In mine: white = tip and red = sleeve - but yours could be different (so check with ohmMeter).
+- The sleeve wires (here red) correspond to the ground of the jacks and need to be connected as shown on harness drawing:  
+    - mic jack ground goes to input jack ground
+    - headphone jack ground goes to pin 4 of run/Edit switch (this prevents ground loops)
 - the tip wires, as shown above: 
     - for the sound card mic input, connect to pin 8 of the buffer On switch
-    - for the sound card headphone out, connect to pin 4 of the Mode Run/Edit switch.
+    - for the sound card headphone out, connect to pin 7 of the Mode Run/Edit switch.
 
 Here are the finished results:
 - RPi HAT Proto (red) shown without the sound card inserted in RPi.

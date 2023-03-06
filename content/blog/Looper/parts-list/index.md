@@ -151,6 +151,8 @@ Get these three switches for the Looper Pedal (with Buffer) Option:
 
 ![Switches](./switches.png)
 
+>For a detailed understanding on how the switches work in the circuit refer to [Looper circuit schematics](/Looper/How-to-Build-it-circuit-schematics/#sectionTop)
+
 ###### Play/Rec/Stop Momentary foot stomp switch
 
 The switch used to control the Play, Record and Stop of the Looper is a momentary push button foot-pedal stomp switch.  It is important that you purchase a Push-type switch (it does not click) , which means that it is On while the button is pressed, and remains on as long as the button is pressed.
@@ -161,16 +163,15 @@ Do not get the  click-on click-off toggle stomp switch found on many guitar peda
 
 ###### Run/Edit (bypass) - Mode switch
 
-You need at least a **DPDT On-Off Latching Foot (Stomp) switch**. This is the type of switch that clicks on and clicks off. There are 6 connectors underneath the switch. When in edit node - the guitar in is pass straight trough to looper output jack (True bypass).   
+This is a **3PDT On-Off Latching Foot (Stomp) switch**. This is the type of switch that clicks when it switches - and it remains in that position until it is clicked again (at which point it changes to the other position). There are 9 connectors underneath the switch. When in edit mode - the guitar signal is pass straight trough to pedal output jack (True bypass).   
 
-This is an example of the DPDT switch needed:[Amazon: DPDT switch](https://www.amazon.ca/Support-Latching-Switch-Guitar-Button/dp/B076VCQPL8/).  But in fact, this is not the type I used: I used the 3PDT because I have those.
+This is an example of the 3PDT switch needed:[Amazon: 3PDT switch](https://www.amazon.com/Guitar-Effects-Pedal-Switch-Bypass/dp/B0191AGULW/).  You can find them by searching for: "guitar true bypass foot switches"
 
-> The switch shown in the picture above is a 3PDT switch (with 9 terminals underneath).  I have these, because they are often used in true-bypass guitar pedals.  Although this design does not need the 9 terminals of a 3PDT switch - I  only use the outer columns of terminals - leaving the middle column unused. So, if you have those, use them - and if you think you might do other projects where a true bypass is needed - buy a set of 3PDT switches instead of the required DPDT (6 terminal) switch (price is the same more or less).  Just make sure it is the ***latching*** type (not the momentary type).
 
 ###### Buffer On-Off Toggle switch:
 
-This switch has 9 terminals underneath - but uses a toggle lever instead of a foot stomp switch.  The lever is recommended because you can see the position of the lever (On-Off). Although the circuit also has a blue LED when the buffer is on - if the battery is dead, your LED will not light, but the position of the toggle lever indicates it *should* be on.
->Note that if you have a few 3pdt foot stomp switches lying around and you don;t feel like buying the toggle switch - go ahead and use the foot stomp switch - it will work.  Just make sure it is a latching switch - not a momentary switch.
+This is a **3PDT On-Off Latching Foot Toggle switch**.This switch has also 9 terminals underneath - but uses a toggle lever instead of a foot stomp switch.  The lever is recommended because you can see the position of the lever (On-Off). Although the circuit also has a blue LED when the buffer is on - if the battery is dead, your LED will not light, but the position of the toggle lever indicates it *should* be on.
+>Note that if you have a few 3pdt foot stomp switches lying around and you don't feel like buying the toggle switch - go ahead and use the foot stomp switch - it will work.  Just make sure it is a latching switch - not a momentary switch.
 
 ###### Looper and Buffer Separate Option:
 
