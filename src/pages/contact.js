@@ -15,7 +15,7 @@ export default function ContactPage(location){
   const handlePost = (data) => {
     setSubmitted(false)
     setWrongTest(false)
-    fetch(`/api/form`, {
+    fetch(`.netlify/functions/form`, {
         method: `POST`,
         body: JSON.stringify(data),
         headers: {
@@ -33,6 +33,9 @@ export default function ContactPage(location){
             }
             else if (body === "invalid") {
                 setWrongTest(true)
+            }
+            else {
+                console.log(`error sending: `,body)
             }
         })
     }
@@ -53,7 +56,7 @@ export default function ContactPage(location){
             <p  className = "blue">You should get an email from him shortly.</p></div>}
 
             {wrongTest && <div className="topAndBottom red" ><p>Sorry!!!</p>
-                <p>Please check the answer to Homo Sapiens Test and retry.</p></div>}
+                <p>hmmm... the most fur?  please check...</p></div>}
 
 
             <p>Send me a message, especially if you are requesting a pcb or 
