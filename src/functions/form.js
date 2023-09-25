@@ -9,11 +9,8 @@ const message = {
 }
 
 exports.handler =  async (event, context, callback) => {
-  console.log("entering")
     const data = JSON.parse(event.body)
-    
     const test = data["test"].trim().toLowerCase()
-    console.log(`data`,data)
     const msgToSend = `Message fom Contact Form:
     from: ${data["name"]}
     email: ${data["email"]}
@@ -25,7 +22,7 @@ exports.handler =  async (event, context, callback) => {
         message.text = msgToSend
 
         try{
-            await sgMail.send(mail_to_send)
+            await sendgrid.send(message)
         
             return {
               statusCode: 200,
