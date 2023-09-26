@@ -34,6 +34,9 @@ export default function ContactPage(location){
             else if (body === "invalid") {
                 setWrongTest(true)
             }
+            else {
+                console.log(body)
+            }
         })
     }
 

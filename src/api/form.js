@@ -9,35 +9,38 @@ const message = {
 }
 
 const contactFormHandler = (req, res) => {
-    console.log(req)
-    console.log(message.from)
-    const test = req.body["test"].trim().toLowerCase()
-    const msgToSend = `Message fom Contact Form:
+    try {
+        const test = req.body["test"].trim().toLowerCase()
+        const msgToSend = `Message fom Contact Form:
 from: ${req.body["name"]}
 email: ${req.body["email"]}
 message:
 ${req.body["message"]}
 `   
 
-    if (test == "lion") {
-        message.subject="Message from Blog"
-        message.text = msgToSend
-        return sendgrid.send(message).then( 
-            () => {
-            res.status(200).json(`ok`)
-            },
-            error => {
-            console.error(error)
-            if (error.response) {
-                return res.status(500).json({
-                    error:error.response,
-                })
-            }
-        })
+        if (test == "lion") {
+            message.subject="Message from Blog"
+            message.text = msgToSend
+            return sendgrid.send(message).then( 
+                () => {
+                res.status(200).json(`ok`)
+                },
+                error => {
+                console.error(error)
+                if (error.response) {
+                    return res.status(500).json({
+                        error:error.response,
+                    })
+                }
+            })
+        }
+        else {
+            res.status(200).json(`invalid`)
+        }
+    } catch (e) {
+        const obj = {msg: message, err:e};
+        res.status(200).json(obj)
     }
-    else {
-        res.status(200).json(`invalid`)
-    }
-  }
+}
 
   module.exports = contactFormHandler
