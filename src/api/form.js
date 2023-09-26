@@ -9,7 +9,8 @@ const message = {
 }
 
 const contactFormHandler = (req, res) => {
-
+    console.log(req)
+    console.log(message.from)
     const test = req.body["test"].trim().toLowerCase()
     const msgToSend = `Message fom Contact Form:
 from: ${req.body["name"]}

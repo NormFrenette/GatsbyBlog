@@ -76,6 +76,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-remark-images`,
+    `gatsby-plugin-netlify`,
     // {
     //   resolve: `gatsby-plugin-google-analytics`,
     //   options: {
