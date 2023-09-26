@@ -1,7 +1,7 @@
 //const sendgrid = require("@sendgrid/mail")
 //Your API Key from Sendgrid
 
-const contactFormHandler = (req, res) => {
+export default function handler(req, res) {
     res.status(200).json({ mytest: "testing"})
 }
 
@@ -48,4 +48,4 @@ const contactFormHandler = (req, res) => {
 //     }
 // }
 
-  module.exports = contactFormHandler
+  //module.exports = contactFormHandler
