@@ -5,24 +5,51 @@ import Seo from "../components/seo"
 import BlogIndex from "../components/blogIndex"
 import { useForm } from "react-hook-form"
 
-export default function ContactPage(location){
+export default  function ContactPage(location){
   const siteTitle = `Norm's Blog`
   const { register, handleSubmit, formState: {errors}, reset, } = useForm()
   const [submitted,setSubmitted] = useState(false)
   const [wrongTest,setWrongTest] = useState(false)
   const [wasSent,setWasSent] = useState('')
 
+
   const handlePost = (data) => {
+
     setSubmitted(false)
     setWrongTest(false)
-    fetch(`/api/form`, {
+    const searchParams = Object.entries(data).map(entry => {
+        return encodeURIComponent(entry[0]) + '=' + encodeURIComponent(entry[1]);
+    }).join('&');
+    //https://apps.normfrenette.com
+    //http://127.0.0.1:3000
+    fetch(`https://apps.normfrenette.com/olsbinv/dot/courielle`, {
         method: `POST`,
-        body: JSON.stringify(data),
+        body: searchParams,
         headers: {
-          "content-type": `application/json`,
+          "content-type": `application/x-www-form-urlencoded`,
         },
       })
-        .then(res => res.json())
+    
+    // const body = await response.text();
+
+    
+    // if (response.ok) {
+    //     console.log("response is ok")
+    //     console.log("body is ",body)
+    //     if (body === "ok") {
+    //         console.log("response is ok")
+    //         reset()
+    //         setWasSent(data)
+    //         setSubmitted(true)
+    //     } else if (body === "invalid") {
+    //         setWrongTest(true)
+    //     }
+    // } else {
+    //     console.log("response is NOT ok",response)
+    // }
+    .then((res) => {
+        return res.text()
+      })
         .then(body => {
             console.log(`response from API:`, body)
             if (body === "ok") {
@@ -80,7 +107,7 @@ export default function ContactPage(location){
             <p>
             <label htmlFor="youremail">Your email: </label>
             <input 
-                id="youremail"
+                id="youremail" 
                 size="40"
                 {...register('email',{ required: true,
                     pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
