@@ -2,8 +2,7 @@
 //Your API Key from Sendgrid
 
 const contactFormHandler = (req, res) => {
-    res.status = 200
-    res.send("testing")
+    res.status(200).json({ mytest: "testing"})
 }
 
 
