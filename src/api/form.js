@@ -39,7 +39,7 @@ ${req.body["message"]}
             res.status(200).json(`invalid`)
         }
     } catch (e) {
-        const obj = {msg: message, err:e};
+        const obj = {err:e};
         res.status(200).json(obj)
     }
 }
