@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
-import CommentsPost from "../components/commentspost"
 import BlogIndex from "../components/blogIndex"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -10,20 +9,6 @@ const BlogPostTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
   
-  function Comments ({nodes}) {
-    return (
-        <div className="commentsContainer">
-           <h4>Comments</h4> 
-        {nodes.map((node) => (
-            <div className="singleComment">
-                <span className="commentName">{node.name}</span> - 
-                <small>{new Date(node.date * 1000).toLocaleString()}</small>
-                <p className="commentMessage">{node.message}</p>
-            </div>
-        ))}
-        </div>
-    )
-}
 
   return (
     <Layout copyrightdate={post.frontmatter.date.split(" ").pop()} location={location} title={siteTitle}>
@@ -79,8 +64,7 @@ const BlogPostTemplate = ({ data, location }) => {
               </li>
             </ul>
           </nav>
-          <Comments nodes={data.allCommentsYaml.nodes} />
-          <div><CommentsPost slug={post.fields.slug} postid={post.id}/></div>
+          
         </div>
       </div>
     </Layout>
@@ -94,24 +78,12 @@ export const pageQuery = graphql`
     $id: String!
     $previousPostId: String
     $nextPostId: String
-    $slug: String!
   ) {
     site {
       siteMetadata {
         title
       }
     }
-    allCommentsYaml(
-      sort: {order: ASC, fields: date}
-       filter: {slug: {eq: $slug}}
-       ) 
-       {
-        nodes {
-          name
-          message
-          date
-        }
-      }
     markdownRemark(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)
