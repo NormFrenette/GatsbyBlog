@@ -3,6 +3,7 @@ title: Install RPi OS Lite - for headless mode - on SD card
 date: "2021-02-28T10:00:00.000Z"
 description: How to install the RAspberry Pi Operating System on a blank SD card - for headless operation
 mainTag: Installation
+appearOrder: 200
 ---
 
 #### About

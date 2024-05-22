@@ -3,6 +3,7 @@ title: User Guide
 date: "2022-03-10T10:00:00.000Z"
 description: Explains the various switches and mode of the looper.
 mainTag: How-to-Use
+appearOrder: 311
 ---
 #### About
 This guide describes the switches and input/outputs of the looper, and how to use them to record tracks, deleted or un-delete tracks, use the buffer and use the True Bypass.

@@ -3,6 +3,7 @@ title: Manually Install Looper Code on RPi
 date: "2022-04-06T10:00:00.000Z"
 description: Step-by-step commands in RPi Terminal to install files needed for the Looper pedal.
 mainTag: Software-Installation
+appearOrder: 312
 ---
 #### Current Version: Beta - June 15, 2022
 In the early days of deploying thi software, I am making changes often, based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.

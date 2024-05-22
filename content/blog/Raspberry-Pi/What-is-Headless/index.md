@@ -3,6 +3,7 @@ title: What is headless mode and why use it?
 date: "2022-02-26T10:00:00.000Z"
 description: Discussion on why I use Raspberry PI in headless mode (and what that is).
 mainTag: Principles
+appearOrder: 202
 ---
 #### About
 This article discusses what it means to run a Raspberry Pi in headless mode, and why you would want to do this.

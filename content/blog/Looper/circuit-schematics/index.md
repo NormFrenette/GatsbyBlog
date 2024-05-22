@@ -3,6 +3,7 @@ title: Looper circuit schematics
 date: "2021-12-27T10:00:00.000Z"
 description: schematics showing how to wire the GPIO pins and building a buffer for your instrument
 mainTag: How-to-Build-it
+appearOrder: 303
 ---
 
 This page shows the circuits that need to be wired to the raspberry pi.  If you have not done so - read the [Basic Concepts](/Looper/How-to-Build-it-Introduction/#sectionTop) which explains how the Raspberry Pi and the optional buffer electronics are used.

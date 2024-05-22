@@ -3,6 +3,7 @@ title: Install higher Version of Python3
 date: "2021-12-04T10:00:00.000Z"
 description: How to install a higher version of python3 as an alternate to the system python on the Raspberry Pi
 mainTag: Installation
+appearOrder: 201
 ---
 
 These instructions explain how to install an alternate version of python3 - a higher version - on a Raspberry Pi.  

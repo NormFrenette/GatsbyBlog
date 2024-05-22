@@ -3,6 +3,7 @@ title: How to use the Looper to make music
 date: "2022-03-06T10:00:00.000Z"
 description: Basic principles of how the looper works.
 mainTag: How-to-Use
+appearOrder: 310
 ---
 #### About
 This guide explains the basic principles of how the Looper works to record and play music.  It covers what the looper does, how to record loops of various length, how to overdub, how to delete and un-delete tracks.

@@ -3,6 +3,7 @@ title: Automated Install of Bluetooth Code on RPi
 date: "2021-12-05T23:46:37.121Z"
 description: Download and run one bash file to automatically  install python files & configure RPi for BLE.
 mainTag: Installation
+appearOrder: 115
 ---
 #### Current Version: Beta - April 22, 2022
 In the early days of deploying this software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.

@@ -3,6 +3,7 @@ title: Choose between three design options
 date: "2021-12-24T10:00:00.000Z"
 description: Details on design options for the Looper
 mainTag: How-to-Build-it
+appearOrder: 301
 ---
 
 The Looper can be built in three different options.

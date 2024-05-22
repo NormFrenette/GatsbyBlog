@@ -3,6 +3,7 @@ title: Automated Install Looper Code on RPi via bash file
 date: "2022-04-05T10:00:00.000Z"
 description: Download a bash file that runs all commands to install files/dependencies needed for the Looper pedal.
 mainTag: Software-Installation
+appearOrder: 321
 ---
 
 #### Current Version: Beta - June 15, 2022

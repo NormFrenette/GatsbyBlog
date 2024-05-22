@@ -3,6 +3,7 @@ title: Parts List for Raspberry Pi Looper
 date: "2021-12-26T10:00:00.000Z"
 description: List of parts needed to build the Looper
 mainTag: How-to-Build-it
+appearOrder: 302
 ---
 
 This document the various parts required to build the Raspberry Pi Looper.  

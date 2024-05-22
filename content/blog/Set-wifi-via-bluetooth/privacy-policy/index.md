@@ -3,6 +3,7 @@ title: BTBerryWifi iPhone app - Privacy Policy
 date: "2022-05-17T15:00:00.121Z"
 description: Privacy Policy for the BTBerryWifi iPhone App.
 mainTag: iPhone-App
+appearOrder: 129
 ---
 
 #### Privacy Policy

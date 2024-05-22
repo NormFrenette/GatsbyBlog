@@ -7,7 +7,7 @@ const BlogIndex = (postId="") => {
     
     const data = useStaticQuery(graphql`
         query {
-            allMarkdownRemark (sort: {fields: [frontmatter___date], order: [ASC]}) {
+            allMarkdownRemark (sort: {fields: [frontmatter___appearOrder], order: [ASC]}) {
                 group(field: fields___folder) {
                     fieldValue
                     group(field: frontmatter___mainTag) {
@@ -22,6 +22,7 @@ const BlogIndex = (postId="") => {
                                 title
                                 description
                                 date(formatString: "MMMM DD, YYYY")
+                                appearOrder
                             }
                         }
                     }
@@ -30,8 +31,31 @@ const BlogIndex = (postId="") => {
         }
         `)
 
-    const posts = data.allMarkdownRemark
+
+
+    function fixSort(qData) {
+        //this is not robust in that the structure must be like Looper - How-To-Use - User Guide
+        //meaning there has to be three levels - which is how the blog is constructed.
+        let myPosts = qData.allMarkdownRemark
+        console.log("posts",myPosts)
+        for (let i = 0; i < myPosts.group.length; i++) {
+            //first level: fieldValue = Looper etc.
+            console.log("top",myPosts.group[i].fieldValue)
+            for (let j = 0; j <myPosts.group[i].group.length; j++) {
+            //     //second level: field value = How-to-Use etc.
+                console.log(myPosts.group[i].group[j].fieldValue)
+                myPosts.group[i].group[j].nodes.sort((a,b) => parseInt(a.frontmatter.appearOrder) - parseInt(b.frontmatter.appearOrder));
+            }
+            myPosts.group[i].group.sort((a,b) => parseInt(a.nodes[0].frontmatter.appearOrder) - parseInt(b.nodes[0].frontmatter.appearOrder));
+        }
+        myPosts.group.sort((a,b) => parseInt(a.group[0].nodes[0].frontmatter.appearOrder) - parseInt(b.group[0].nodes[0].frontmatter.appearOrder));
+        return(myPosts)
+    }
+
+    const posts = fixSort(data)
 //<div key={catName+id}>
+    
+
     const LiToggle =  ( {id,catName,inserted,initialState}) => {
         const [state, setState] = useState(initialState);
         console.log("LiToggle",state,id,catName)

@@ -3,6 +3,7 @@ title: Assembly of Looper Circuit
 date: "2021-12-30T10:00:00.000Z"
 description: instructions, details and picture of the circuit board assembly
 mainTag: How-to-Build-it
+appearOrder: 304
 ---
 
 These assembly instructions are for the Looper Pedal with buffer Option.  There are other [options](/Looper/How-to-Build-it-design-options/#sectionTop),
