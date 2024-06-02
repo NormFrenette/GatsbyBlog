@@ -5,9 +5,14 @@ description: Download and run one bash file to automatically  install python fil
 mainTag: Installation
 appearOrder: 115
 ---
-#### Current Version: Beta - April 22, 2022
-In the early days of deploying this software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
-> To check current version date on your Raspberry Pi:  Open btwifiset.log file in the btwifiset directory and look for the line that starts with ******* Starting BTwifiSet - version date: ...
+#### Current Version: 2.0 - May 28, 2004
+I continue to make changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version.
+
+To check installed current version date on your Raspberry Pi, check the log file in terminal:
+```
+journalctl --unit=btwifiset.service -n 100 --no-pager
+```
+And look for the line that starts with: ******* Starting BTwifiSet - version date.
 
 #### About
 Automated install on your Raspberry Pi of a bluetooth BLE Server written in Python .  BLE advertises a custom service that communicates with the IOS app to remotely set the wifi on a headless raspberry pi.

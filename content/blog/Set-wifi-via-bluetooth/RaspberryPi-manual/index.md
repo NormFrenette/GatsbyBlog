@@ -7,9 +7,14 @@ appearOrder: 116
 ---
 
 
-#### Current Version: Beta - February 1, 2023
-In the early days of deploying this software, I am making changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version - identified by the ***date***.
-> To check current version date on your Raspberry Pi:  Open the btwifiset file (defaults to syslog using install below) and look for the line that starts with ******* Starting BTwifiSet - version date: ...
+#### Current Version: 2.0 - May 28, 2004
+I continue to make changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version.
+
+To check installed current version date on your Raspberry Pi, check the log file in terminal:
+```
+journalctl --unit=btwifiset.service -n 100 --no-pager
+```
+And look for the line that starts with: ******* Starting BTwifiSet - version date.
 
 #### About
 Step by Step (manually) install on your Raspberry Pi of a bluetooth BLE Server written in Python .  BLE advertises a custom service that communicates with the IOS app to remotely set the wifi on a headless raspberry pi.
