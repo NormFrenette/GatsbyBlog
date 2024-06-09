@@ -40,7 +40,13 @@ By Locking the Pi - the user must have the password to stay connected and move o
 Number of connections:  IOS and Raspberry Pi limit the number of simultaneous bluetooth connections.  In theory, if the RPi is not locked, enough users of the free app could connect that future connections would fail. This means that you might not be able to connect to your own RPi (an unlikely scenario but nevertheless possible).
 
 Encryption can be turn on or off using the Lock Tab on the ios screen - after establishing a bluetooth connection with the Raspberry Pi.
-##### Password management
+
+<!--- 
+to turn a title that would normally be marked by a number of # such as ##### title
+use this form instead where x in <hx represents the number of # I would have used
+note: no spaces in the id, use - instead (also use all lower case)
+-->
+<h5 id="password-management">Password management</h5>
 
 When you first installed the Python code on the RPi, a password was automatically created. It is the host name of your Raspberry Pi (which you normally create when creating the SD card/OS install). (note: unless you created a different password when installing btwifiset.py)
 
