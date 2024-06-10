@@ -19,7 +19,7 @@ And look for the line that starts with: ******* Starting BTwifiSet - version dat
 #### About
 Step by Step (manually) install on your Raspberry Pi of a bluetooth BLE Server written in Python .  BLE advertises a custom service that communicates with the IOS app to remotely set the wifi on a headless raspberry pi.
 
-#### Automated Install issues: exited due to cryptography
+<h4 id="crypto-exit">Automated Install issues: exited due to cryptography</h4>
 
 If you came here from the [github repository](https://github.com/nksan/Rpi-SetWiFi-viaBluetooth) because the installer exited with a warning about and old version of  cryptography module: On older Raspberry Pi OS (Buster = version 10), if the cryptography module is version 2.x or earlier, the Python code to be installed on the raspberry pi will not run.  
 
