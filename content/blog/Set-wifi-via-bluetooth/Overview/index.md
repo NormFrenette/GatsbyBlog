@@ -53,6 +53,7 @@ ls /sys/class/bluetooth
 ##### Bug Fixes - Improvements
 1. Allows SSID with spaces (previous version would truncate SSID at first "space" character)
 2. Fix behavior when two IiOS devices are connected to the same Raspberry Pi at the same time (in version 1, Network list was split between both devices in a random manner).  
+3. added installation to virtual environment of python modules when not available directly from apt (or version is too old).  In this case the modules dbus & cryptography are installed in venv directory under /usr/local/btwifiset using Python Pip3.
 
 ##### iOS app BTBerryWifi 2.0 extra features (coming soon)
 > note: The iOS app BTBerryWifi 2.0 is in final testing - it is not yet published to the app store

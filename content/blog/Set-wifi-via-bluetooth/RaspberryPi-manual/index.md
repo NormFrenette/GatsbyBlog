@@ -7,7 +7,7 @@ appearOrder: 116
 ---
 
 
-#### Current Version: 2.0 - June 8, 2004
+#### Current Version: 2.0 - June 20, 2004
 I continue to make changes often based on early adopters comments and experiences.  Check here often to see if I have posted a new version.
 
 To check installed current version date on your Raspberry Pi, check the log file in terminal:
@@ -18,15 +18,6 @@ And look for the line that starts with: ******* Starting BTwifiSet - version dat
 
 #### About
 Step by Step (manually) install on your Raspberry Pi of a bluetooth BLE Server written in Python .  BLE advertises a custom service that communicates with the IOS app to remotely set the wifi on a headless raspberry pi.
-
-<h4 id="crypto-exit">Automated Install issues: exited due to cryptography</h4>
-
-If you came here from the [github repository](https://github.com/nksan/Rpi-SetWiFi-viaBluetooth) because the installer exited with a warning about and old version of  cryptography module: On older Raspberry Pi OS (Buster = version 10), if the cryptography module is version 2.x or earlier, the Python code to be installed on the raspberry pi will not run.  
-
->You need to decide to install an updated version of the cryptography module. The installer would not do it automatically in case upgrading the module would break some other program you are running that relies on it.  
-
-See [Step 3 - Cryptography](#cryptoinstall) for installation details.
->Note: once you have installed/upgraded the cryptography module, you will need to install all other dependencies/python code since none were installed when the automatic installer existed. The automated installer can be used at that point.
 
 #### Requirements
 *Python3: version 3.7 or later **must** be installed on the Raspberry Pi.*  
@@ -64,8 +55,7 @@ python3 --version
 
 #### Step 2: download the python files
 
->These instructions install the python file btwifiset.py in usr/local/ in a directory called btwifiset.  You can install it anywhere else if you prefer - simply modify the "ExecStart" line in the btwifiset.service file (see **Step 6**) to use the location where you install the btwifiset.py file.
-
+>These instructions create the directory btwifiset in usr/local/ and copies the necessary files into it.  You can pick a different directory, but in this case modify the "ExecStart" line in the btwifiset.service file (see **Step 6**) to use the location where you install the btwifiset.py file.
 
 1. Navigate to /usr/local directory, create a directory named **btwifiset**, then navigate there:
 ```
@@ -87,18 +77,20 @@ To use the current hostname of your Raspberry Pi as the default password (see [w
 ```
 hostname > /usr/local/btwifiset/crypto
 ```
-or to make your own password (replace thw word password with your own selection):
+or to make your own password (replace thw word *password* with your own selection):
 ```
 echo password > /usr/local/btwifiset/crypto
 ```
 >Important: the file containing the password is named crypto (with no extension). Do not change this name as it is hard coded in the bluetooth Python code that looks for the password when connecting to the iPhone app.
 note: You can use view and/or change the password at anytime after the crypto file is created with this command
 ```
-/usr/local/btwifiset/btpassword.py
+ sudo /usr/local/btwifiset/btpassword.py
 ```
 
 #### Step 3 - Check for/Install Python modules:
-The BLE server python script requires the use of three python modules not already included with python: **dbus** and **GLib** and **Cryptography**
+The BLE server python script requires the use of three python modules not already included with python: **dbus** and **GLib** and **Cryptography**.    
+
+Glib is installed with apt. Dbus and cryptography may be installed with apt or pip3 - depending on how new your OS is.  
 
 ##### GLib
 
@@ -113,6 +105,7 @@ sudo apt install python3-gi libdbus-glib-1-dev libpythonX.Y-dev
 >Replace X.Y above by the first two digit of python version. For example: if your version showed something like 3.9.2, run ***libpython3.9-dev*** above.
 
 ##### Dbus
+
 1.Under [Step 1](#step-one) you checked the Raspberry Pi OS release. If you have  version 11 or greater for your Raspberry Pi OS (or a new-ish version of Ubuntu) - use apt install:
 ```
 sudo apt install python3-dbus
@@ -140,7 +133,7 @@ sudo python3 -m pip install dbus-python
 ```
 sudo apt install python3-cryptography
 ```
-2. If the above has an error, or you have Raspberry Pi OS version 10 or less, or you came here because the automatic install script exited due to older cryptography version, you must use pip3:  
+2. If the above has an error, or you have Raspberry Pi OS version 10 or less, you must use pip3:  
 
 i) First check/install pip3 (see ***dbus*** heading - bullet 2 above for instructions).  
 ii) Next check if you have cryptography already installed:
