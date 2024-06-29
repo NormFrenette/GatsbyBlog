@@ -1,7 +1,7 @@
 ---
 title: BTBerryWifi iOs App - Extra Features for Supporters
 date: "2024-06-01T15:00:00.121Z"
-description: Supporters have access to encryption for network/passwords, ip and mac addreses and other info.
+description: Supporters have access to encryption for network/passwords, ip and mac addresses and other info.
 mainTag: Supporter
 appearOrder: 101
 ---
