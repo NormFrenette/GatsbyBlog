@@ -86,8 +86,8 @@ export default  function ContactPage(location){
                 <p>Please check the answer to Homo Sapiens Test and retry.</p></div>}
 
 
-            <p>Send me a message, especially if you are requesting a pcb or 
-                have specific questions you would like me to address.  
+            <p>Use this form to register as Android App Tester, request a pcb, 
+                have specific questions you would like me to address, or just give me feedback.  
             I will respond by email - and we can take it from there.
             </p>
 

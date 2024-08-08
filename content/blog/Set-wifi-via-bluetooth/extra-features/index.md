@@ -17,27 +17,37 @@ Supporters of this work (via in-app purchases) get access to extra features:
     - Signal strength (dbM) and channel/frequency of available wifi networks (useful for interference analysis) - (encrypted).
     - Other information (user defined) you need to display on the iOS device - (clear text).  
 
+This <a href="https://www.youtube.com/watch?v=x-VTXTclnhw" target="_blank">youtube video</a> shows the details of each supporter feature.
+
 #### Encryption 
+
+##### TLDR, What encryption does
+
+The encryption, when turned on encrypts the data related to network SSID and password, which is exchanged between the phone app and the Raspberry Pi.
+
+An encryption password is set on the RPi, and must be manually entered once in the phone app.  This is used to create an encryption key.  This key is used to encrypt/decrypt all data. Eavesdroppers and man-in-the-middle attacks see only encoded data (gibberish to them).
+
+The password also acts as a lock: If the user does not have it, The Bluetooth connection is immediately terminated (from the Raspberry Pi).  Thus you are locking the PI.  Anybody can download and install the phone App.  They can see your Raspberry Pi is the list for the purpose of connecting to it via Bluetooth - but they can;t connect and change anything on the pi without the password.
+
+>Important: Do not forget to change the default password created when you installed the btwifiset python code on the RPi. [See how](#password-management)
 
 ##### Why use encryption
 
 The free version of the app exchanges data with the Raspberry Pi without any data encryption, (other than Bluetooth pairing encryption which may or may not occur on all devices).  This means that passive eavesdropping or man-in-the-middle attacks can intercept the network SSID and password sent from th iOS device to the Raspberry Pi.
 
-By turning on encryption, a password set on the RPi, and then manually entered on the iOS device is used to create an encryption key.  This key is used to encrypt/decrypt all data related to the connection (network SSIDs, passwords, IP addresses, Mac Addresses). Eavesdroppers and man-in-the-middle attacks see only encoded data (gibberish to them).
-
-If you are only using the iOS app in an area where you know your bluetooth transmissions cannot be intercepted, encryption is not necessary.  (Bluetooth 5.0 is quoted to reach up to 400m indoors - but this depends on both your IOS device and raspberry Pi). On the other hand, anytime you use the iOS App BTBerryWifi in a public space, you run the risk of the password being intercepted.
+If you are only using the phone app in an area where you know your bluetooth transmissions cannot be intercepted, encryption is not necessary.  (Bluetooth 5.0 is quoted to reach up to 400m indoors - but this depends on both your IOS device and raspberry Pi version). On the other hand, anytime you use the iOS App BTBerryWifi in a public space or in a building where other rooms/apartment are close enough to eavesdrop on your bluetooth connection, you run the risk of the SSID & passwords being intercepted.
 
 ##### Why locking the Raspberry Pi
 
 The password created on the RPi is also used to lock the RPi:  this means that only users who know the password and have entered it in their iOS device can connect to the Raspberry Pi.
 
-In practice, anybody can download the iOS App BTBerryWifi, turn it on, and see if there are any Raspberry Pi with the btwifiset.py code installed, in the vicinity.  They can then connect to the Raspberry Pi, receive the list of Networks available, and connect to any of those.
+In practice, anybody can download the phone app BTBerryWifi, turn it on, and see if there are any Raspberry Pi (with the btwifiset.python code installed), in the vicinity.  They can then connect to the Raspberry Pi, receive the list of Networks available, and connect to any of those.
 
-This means that if the Raspberry Pi Appliance is in a public place (such a the guitar looper I am building), a user with the free iOS app can change the wifi (such as connecting to their own iphone hotspot for example).  This may or may not be a problem for you depending on how well your pi is secured (ssh) or what code you are running on it.
+So, if the Raspberry Pi Appliance is in a public place (such a the guitar looper I am building), a user with the free iOS app can change the wifi (such as connecting to their own iphone hotspot for example).  This may or may not be a problem for you depending on how well your pi is secured (ssh) or what code you are running on it.
 
-By Locking the Pi - the user must have the password to stay connected and move on past the connection screen.  If the *Lock the RPi* feature is turned on, and the user does not have the password, the iOS app immediately disconnects from the RPi and requests that the password be entered.
+By Locking the Pi - the user must have the encryption password to stay connected and move on past the connection screen.  If the *Encryption/Lock the RPi* feature is turned on, and the user does not have the password, the phone app immediately disconnects from the RPi and requests that the password be entered.
 
-Number of connections:  IOS and Raspberry Pi limit the number of simultaneous bluetooth connections.  In theory, if the RPi is not locked, enough users of the free app could connect that future connections would fail. This means that you might not be able to connect to your own RPi (an unlikely scenario but nevertheless possible).
+Number of connections:  IOS and Raspberry Pi limit the number of simultaneous bluetooth connections. Some older PI models/OSes allow only one connection at the time. In theory, if the RPi is not locked, enough users of the free app could connect that future connections would fail. This means that you might not be able to connect to your own RPi (an unlikely scenario but nevertheless possible).
 
 Encryption can be turn on or off using the Lock Tab on the ios screen - after establishing a bluetooth connection with the Raspberry Pi.
 
@@ -46,20 +56,22 @@ to turn a title that would normally be marked by a number of # such as ##### tit
 use this form instead where x in <hx represents the number of # I would have used
 note: no spaces in the id, use - instead (also use all lower case)
 -->
-<h5 id="password-management">Password management</h5>
+<h5 id="password-management">Encryption Password management</h5>
 
-When you first installed the Python code on the RPi, a password was automatically created. It is the host name of your Raspberry Pi (which you normally create when creating the SD card/OS install). (note: unless you created a different password when installing btwifiset.py)
+When you first installed the Python code on the RPi, You were asked for an encryption password.  If you did not enter one, the host name of your Raspberry Pi was used as a default.
+
+> Warning: this is ***not a very safe password*** since the hostname of your RPi is displayed in the list when a user connects. So you should change the password with the procedure described here.
 
 The password on the RPi is stored in a simple (text) file named: Crypto, found in the /usr/local/btwifiset directory along side the btwifiset.py code.
 >Please do not change the name of this file, or encryption will not work.
-A small python utility (btpassword.py) can be launched to view or change the password. In terminal do this:
+A small python utility (btpassword.py) can be launched to view or change the password. SSH in terminal and do this:
 ```
 cd /usr/local/btwifiset
 sudo ./btpassword.py
 ```
-The password is easy to find/see since it is assumed that users who can already ssh in the RPi or have physical access via monitor/keyboard have the rights to see or change the password for the iOS app BTBerryWifi
+The password is easy to find/see because it is assumed that users who can already ssh in the RPi or have physical access via monitor/keyboard have the rights to see or change the password for the iOS app BTBerryWifi.
 
-The password on the iOS device must be entered manually. Once entered, it is checked against the password on the RPi using encryption, and if successful, the password is stored in your Apple Keychain: you do not need to enter it again. The keyChain will remember each different password for each RPi that has the btwifiset.py code installed.
+The password on the iOS device must be entered manually. Once entered, it is checked against the password on the RPi using encryption, and if successful, the password is stored in your Apple Keychain: you do not need to enter it again. The keyChain will remember each different password for each separate RPi it connects to.
 
 ##### Extra Information
 

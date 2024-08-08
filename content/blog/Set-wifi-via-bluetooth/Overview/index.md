@@ -7,7 +7,14 @@ appearOrder: 100
 ---
 
 #### About  
-Set the wifi on your [Headless](/Raspberry-Pi/Principles-What-is-Headless/#sectionTop) Raspberry Pi via an App on your Phone (or iPad).  Use this when your headless Raspberry Pi needs to connect to a new network. The app connect to the RPi over Bluetooth. You enter the Network Name (SSID) and password in the phone App and the wifi network is updated on the Raspberry Pi.
+
+The BTBerryWifi App is on the  <a href="https://apps.apple.com/us/app/btberrywifi/id1596978011" target="_blank">(On App Store)</a>. An Android version is coming but [I need Testers](/Set-wifi-via-bluetooth/Android-Android/#sectionTop).
+
+This user guide (with pictures) covers the free portion of the app. There is also a <a href="https://www.youtube.com/watch?v=Lt_nxcghhZE" target="_blank">user guide youtube video</a>.
+
+There are also [advanced features](/Set-wifi-via-bluetooth/Supporter-extra-features/#sectionTop) for ***Supporters*** which adds Encryption, Lock the PI, and provide extra info about the RPi. This <a href="https://www.youtube.com/watch?v=x-VTXTclnhw" target="_blank">how to video</a> shows the details of each supporter feature.
+
+The app lets you set new wifi parameters (network & password) on your [Headless](/Raspberry-Pi/Principles-What-is-Headless/#sectionTop) Raspberry Pi using Bluetooth on your Phone (or iPad).  This is useful if you cannot connect a monitor/mouse/keyboard to your RPi. The Raspberry Pi sends a list Wifi Access Points (Networks) to your phone (via Bluetooth). You then select the Network Name (SSID) and enter the password in the phone App.  This is sent to the Raspberry Pi (via Bluetooth)  and the wifi network is updated and connected to on the Raspberry Pi.  The app also allows the use of a hidden SSID.
  
 ##### The typical use cases
 1. You have a headless Raspberry Pi working at home - and you take it to a friends house or a public place where you need to connect it to a yet unknown wifi network available there.  
@@ -16,7 +23,7 @@ Set the wifi on your [Headless](/Raspberry-Pi/Principles-What-is-Headless/#secti
 
 ##### The Problem
 - You do not have access to a keyboard/mouse/monitor or your RPi is sealed in a box you do not want to open - which means you cannot access your pi physically.
-- This means that you cannot directly access the pi. Since your RPi is not connected to wifi, you cannot ssh into it with your PC/Mac to set the network parameters.
+- This means that you cannot directly access the RPi. Since your RPi is not connected to wifi, you cannot ssh into it with your PC/Mac to set the network parameters.
 
 #### The solution: BTBerryWifi iOS app + RPi btwifiset.py
 The free iOS app BTBerryWifi <a href="https://apps.apple.com/us/app/btberrywifi/id1596978011" target="_blank">(On App Store)</a>connects to a Raspberry Pi via bluetooth and displays available wifi networks within range of the RPi. You select a network, enter the password.  This is sent to the Raspberry Pi which connects to the wifi network. See [User Guide](/Set-wifi-via-bluetooth/iPhone-App-iPhone-app-usage/#sectionTop)
